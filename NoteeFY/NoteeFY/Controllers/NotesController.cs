@@ -1,6 +1,7 @@
-﻿using NoteeFY.Buisness.Menagers;
+﻿using NoteeFY.Buisness.Managers;
 using NoteeFY.Models;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -22,48 +23,46 @@ namespace NoteeFY.Controllers
         public IHttpActionResult GetNote(int id)
         {
             Note note = nt.GetNote(id);
-            if (note == null)
+            if (note == null) return NotFound();
+            return Ok(note);
+        }
+        /*
+        // PUT: api/Products/5
+        [ResponseType(typeof(void))]
+        #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<IHttpActionResult> PutNote(Note note, int id)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (id != note.NoteID) return BadRequest();
+
+            if (nt.PutNote(id, note).IsCompleted == true) return StatusCode(HttpStatusCode.NoContent);
+            else return NotFound();
+        }
+
+        // POST: api/Products - CREATE
+        [ResponseType(typeof(Note))]
+        public async Task<IHttpActionResult> PostNote(Note note)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            nt.PutNote(note);
+            return CreatedAtRoute("DefaultApi", new { id = note.NoteID }, note);
+        }
+
+        // DELETE: api/Products/5 - DELETE
+        [ResponseType(typeof(Note))]
+        public async Task<IHttpActionResult> DeleteProduct(int id)
+        {
+            Product product = await db.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
-            return Ok(note);
-        }
 
+            db.Products.Remove(product);
+            await db.SaveChangesAsync();
 
-        /* IN PROGRES
-        // PUT: api/Products/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProduct(int id, Product product)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(product);
         }*/
     }
 }
