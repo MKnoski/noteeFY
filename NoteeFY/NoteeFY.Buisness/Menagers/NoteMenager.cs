@@ -1,6 +1,6 @@
 ﻿using NoteeFY.Data.DBContext;
 using NoteeFY.Models;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace NoteeFY.Buisness.Menagers
 {
@@ -8,8 +8,8 @@ namespace NoteeFY.Buisness.Menagers
     {
         private NoteeContext db = new NoteeContext();
 
-        // GET api/Attractions
-        public IEnumerable<Note> GetNotes()
+        // GET: api/Products
+        public IQueryable<Note> GetNotes()
         {
             return db.Notes;
         }
