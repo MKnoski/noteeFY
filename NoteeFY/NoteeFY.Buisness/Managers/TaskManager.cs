@@ -12,7 +12,7 @@ namespace NoteeFY.Buisness.Menagers
 {
     public class TaskManager
     {
-        public IEnumerable<Task> GetSetOfTasks()
+        public IEnumerable<TaskItem> GetSetOfTasks()
         {
             using ( NoteeContext db = new NoteeContext())
             {
@@ -20,7 +20,7 @@ namespace NoteeFY.Buisness.Menagers
             }
         }
 
-        public Task GetSingleTask(int id)
+        public TaskItem GetSingleTask(int id)
         {
             using (NoteeContext db = new NoteeContext())
             {

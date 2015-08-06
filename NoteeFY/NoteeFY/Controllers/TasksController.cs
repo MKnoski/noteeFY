@@ -14,13 +14,13 @@ namespace NoteeFY.Controllers
         private TaskManager taskMng = new TaskManager();
 
         // GET: api/Tasks
-        public IEnumerable<Task> GetTasks()
+        public IEnumerable<TaskItem> GetTasks()
         {
             return taskMng.GetSetOfTasks();
         }
 
         // GET api/Attractions/5
-        public Task GetTasks(int id)
+        public TaskItem GetTasks(int id)
         {
             return taskMng.GetSingleTask(id);
         } 
