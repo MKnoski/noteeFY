@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace NoteeFY.Data.DBContext
 {
-    class NoteeContext : DbContext
+    public class NoteeContext : DbContext
     {
         public NoteeContext() : base("NoteeContext"){}
 
