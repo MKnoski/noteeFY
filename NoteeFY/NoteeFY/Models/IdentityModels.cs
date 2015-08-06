@@ -29,5 +29,7 @@ namespace NoteeFY.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<NoteeFY.Models._Task> _Task { get; set; }
     }
 }
