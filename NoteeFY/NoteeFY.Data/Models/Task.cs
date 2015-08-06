@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NoteeFY.Models
 {
-    public class _Task // problem with name Task
+    public class Task
     {
             public int _TaskId { get; set; }
             public string Text { get; set; }
