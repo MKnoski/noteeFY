@@ -1,5 +1,5 @@
-﻿using NoteeFY.Models;
-using NoteeFY.Buisness.Menagers;
+﻿using NoteeFY.Data.Models;
+using NoteeFY.Buisness.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace NoteeFY.Controllers
             return taskMng.GetSetOfTasks();
         }
 
-        // GET api/Attractions/5
+        // GET api/Tasks/5
         public TaskItem GetTasks(int id)
         {
             return taskMng.GetSingleTask(id);

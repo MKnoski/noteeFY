@@ -1,5 +1,5 @@
 ﻿using NoteeFY.Buisness.Managers;
-using NoteeFY.Models;
+using NoteeFY.Data.Models;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;

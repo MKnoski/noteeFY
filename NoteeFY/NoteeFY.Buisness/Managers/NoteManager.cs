@@ -1,5 +1,5 @@
 ﻿using NoteeFY.Data.DBContext;
-using NoteeFY.Models;
+using NoteeFY.Data.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;

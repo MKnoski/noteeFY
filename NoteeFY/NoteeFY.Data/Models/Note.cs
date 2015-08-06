@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NoteeFY.Models
+namespace NoteeFY.Data.Models
 {
     public enum Type { Note, ToDoList };
 
