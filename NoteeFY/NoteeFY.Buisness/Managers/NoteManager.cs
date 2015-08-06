@@ -1,5 +1,6 @@
 ﻿using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace NoteeFY.Buisness.Managers
 {
     public class NoteManager
     { 
-        public IQueryable<Note> GetNotes()
+        public List<Note> GetNotes()
         {
             using(NoteeContext db = new NoteeContext())
             {
-                return db.Notes;
+                return db.Notes.ToList();
             }
         }
 
@@ -25,7 +26,7 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        /*
+        /* TO DO post put
         public async Task<bool> PutNote(int id, Note note)
         {
             db.Entry(note).State = EntityState.Modified;

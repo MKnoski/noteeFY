@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\NoteeContext.cs" />
+    <Compile Include="Migrations\201508061438390_Initial.cs" />
+    <Compile Include="Migrations\201508061438390_Initial.Designer.cs">
+      <DependentUpon>201508061438390_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
@@ -58,6 +63,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508061438390_Initial.resx">
+      <DependentUpon>201508061438390_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

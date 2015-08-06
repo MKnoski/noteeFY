@@ -1,5 +1,6 @@
 ﻿using NoteeFY.Buisness.Managers;
 using NoteeFY.Data.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace NoteeFY.Controllers
         private NoteManager nt = new NoteManager();
 
         // GET: api/Notes - READ 
-        public IQueryable<Note> GetNotes()
+        public List<Note> GetNotes()
         {
             return nt.GetNotes();
         }
@@ -26,7 +27,9 @@ namespace NoteeFY.Controllers
             if (note == null) return NotFound();
             return Ok(note);
         }
-        /*
+
+
+        /* TO DO post put
         // PUT: api/Products/5
         [ResponseType(typeof(void))]
         #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
