@@ -10,6 +10,6 @@ namespace NoteeFY.Buisness.DTOs
         public string Text { get; set; }
         public Type Type { get; set; }
 
-        public ICollection<TaskItem> TaskItems { get; set; }
+        public List<TaskItemDTO> TaskItemsDTO { get; set; }
     }
 }
