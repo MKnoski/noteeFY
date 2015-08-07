@@ -1,7 +1,4 @@
-﻿
-
-
-namespace NoteeFY.Data.Models
+﻿namespace NoteeFY.Data.Models
 {
     public class TaskItem
     {
