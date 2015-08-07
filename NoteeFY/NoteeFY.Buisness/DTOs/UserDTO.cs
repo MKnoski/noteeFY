@@ -11,6 +11,6 @@ namespace NoteeFY.Buisness.DTOs
     {
         public int UserID { get; set; }
 
-        public ICollection<Note> Notes { get; set; }
+        public ICollection<NoteDTO> NotesDTO { get; set; }
     }
 }

@@ -15,14 +15,8 @@ namespace NoteeFY.Controllers
     {
         private UserManagers userManager = new UserManagers();
 
-        // GET: api/Users
-        public List<UserDTO> GetUsers()
-        {
-            return userManager.GetSetOfUsers();
-        }
-
         // GET api/User/5
-        public User GetUser(int id)
+        public UserDTO GetUser(int id)
         {
             try
             {

@@ -24,7 +24,7 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        private List<TaskItemDTO> GetTaskItemsDTO(ICollection<TaskItem> list)
+        private static List<TaskItemDTO> GetTaskItemsDTO(ICollection<TaskItem> list)
         {
             List<TaskItemDTO> TaskItemsDTO = new List<TaskItemDTO>();
             foreach (TaskItem t in list)
@@ -34,7 +34,7 @@ namespace NoteeFY.Buisness.Managers
             return TaskItemsDTO;
         }
 
-        private List<NoteDTO> GetNotesDTO(List<Note> notes)
+        public static List<NoteDTO> GetNotesDTO(List<Note> notes)
         {
             List<NoteDTO> notesDTO = new List<NoteDTO>();
             foreach (Note note in notes)
