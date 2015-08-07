@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
+using System.Data.Entity.Core;
 
 namespace NoteeFY.Buisness.Managers
 {
-    public class UserManager
+    public class UserManagers
     {
         public IEnumerable<User> GetSetOfUsers()
         {
@@ -29,7 +27,8 @@ namespace NoteeFY.Buisness.Managers
 
                 if (singleTask == null)
                 {
-                    throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+                    throw new ObjectNotFoundException();
+                    //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
                 }
 
                 return singleTask;

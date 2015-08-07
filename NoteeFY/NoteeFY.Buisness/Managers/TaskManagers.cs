@@ -1,16 +1,15 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Web.Http;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.Managers
 {
-    public class TaskManager
+    public class TaskManagers
     {
         public IEnumerable<TaskItem> GetSetOfTasks()
         {
@@ -20,7 +19,7 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        public TaskItem GetSingleTask(int id)
+        public TaskItem GetSingleTask(int id) 
         {
             using (NoteeContext db = new NoteeContext())
             {
@@ -28,7 +27,8 @@ namespace NoteeFY.Buisness.Managers
 
                 if (singleTask == null)
                 {
-                    throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+                    throw new Exception("Not found");
+                    //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
                 }
 
                 return singleTask;

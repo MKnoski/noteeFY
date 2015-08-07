@@ -9,20 +9,20 @@ using System.Web.Http;
 
 namespace NoteeFY.Controllers
 {
-    public class TasksController : ApiController
+    public class TasksControllers : ApiController
     {
-        private TaskManager taskMng = new TaskManager();
+        private TaskManagers taskItemsManager = new TaskManagers();
 
         // GET: api/Tasks
         public IEnumerable<TaskItem> GetTasks()
         {
-            return taskMng.GetSetOfTasks();
+            return taskItemsManager.GetSetOfTasks();
         }
 
         // GET api/Tasks/5
-        public TaskItem GetTasks(int id)
+        public TaskItem GetTask(int id)
         {
-            return taskMng.GetSingleTask(id);
+            return taskItemsManager.GetSingleTask(id);
         } 
 
     }
