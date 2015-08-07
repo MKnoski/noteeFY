@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using NoteeFY.Buisness.DTOs;
-using NoteeFY.Data.Models;
+﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Buisness.Managers;
+using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace NoteeFY.Controllers
 {
@@ -16,16 +10,12 @@ namespace NoteeFY.Controllers
         private UserManagers userManager = new UserManagers();
 
         // GET api/User/5
-        public UserDTO GetUser(int id)
+        [ResponseType(typeof(UserDTO))]
+        public IHttpActionResult GetUser(int id)
         {
-            try
-            {
-                return userManager.GetSingleUser(id);
-            }
-            catch (ObjectNotFoundException ex)
-            {
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
-            }     
+            UserDTO user = userManager.GetSingleUser(id);
+            if(user == null) return NotFound();
+            else return Ok(user);
         } 
     }
 }

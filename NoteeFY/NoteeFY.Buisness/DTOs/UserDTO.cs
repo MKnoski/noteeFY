@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.DTOs
@@ -11,6 +8,14 @@ namespace NoteeFY.Buisness.DTOs
     {
         public int UserID { get; set; }
 
-        public ICollection<NoteDTO> NotesDTO { get; set; }
+        public List<NoteDTO> NotesDTO { get; set; }
+
+        public UserDTO() { }
+
+        public UserDTO(User user)
+        {
+            UserID = user.UserID;
+            NotesDTO = user.Notes.Select(n => new NoteDTO(n)).ToList();
+        }
     }
 }

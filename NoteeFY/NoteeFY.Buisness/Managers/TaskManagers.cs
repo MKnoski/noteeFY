@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NoteeFY.Data.DBContext;
-using NoteeFY.Data.Models;
 using NoteeFY.Buisness.DTOs;
 
 namespace NoteeFY.Buisness.Managers
@@ -13,33 +11,18 @@ namespace NoteeFY.Buisness.Managers
         {
             using ( NoteeContext db = new NoteeContext())
             {
-                 return GetTaskItemsDTO(db.TaskItems.ToList());
+                 return db.TaskItems.ToList().Select(t => new TaskItemDTO(t)).ToList();
             }
         }
 
-        public TaskItemDTO GetSingleTask(int id) 
+        public TaskItemDTO GetSingleTask(int id)
         {
             using (NoteeContext db = new NoteeContext())
             {
-                var singleTask = new TaskItemDTO(db.TaskItems.Find(id));
-
-                if (singleTask == null)
-                {
-                    throw new Exception("Not found");
-                }
-
-                return singleTask;
+                var singleTask = db.TaskItems.Find(id);
+                if (singleTask == null) return null;
+                return new TaskItemDTO(singleTask);
             }
-        }
-
-        public static List<TaskItemDTO> GetTaskItemsDTO(List<TaskItem> TaskItems)
-        {
-            List<TaskItemDTO> tasksDTO = new List<TaskItemDTO>();
-            foreach (TaskItem task in TaskItems)
-            {
-                tasksDTO.Add(new TaskItemDTO(task));
-            }
-            return tasksDTO;
         }
 
     }

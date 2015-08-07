@@ -1,5 +1,4 @@
 ﻿using NoteeFY.Data.Models;
-using System.Collections.Generic;
 
 namespace NoteeFY.Buisness.DTOs
 {
@@ -9,14 +8,16 @@ namespace NoteeFY.Buisness.DTOs
         public string Text { get; set; }
         public bool IsDone { get; set; }
 
-        public NoteDTO ToDoListDTO { get; set; }
+        public TaskItemDTO() { }
 
-        public TaskItemDTO (TaskItem task)
+        public TaskItemDTO(TaskItem task)
         {
-            this.TaskItemID = task.TaskItemID;
-            this.Text = task.Text;
-            this.IsDone = task.IsDone;
-            this.ToDoListDTO = null;
+            if (task != null)
+            {
+                TaskItemID = task.TaskItemID;
+                Text = task.Text;
+                IsDone = task.IsDone;
+            }
         }
     }
 }

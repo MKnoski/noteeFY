@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NoteeFY.Data.DBContext;
-using NoteeFY.Data.Models;
+﻿using NoteeFY.Data.DBContext;
 using System.Data.Entity.Core;
 using NoteeFY.Buisness.DTOs;
 
@@ -17,28 +11,9 @@ namespace NoteeFY.Buisness.Managers
             using (NoteeContext db = new NoteeContext())
             {
                 var singleUser = db.Users.Find(id);
-
-                if (singleUser == null)
-                {
-                    throw new ObjectNotFoundException();
-                }
-
-                return GetUserDTO(singleUser);
+                if (singleUser == null) return null;
+                else return new UserDTO(singleUser);
             }
-        }
-
-        public UserDTO GetUserDTO (User user)
-        {
-            var UserID = user.UserID;
-            var Notes = user.Notes.ToList();
-
-            UserDTO userDTO = new UserDTO
-            {
-                UserID = user.UserID,
-                NotesDTO = null
-            };
-            userDTO.NotesDTO = NoteManagers.GetNotesDTO(user.Notes.ToList());
-            return userDTO;
         }
     }
 }

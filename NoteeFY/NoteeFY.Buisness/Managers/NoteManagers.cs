@@ -12,7 +12,7 @@ namespace NoteeFY.Buisness.Managers
         {
             using(NoteeContext db = new NoteeContext())
             {
-                return GetNotesDTO(db.Notes.ToList());
+                return db.Notes.ToList().Select(n => new NoteDTO(n)).ToList();
             }
         }
 
@@ -20,46 +20,10 @@ namespace NoteeFY.Buisness.Managers
         {
             using (NoteeContext db = new NoteeContext())
             {
-                return GetNoteDTO(db.Notes.Find(id));
+                var note = db.Notes.Find(id);
+                if (note == null) return null;
+                else return new NoteDTO(note);
             }
-        }
-
-        //private static List<TaskItemDTO> GetTaskItemsDTO(ICollection<TaskItem> list)
-        //{
-        //    List<TaskItemDTO> TaskItemsDTO = new List<TaskItemDTO>();
-        //    foreach (TaskItem t in list)
-        //    {
-        //        TaskItemsDTO.Add(new TaskItemDTO(t));
-        //    }
-        //    return TaskItemsDTO;
-        //}
-
-        public static List<NoteDTO> GetNotesDTO(List<Note> notes)
-        {
-            List<NoteDTO> notesDTO = new List<NoteDTO>();
-            foreach (Note note in notes)
-            {
-                notesDTO.Add(GetNoteDTO(note));
-            }
-            return notesDTO;
-        }
-
-        private static NoteDTO GetNoteDTO(Note note)
-        {
-            if (note != null)
-            {
-                NoteDTO noteDTO = new NoteDTO
-                {
-                    NoteID = note.NoteID,
-                    Title = note.Title,
-                    Text = note.Text,
-                    Type = note.Type,
-                    TaskItemsDTO = null
-                };
-                noteDTO.TaskItemsDTO = TaskManagers.GetTaskItemsDTO(note.TaskItems.ToList());
-                return noteDTO;
-            }
-            else return null;
         }
     }
 }

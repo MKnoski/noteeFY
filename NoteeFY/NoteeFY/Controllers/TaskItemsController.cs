@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using NoteeFY.Buisness.DTOs;
+using System.Web.Http.Description;
 
 namespace NoteeFY.Controllers
 {
@@ -18,17 +19,13 @@ namespace NoteeFY.Controllers
             return taskItemsManager.GetSetOfTasks();
         }
 
-        // GET api/TaskItems/5
-        public TaskItemDTO GetTaskItem(int id)
+        // GET: api/TaskItems/5 - READ Single
+        [ResponseType(typeof(NoteDTO))]
+        public IHttpActionResult GetTaskItem(int id)
         {
-            try
-            {
-                return taskItemsManager.GetSingleTask(id);
-            }
-            catch (ObjectNotFoundException)
-            {
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
-            }
+            TaskItemDTO task = taskItemsManager.GetSingleTask(id);
+            if (task == null) return NotFound();
+            else return Ok(task);
         } 
 
     }
