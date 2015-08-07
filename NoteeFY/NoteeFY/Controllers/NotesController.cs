@@ -1,4 +1,5 @@
-﻿using NoteeFY.Buisness.Managers;
+﻿using NoteeFY.Buisness.DTOs;
+using NoteeFY.Buisness.Managers;
 using NoteeFY.Data.Models;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -11,7 +12,7 @@ namespace NoteeFY.Controllers
         private NoteManager nt = new NoteManager();
 
         // GET: api/Notes - READ 
-        public List<Note> GetNotes()
+        public List<NoteDTO> GetNotes()
         {
             return nt.GetNotes();
         }

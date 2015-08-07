@@ -10,6 +10,6 @@ namespace NoteeFY.Buisness.DTOs
         public string Text { get; set; }
         public Type Type { get; set; }
 
-        public virtual ICollection<TaskItem> Tasks { get; set; }
+        public ICollection<TaskItem> TaskItems { get; set; }
     }
 }
