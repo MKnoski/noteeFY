@@ -37,7 +37,7 @@ namespace NoteeFY.Buisness.Managers
                 UserID = user.UserID,
                 NotesDTO = null
             };
-            userDTO.NotesDTO = NoteManager.GetNotesDTO(user.Notes.ToList());
+            userDTO.NotesDTO = NoteManagers.GetNotesDTO(user.Notes.ToList());
             return userDTO;
         }
     }

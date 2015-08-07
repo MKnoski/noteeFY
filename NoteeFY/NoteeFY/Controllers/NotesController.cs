@@ -8,7 +8,7 @@ namespace NoteeFY.Controllers
 {
     public class NotesController : ApiController
     {
-        private NoteManager noteManager = new NoteManager();
+        private NoteManagers noteManager = new NoteManagers();
 
         // GET: api/Notes - READ 
         public List<NoteDTO> GetNotes()

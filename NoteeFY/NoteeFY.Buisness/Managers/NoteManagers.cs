@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
 {
-    public class NoteManager
+    public class NoteManagers
     { 
         public List<NoteDTO> GetNotes()
         {
@@ -24,15 +24,15 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        private static List<TaskItemDTO> GetTaskItemsDTO(ICollection<TaskItem> list)
-        {
-            List<TaskItemDTO> TaskItemsDTO = new List<TaskItemDTO>();
-            foreach (TaskItem t in list)
-            {
-                TaskItemsDTO.Add(new TaskItemDTO(t));
-            }
-            return TaskItemsDTO;
-        }
+        //private static List<TaskItemDTO> GetTaskItemsDTO(ICollection<TaskItem> list)
+        //{
+        //    List<TaskItemDTO> TaskItemsDTO = new List<TaskItemDTO>();
+        //    foreach (TaskItem t in list)
+        //    {
+        //        TaskItemsDTO.Add(new TaskItemDTO(t));
+        //    }
+        //    return TaskItemsDTO;
+        //}
 
         public static List<NoteDTO> GetNotesDTO(List<Note> notes)
         {
@@ -44,7 +44,7 @@ namespace NoteeFY.Buisness.Managers
             return notesDTO;
         }
 
-        private NoteDTO GetNoteDTO(Note note)
+        private static NoteDTO GetNoteDTO(Note note)
         {
             if (note != null)
             {
@@ -56,7 +56,7 @@ namespace NoteeFY.Buisness.Managers
                     Type = note.Type,
                     TaskItemsDTO = null
                 };
-                noteDTO.TaskItemsDTO = GetTaskItemsDTO(note.TaskItems);
+                noteDTO.TaskItemsDTO = TaskManagers.GetTaskItemsDTO(note.TaskItems.ToList());
                 return noteDTO;
             }
             else return null;

@@ -32,7 +32,7 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        public List<TaskItemDTO> GetTaskItemsDTO(List<TaskItem> TaskItems)
+        public static List<TaskItemDTO> GetTaskItemsDTO(List<TaskItem> TaskItems)
         {
             List<TaskItemDTO> tasksDTO = new List<TaskItemDTO>();
             foreach (TaskItem task in TaskItems)
