@@ -95,8 +95,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NotesController.cs" />
-    <Compile Include="Controllers\TasksControllers.cs" />
-    <Compile Include="Controllers\UserControllers.cs" />
+    <Compile Include="Controllers\TaskItemsControllers.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

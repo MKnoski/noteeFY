@@ -1,6 +1,5 @@
 ﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Buisness.Managers;
-using NoteeFY.Data.Models;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;

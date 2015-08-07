@@ -1,9 +1,6 @@
-﻿using NoteeFY.Data.Models;
-using NoteeFY.Buisness.Managers;
-using System;
+﻿using NoteeFY.Buisness.Managers;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -11,7 +8,7 @@ using NoteeFY.Buisness.DTOs;
 
 namespace NoteeFY.Controllers
 {
-    public class TasksControllers : ApiController
+    public class TaskItemsController : ApiController
     {
         private TaskManagers taskItemsManager = new TaskManagers();
 

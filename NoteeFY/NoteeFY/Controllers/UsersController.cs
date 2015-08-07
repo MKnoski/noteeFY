@@ -11,7 +11,7 @@ using NoteeFY.Buisness.Managers;
 
 namespace NoteeFY.Controllers
 {
-    public class UsersControllers : ApiController
+    public class UsersController : ApiController
     {
         private UserManagers userManager = new UserManagers();
 
