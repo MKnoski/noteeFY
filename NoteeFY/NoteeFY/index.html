@@ -1,23 +1,24 @@
 ﻿<!DOCTYPE html>
 <html lang="pl_PL">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
     <script type='text/javascript' src='Knockout_Resources/jquery-1.9.1.js'></script>
     <script type="text/javascript" src="Knockout_Resources/jquery-ui.js"></script>
 
     <script type='text/javascript' src="Knockout_Resources/knockout-3.3.0.js"></script>
     <script type='text/javascript' src="Knockout_Resources/knockout-sortable.js"></script>
     <title>NoteeFY</title>
-	
-	<link rel="stylesheet" type="text/css" href="addons.css">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="addons.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,26 +26,66 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
+</head>
+<body>
 
-	<div id='divElement'>
-	  <table align="center">
-	   <tr height="100%">
-		<td height="100%" width="100%" valign="middle" align="center">
-		    <span align="center"><h3> Witaj w NoteeFY</h3></span>
-            <br />
-            <span style="display: inline;"> UserID <input data-bind="value: userID" />
-                <button class="btn btn-info" type="submit" data-bind="click: "><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
-            </span>
-            <br /><br />
-            <p><span align="center">Nie ma takiego urzytkownika</span></p>
-		</td>
-	   </tr>
-	  </table>
-	</div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Grupowanie "marki" i przycisku rozwijania mobilnego menu -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Rozwiń nawigację</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">"NoteeFY"</a>
+            </div>
 
-  </body>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script type="text/javascript" src="logic.js"></script>
+            <!-- Grupowanie elementów menu w celu lepszego wyświetlania na urządzeniach moblinych -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Szukaj">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id='singleNote'>
+        <input class="form-control" placeholder="Tytuł"> </input>
+        <br>
+        <textarea class="form-control custom-control" rows="8" id="comment" style="resize:none"></textarea>
+        <br>
+        <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
+
+        <button class="btn btn-default"><i class="fa fa-paint-brush"></i></button>
+
+        <span style="float:right;"> Ostatnia modifikacja</span>
+
+    </div>
+
+
+    <div id='loggingWindow'>
+        <table align="center">
+            <tr height="100%">
+                <td height="100%" width="100%" valign="middle" align="center">
+                    <span align="center"><h3> Witaj w NoteeFY</h3></span>
+                    <br />
+                    <span style="display: inline;">
+                        Podaj ID <input data-bind="value: userIDInput, valueUpdate:'afterkeydown', event: {keypress: onEnter}" />
+                        <button class="btn btn-info" type="submit" data-bind="click: logIn, enable: userIDInput"><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
+                    </span>
+                    <br /><br />
+                    <p><u><span style="color:red" align="center" data-bind="visible: canLogIn">Nie ma takiego użytkownika</span></u></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="logic.js"></script>
 </html>

@@ -1,4 +1,4 @@
-#divElement{
+#loggingWindow{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -6,5 +6,24 @@
     margin-left: -200px;
     width: 400px;
     height: 150px;
-    background-color: #dee3df;
+    border-radius: 15px 50px;
+    background: #8AC007;
+    padding: 20px;
+
+    /*visibility: hidden;*/
 }
+
+#singleNote{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 300px;
+    height: 320px;
+    border-radius: 15px 15px;
+    background: #8AC007;
+    padding: 20px;
+}
+
+body {
+  background-color: #ebebeb;
+  }
