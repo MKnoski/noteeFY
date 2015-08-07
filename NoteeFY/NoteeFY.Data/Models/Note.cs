@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+
 
 namespace NoteeFY.Data.Models
 {
-    public enum Type { Note, ToDoList };
+    public enum Type { Text = 0, ToDoList };
 
     public class Note
     {
         public int NoteID { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
-        public Type? Type { get; set; }
+        public Type Type { get; set; }
         
-        public virtual ICollection<TaskItem> Tasks { get; set; }
+        public virtual ICollection<TaskItem> TaskItems { get; set; }
     }
 }
