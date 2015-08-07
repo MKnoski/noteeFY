@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	
-    <script type='text/javascript' src='ext/jquery-1.9.1.js'></script>
-    <script type="text/javascript" src="ext/jquery-ui.js"></script>
+    <script type='text/javascript' src='Knockout_Resources/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src="Knockout_Resources/jquery-ui.js"></script>
 
-    <script type='text/javascript' src="ext/knockout-3.3.0.js"></script>
-    <script type='text/javascript' src="build/knockout-sortable.js"></script>
+    <script type='text/javascript' src="Knockout_Resources/knockout-3.3.0.js"></script>
+    <script type='text/javascript' src="Knockout_Resources/knockout-sortable.js"></script>
     <title>NoteeFY</title>
 	
 	<link rel="stylesheet" type="text/css" href="addons.css">
@@ -27,35 +27,23 @@
     <![endif]-->
   </head>
   <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				
-				
-				
-				
 
-			</div>
-		</div>
-	</div>
-	
 	<div id='divElement'>
 	  <table align="center">
 	   <tr height="100%">
 		<td height="100%" width="100%" valign="middle" align="center">
-		  
-			
-			<span align="center"><h3> Witaj w NoteeFY</h3></span>
-				<span style="display: inline;"> UserID <input data-bind="value: userID" />
-					<button class="btn btn-info" type="submit" data-bind="click: "><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
-				</span>
-
+		    <span align="center"><h3> Witaj w NoteeFY</h3></span>
+            <br />
+            <span style="display: inline;"> UserID <input data-bind="value: userID" />
+                <button class="btn btn-info" type="submit" data-bind="click: "><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
+            </span>
+            <br /><br />
+            <p><span align="center">Nie ma takiego urzytkownika</span></p>
 		</td>
 	   </tr>
 	  </table>
-	 </div>
-	
-	
+	</div>
+
   </body>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script type="text/javascript" src="logic.js"></script>

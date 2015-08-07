@@ -90,11 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addons.css" />
-    <Content Include="build\knockout-sortable.js" />
-    <Content Include="build\knockout-sortable.min.js" />
-    <Content Include="ext\jquery-1.9.1.js" />
-    <Content Include="ext\jquery-ui.js" />
-    <Content Include="ext\knockout-3.3.0.js" />
+    <Content Include="Knockout_Resources\knockout-sortable.js" />
+    <Content Include="Knockout_Resources\knockout-sortable.min.js" />
+    <Content Include="Knockout_Resources\jquery-1.9.1.js" />
+    <Content Include="Knockout_Resources\jquery-ui.js" />
+    <Content Include="Knockout_Resources\knockout-3.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="logic.js" />
