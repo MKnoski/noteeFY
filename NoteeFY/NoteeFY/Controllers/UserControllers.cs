@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using NoteeFY.Buisness.DTOs;
 using NoteeFY.Data.Models;
 using NoteeFY.Buisness.Managers;
 
@@ -15,7 +16,7 @@ namespace NoteeFY.Controllers
         private UserManagers userManager = new UserManagers();
 
         // GET: api/Users
-        public IEnumerable<User> GetUsers()
+        public List<UserDTO> GetUsers()
         {
             return userManager.GetSetOfUsers();
         }

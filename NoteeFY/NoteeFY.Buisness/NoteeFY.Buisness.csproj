@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\NoteDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Managers\NoteManager.cs" />
     <Compile Include="Managers\TaskManagers.cs" />
     <Compile Include="Managers\UserManagers.cs" />

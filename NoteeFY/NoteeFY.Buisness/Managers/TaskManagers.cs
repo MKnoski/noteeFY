@@ -28,7 +28,6 @@ namespace NoteeFY.Buisness.Managers
                 if (singleTask == null)
                 {
                     throw new Exception("Not found");
-                    //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
                 }
 
                 return singleTask;

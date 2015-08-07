@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
 using System.Data.Entity.Core;
+using NoteeFY.Buisness.DTOs;
+using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
 {
     public class UserManagers
     {
-        public IEnumerable<User> GetSetOfUsers()
+        public List<UserDTO> GetSetOfUsers()
         {
             using (NoteeContext db = new NoteeContext())
             {
-                return db.Users.AsEnumerable();
+                return db.Users.Select(u => new UserDTO
+                {   
+                    UserID = u.UserID,
+                    Notes = u.Notes.ToList()
+                    }).ToList();
             }
         }
 
@@ -28,7 +34,6 @@ namespace NoteeFY.Buisness.Managers
                 if (singleTask == null)
                 {
                     throw new ObjectNotFoundException();
-                    //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
                 }
 
                 return singleTask;
