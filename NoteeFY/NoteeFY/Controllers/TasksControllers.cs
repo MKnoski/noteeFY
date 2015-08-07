@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using NoteeFY.Buisness.DTOs;
 
 namespace NoteeFY.Controllers
 {
@@ -14,14 +15,14 @@ namespace NoteeFY.Controllers
     {
         private TaskManagers taskItemsManager = new TaskManagers();
 
-        // GET: api/Tasks
-        public IEnumerable<TaskItem> GetTasks()
+        // GET: api/TaskItems
+        public List<TaskItemDTO> GetTaskItems()
         {
             return taskItemsManager.GetSetOfTasks();
         }
 
-        // GET api/Tasks/5
-        public TaskItem GetTask(int id)
+        // GET api/TaskItems/5
+        public TaskItemDTO GetTaskItem(int id)
         {
             try
             {

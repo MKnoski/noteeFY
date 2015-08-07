@@ -1,29 +1,27 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
+using NoteeFY.Buisness.DTOs;
 
 namespace NoteeFY.Buisness.Managers
 {
     public class TaskManagers
     {
-        public IEnumerable<TaskItem> GetSetOfTasks()
+        public List<TaskItemDTO> GetSetOfTasks()
         {
             using ( NoteeContext db = new NoteeContext())
             {
-                 return db.Tasks.AsEnumerable();
+                 return GetTaskItemsDTO(db.TaskItems.ToList());
             }
         }
 
-        public TaskItem GetSingleTask(int id) 
+        public TaskItemDTO GetSingleTask(int id) 
         {
             using (NoteeContext db = new NoteeContext())
             {
-                var singleTask = db.Tasks.Find(id);
+                var singleTask = new TaskItemDTO(db.TaskItems.Find(id));
 
                 if (singleTask == null)
                 {
@@ -32,7 +30,17 @@ namespace NoteeFY.Buisness.Managers
 
                 return singleTask;
             }
-        } 
+        }
+
+        public List<TaskItemDTO> GetTaskItemsDTO(List<TaskItem> TaskItems)
+        {
+            List<TaskItemDTO> tasksDTO = new List<TaskItemDTO>();
+            foreach (TaskItem task in TaskItems)
+            {
+                tasksDTO.Add(new TaskItemDTO(task));
+            }
+            return tasksDTO;
+        }
 
     }
 }

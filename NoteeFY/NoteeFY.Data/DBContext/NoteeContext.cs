@@ -9,7 +9,7 @@ namespace NoteeFY.Data.DBContext
         public NoteeContext() : base("NoteeContext"){}
 
         public DbSet<Note> Notes { get; set; }
-        public DbSet<TaskItem> Tasks { get; set; }
+        public DbSet<TaskItem> TaskItems { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

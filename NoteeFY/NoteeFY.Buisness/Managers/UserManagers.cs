@@ -7,7 +7,6 @@ using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
 using System.Data.Entity.Core;
 using NoteeFY.Buisness.DTOs;
-using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
 {

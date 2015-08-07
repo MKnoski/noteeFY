@@ -9,21 +9,21 @@ namespace NoteeFY.Controllers
 {
     public class NotesController : ApiController
     {
-        private NoteManager nt = new NoteManager();
+        private NoteManager noteManager = new NoteManager();
 
         // GET: api/Notes - READ 
         public List<NoteDTO> GetNotes()
         {
-            return nt.GetNotes();
+            return noteManager.GetNotes();
         }
 
         // GET: api/Notes/5 - READ Single
-        [ResponseType(typeof(Note))]
+        [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult GetNote(int id)
         {
-            Note note = nt.GetNote(id);
-            if (note == null) return NotFound();
-            return Ok(note);
+            NoteDTO noteDTO = noteManager.GetNote(id);
+            if (noteDTO == null) return NotFound();
+            return Ok(noteDTO);
         }
 
     }
