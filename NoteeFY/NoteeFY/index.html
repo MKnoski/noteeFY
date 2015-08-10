@@ -28,50 +28,7 @@
     <![endif]-->
 </head>
 <body>
-
-<<<<<<< HEAD
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <!-- Grupowanie "marki" i przycisku rozwijania mobilnego menu -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Rozwiń nawigację</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">"NoteeFY"</a>
-            </div>
-
-            <!-- Grupowanie elementów menu w celu lepszego wyświetlania na urządzeniach moblinych -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float:right;">
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Szukaj">
-                    </div>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                </form>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
-<div id='singleNote'>
-        <input class="form-control" placeholder="Tytuł"> </input>
-        <br>
-        <textarea class="form-control custom-control" rows="8" id="comment" style="resize:none"></textarea>
-        <br>
-        <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
-
-        <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-        <ul class="dropdown-menu">
-            <li><a href="#">GREEN</a></li>
-            <li><a href="#">RED</a></li>
-            <li><a href="#">YELLOW</a></li>
-        </ul>
-        <span style="float:right;"> Ostatnia modifikacja</span>
-=======
     <div id="mainPage" data-bind="visible: logged()">
-
 
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -98,41 +55,40 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-
         <div id='singleNote'>
             <input class="form-control" placeholder="Tytuł"> </input>
             <br>
-            <textarea class="form-control custom-control" rows="8" id="comment" style="resize:none"></textarea>
+            <textarea class="form-control custom-control" rows="8" id="comment" style="resize: none"></textarea>
             <br>
             <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
-            <button class="btn btn-default"><i class="fa fa-paint-brush"></i></button>
-            <span style="float:right;"> Ostatnia modifikacja</span>
+
+            <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">GREEN</a></li>
+                <li><a href="#">RED</a></li>
+                <li><a href="#">YELLOW</a></li>
+            </ul>
+            <span style="float: right;"> Ostatnia modifikacja</span>
         </div>
->>>>>>> origin/master
-
     </div>
 
-
-<<<<<<< HEAD
-<div id='loggingWindow'>
-=======
-    <div id='loggingWindow' data-bind="visible: !logged()">
->>>>>>> origin/master
-        <table align="center">
-            <tr height="100%">
-                <td height="100%" width="100%" valign="middle" align="center">
-                    <span align="center"><h3> Witaj w NoteeFY</h3></span>
-                    <br />
-                    <span style="display: inline;">
-                        Podaj ID <input data-bind="value: userIDInput, valueUpdate:'afterkeydown', event: {keypress: onEnter}" />
-                        <button class="btn btn-info" type="submit" data-bind="click: logIn, enable: userIDInput"><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
-                    </span>
-                    <br /><br />
-                    <p><u><span style="color:red" align="center" data-bind="visible: canLogIn">Nie ma takiego użytkownika</span></u></p>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <div id='loggingWindow'>
+        <div id='loggingWindow' data-bind="visible: !logged()">
+            <table align="center">
+                <tr height="100%">
+                    <td height="100%" width="100%" valign="middle" align="center">
+                        <span align="center"><h3> Witaj w NoteeFY</h3></span>
+                        <br />
+                        <span style="display: inline;">
+                            Podaj ID <input data-bind="value: userIDInput, valueUpdate:'afterkeydown', event: {keypress: onEnter}" />
+                            <button class="btn btn-info" type="submit" data-bind="click: logIn, enable: userIDInput"><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
+                        </span>
+                        <br /><br />
+                        <p><u><span style="color:red" align="center" data-bind="visible: canLogIn">Nie ma takiego użytkownika</span></u></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
