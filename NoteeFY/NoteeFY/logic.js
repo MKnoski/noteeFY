@@ -17,24 +17,29 @@ function LoginViewModel()
 
     self.logIn = function() 
     {
-        var users = self.users();
-        var insertedID = self.userIDInput();
-        var found = false;
+        $.getJSON("api/Users", function (allData)
+        {
+            var mappedUsers = $.map(allData, function (item) { return new User(item) });
+            self.users(mappedUsers);
 
-        for (i = 0; i < users.length && found == false; i++)
-        {
-            if (users[i].userID() == insertedID) found = true;
-        }
+            var users = self.users();
+            var insertedID = self.userIDInput();
+            var found = false;
 
-        if (found)
-        {
-            alert("Znalazl");
-        }
-        else
-        {
-            alert("Nie znalazl")
-        }
-        
+            for (i = 0; i < users.length && found == false; i++)
+                if (users[i].userID() == insertedID) found = true;
+
+            if (found)
+            {
+                alert("Znalazl");
+                self.logged(true);
+            }
+            else
+            {
+                alert("Nie znalazl");
+                self.canLogIn(true);
+            }
+        }); 
     }
 
     //Handler for Enter key
@@ -51,17 +56,7 @@ function LoginViewModel()
             return true;
         }
     };
-
-    //Startup Loading
-    $.getJSON("api/Users", function (allData)
-    {
-        var mappedUsers = $.map(allData, function (item) { return new User(item) });
-        self.users(mappedUsers);
-    });
    
 }
 
 ko.applyBindings(new LoginViewModel());
-
-
-//alert("hello");
