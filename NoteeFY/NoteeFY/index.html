@@ -14,7 +14,7 @@
     <title>NoteeFY</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -54,21 +54,25 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div id='singleNote'>
+<div id='singleNote'>
         <input class="form-control" placeholder="Tytuł"> </input>
         <br>
         <textarea class="form-control custom-control" rows="8" id="comment" style="resize:none"></textarea>
         <br>
         <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
 
-        <button class="btn btn-default"><i class="fa fa-paint-brush"></i></button>
-
+        <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+        <ul class="dropdown-menu">
+            <li><a href="#">GREEN</a></li>
+            <li><a href="#">RED</a></li>
+            <li><a href="#">YELLOW</a></li>
+        </ul>
         <span style="float:right;"> Ostatnia modifikacja</span>
 
     </div>
 
 
-    <div id='loggingWindow'>
+<div id='loggingWindow'>
         <table align="center">
             <tr height="100%">
                 <td height="100%" width="100%" valign="middle" align="center">
@@ -88,4 +92,5 @@
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script type="text/javascript" src="logic.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>
