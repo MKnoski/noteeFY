@@ -1,62 +1,63 @@
-function User(data)
-{
-    this.userID = ko.observable(data.UserID);
+function User(data) {
+    var self = this;
+    self.userID = ko.observable();
+    self.notes = ko.observableArray([]);
+
+    if (!data) {
+        return;
+    }
+
+    self.userID(data.UserID);
+    var mappedNotes = $.map(data.NotesDTO, function (item) { return new Note(item) });
+    self.notes(mappedNotes);
 }
 
+function Note(data) {
+    //Data
+    var self = this;
+    self.title = ko.observable(data.Title);
+    self.text = ko.observable(data.Text);
+    self.isEdit = ko.observable(false);
 
-function LoginViewModel()
-{
+    self.setEdit = function (state) {
+        self.isEdit(state);
+    };
+
+}
+
+function AppViewModel() {
     //Data
     var self = this;
     self.userIDInput = ko.observable("");
-    self.users = ko.observableArray([]);
+    self.user = ko.observable(new User());
+    //self.users = ko.observableArray([]);
     self.canLogIn = ko.observable(false);
     self.logged = ko.observable(false);
 
-    //Functions
+//Functions
 
-    self.logIn = function() 
-    {
-        $.getJSON("api/Users", function (allData)
-        {
-            var mappedUsers = $.map(allData, function (item) { return new User(item) });
-            self.users(mappedUsers);
+    self.logIn = function () {
+        $.getJSON("api/Users/"+self.userIDInput(), function (allData) {
+            var mappedUser = new User(allData);
+            //self.users(mappedUser);
+            self.user(mappedUser);
 
-            var users = self.users();
-            var insertedID = self.userIDInput();
-            var found = false;
-
-            for (i = 0; i < users.length && found == false; i++)
-                if (users[i].userID() == insertedID) found = true;
-
-            if (found)
-            {
-                alert("Znalazl");
-                self.logged(true);
-            }
-            else
-            {
-                alert("Nie znalazl");
-                self.canLogIn(true);
-            }
-        }); 
+            self.logged(true);
+        });
     }
 
     //Handler for Enter key
-    self.onEnter = function(d, e)
-    {
-        if (self.userIDInput() != "")
-        {
-            e.keyCode === 13 && self.logIn(); //tutaj dodac zadanie
+    self.onEnter = function (d, e) {
+        if (self.userIDInput() != "") {
+            e.keyCode === 13 && self.logIn(); 
             return true;
         }
-        else
-        {
+        else {
             e.keyCode === 13;
             return true;
         }
     };
-   
+
 }
 
-ko.applyBindings(new LoginViewModel());
+ko.applyBindings(new AppViewModel());

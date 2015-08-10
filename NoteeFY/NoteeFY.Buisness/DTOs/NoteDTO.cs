@@ -11,6 +11,7 @@ namespace NoteeFY.Buisness.DTOs
         public string Text { get; set; }
         public Type Type { get; set; }
 
+        public int UserID { get; set; }
         public List<TaskItemDTO> TaskItemsDTO { get; set; }
 
         public NoteDTO() { }
@@ -21,6 +22,7 @@ namespace NoteeFY.Buisness.DTOs
             Title = note.Title;
             Text = note.Text;
             Type = note.Type;
+            UserID = note.UserID;
             TaskItemsDTO = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();
         }
 

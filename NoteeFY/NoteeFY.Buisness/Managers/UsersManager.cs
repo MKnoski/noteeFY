@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
 {
-    public class UserManagers
+    public class UsersManager
     {
         public List<UserDTO> GetSetOfUsers()
         {

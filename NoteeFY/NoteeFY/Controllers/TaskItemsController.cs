@@ -1,8 +1,5 @@
 ﻿using NoteeFY.Buisness.Managers;
 using System.Collections.Generic;
-using System.Data.Entity.Core;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using NoteeFY.Buisness.DTOs;
 using System.Web.Http.Description;
@@ -11,22 +8,22 @@ namespace NoteeFY.Controllers
 {
     public class TaskItemsController : ApiController
     {
-        private TaskManagers taskItemsManager = new TaskManagers();
+        private TaskItemsManager taskItemsManager = new TaskItemsManager();
 
-        // GET: api/TaskItems
-        public List<TaskItemDTO> GetTaskItems()
+        // POST: api/TaskItems
+        [ResponseType(typeof(TaskItemDTO))]
+        public IHttpActionResult PostTaskItem(TaskItemDTO taskItem)
         {
-            return taskItemsManager.GetSetOfTasks();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            bool result = taskItemsManager.AddOrUpdateTaskItem(taskItem);
+
+            if (result) return CreatedAtRoute("DefaultApi", new { id = taskItem.TaskItemID }, taskItem);
+            else return NotFound();
         }
-
-        // GET: api/TaskItems/5 - READ Single
-        [ResponseType(typeof(NoteDTO))]
-        public IHttpActionResult GetTaskItem(int id)
-        {
-            TaskItemDTO task = taskItemsManager.GetSingleTask(id);
-            if (task == null) return NotFound();
-            else return Ok(task);
-        } 
 
     }
 }

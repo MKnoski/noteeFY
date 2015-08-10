@@ -8,7 +8,7 @@ namespace NoteeFY.Controllers
 {
     public class NotesController : ApiController
     {
-        private NoteManagers noteManager = new NoteManagers();
+        private NotesManager noteManager = new NotesManager();
 
         // GET: api/Notes - READ 
         public List<NoteDTO> GetNotes()
@@ -23,6 +23,21 @@ namespace NoteeFY.Controllers
             NoteDTO noteDTO = noteManager.GetNote(id);
             if (noteDTO == null) return NotFound();
             return Ok(noteDTO);
+        }
+
+        // POST: api/Notes
+        [ResponseType(typeof(NoteDTO))]
+        public IHttpActionResult PostNote(NoteDTO note)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            bool result = noteManager.AddOrUpdateNote(note);
+
+            if (result) return CreatedAtRoute("DefaultApi", new { id = note.NoteID }, note);
+            else return NotFound();
         }
 
     }

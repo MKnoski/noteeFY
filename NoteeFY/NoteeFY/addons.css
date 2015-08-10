@@ -14,14 +14,15 @@
 }
 
 #singleNote{
-    position: absolute;
     margin-top: 20px;
     margin-left: 20px;
     width: 300px;
     height: 320px;
     border-radius: 15px 15px;
-    background: #8AC007;
+    background: #FBEA6E;
     padding: 20px;
+    display: inline-block;
+    /*background-image: url("notee.png");*/
 }
 
 body {
