@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
-    <Content Include="js\knockout\knockout-sortable.js" />
     <Content Include="js\knockout\knockout-sortable.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />
     <Content Include="js\jquery\jquery-ui.js" />

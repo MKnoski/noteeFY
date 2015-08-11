@@ -58,12 +58,12 @@
         <div id='Notepad' data-bind="foreach: user().notes()">
             <div id='singleNote'>
                 <!-- Title -->
-                <span style="display: inline-block; width: 260px; height:54px; font-weight: bold;" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-                <input class="form-control" placeholder="Tytuł" style="border:none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: setEditTitle.bind($data, false) }"></input>
+                <span style="display: inline-block; width: 260px; height: 54px; font-weight: bold;" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                <input class="form-control" placeholder="Tytuł" style="border: none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: setEditTitle.bind($data, false) }"></input>
 
                 <br>
                 <!-- Text -->
-                <span style="display: inline-block; width: 260px; height:195px;" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                <span style="display: inline-block; width: 260px; height: 195px;" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
                 <textarea data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: setEditText.bind($data, false) }" class="form-control custom-control" rows="8" id="comment" style="resize: none"></textarea>
                 <br>
                 <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
@@ -77,7 +77,26 @@
                 <span style="float: right;"> Ostatnia modifikacja</span>
             </div>
         </div>
-    </div>
+
+        <div id='Notepad' data-bind="foreach: user().notes()">
+            <div id='singleToDoList'>
+                <input class="form-control" placeholder="Tytuł"> </input>
+                <br>
+                <div class="item" data-bind="foreach: tasks()">
+                    <input type="checkbox" value="" data-bind="checked: isDone"></input>
+                    <i class="fa fa-bars"></i>
+                    <input style="border:none" data-bind="value: text"></input>
+
+                    <button class="btn btn-default" type="submit"><i class="fa fa-trash-o fa-lg"></i></button>
+
+                </div>
+                <br>
+                <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
+                <button class="btn btn-default"><i class="fa fa-paint-brush"></i></button>
+                <span style="float:right;"> Ostatnia modifikacja</span>
+            </div>
+        </div>
+        </div>
 
     <div id='loggingWindow' data-bind="visible: !logged()">
         <table align="center">
