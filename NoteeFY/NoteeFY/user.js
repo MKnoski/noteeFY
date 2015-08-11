@@ -8,6 +8,6 @@
     }
 
     self.userID(data.UserID);
-    var mappedNotes = $.map(data.NotesDTO, function (item) { return new Note(item) });
+    var mappedNotes = $.map(data.Notes, function (item) { return new Note(item) });
     self.notes(mappedNotes);
 }

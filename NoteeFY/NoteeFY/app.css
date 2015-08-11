@@ -7,21 +7,24 @@
     width: 400px;
     height: 200px;
     border-radius: 15px 50px;
-    background: #8AC007;
+    background: #A1D490;
     padding: 20px;
 
-    /*visibility: hidden;*/
+    /*visibility: hidden;
+        8AC007
+    */
 }
 
 #singleNote{
     margin-top: 20px;
     margin-left: 20px;
     width: 300px;
-    height: 320px;
+    height: 340px;
     border-radius: 15px 15px;
     background: #FBEA6E;
     padding: 20px;
     display: inline-block;
+    float: left;
 }
 
 #singleToDoList{
@@ -34,6 +37,30 @@
     padding: 20px;
 }
 
+#Tasks{
+    float: left;
+    height: 165px;
+    overflow:auto
+}
+
 body {
   background-color: #ebebeb;
   }
+
+#loadingWindow{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #000000 ;
+   opacity:0.65;
+}
+
+#busyIndicator{
+   position: absolute;
+   top: 45%;
+   left: 50%;
+   margin-top: -75px;
+   margin-left: -75px;
+   width: 150px;
+   height: 150px;
+}
