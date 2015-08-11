@@ -1,6 +1,6 @@
 ﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Buisness.Managers;
-using System.Collections.Generic;
+using NoteeFY.Data.Models;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -10,13 +10,7 @@ namespace NoteeFY.Controllers
     {
         private NotesManager noteManager = new NotesManager();
 
-        // GET: api/Notes - READ 
-        public List<NoteDTO> GetNotes()
-        {
-            return noteManager.GetNotes();
-        }
-
-        // GET: api/Notes/5 - READ Single
+        // GET: api/Notes/5 - READ
         [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult GetNote(int id)
         {
@@ -28,26 +22,26 @@ namespace NoteeFY.Controllers
             return Ok(noteDTO);
         }
 
-        // POST: api/Notes
-        [ResponseType(typeof(NoteDTO))]
-        public IHttpActionResult PostNote(NoteDTO note)
+        // POST: api/Notes - ADD or UPDATE
+        [ResponseType(typeof(SaveResult<string>))]
+        public SaveResult<string> PostNote(NoteDTO note)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return new SaveResult<string>("error: bad request", false);
             }
 
             if (noteManager.AddOrUpdateNote(note))
             {
-                return CreatedAtRoute("DefaultApi", new { id = note.NoteID }, note);
+                return new SaveResult<string>("success: note created/updated", true);
             }
             else
             {
-                return NotFound();
+                return new SaveResult<string>("error: user not found (can not join this note to the user with id: " + note.UserID + ")", false);
             }
         }
 
-        // DELETE: api/Notes/3
+        // DELETE: api/Notes/3 - DELETE
         [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult DeleteNote(int id)
         {

@@ -1,21 +1,12 @@
 ﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
 {
     public class NotesManager
     { 
-        public List<NoteDTO> GetNotes()
-        {
-            using (NoteeContext db = new NoteeContext())
-            {
-                return db.Notes.ToList().Select(n => new NoteDTO(n)).ToList();
-            }
-        }
-
         public NoteDTO GetNote(int id)
         {
             using (NoteeContext db = new NoteeContext())
@@ -63,7 +54,7 @@ namespace NoteeFY.Buisness.Managers
                 }
             }
 
-            new TaskItemsManager().AddOrUpdateTaskItems(model.NoteID, note.TaskItemsDTO);
+            new TaskItemsManager().AddOrUpdateTaskItems(model.NoteID, note.TaskItems);
             return true;
         }
 
@@ -85,8 +76,6 @@ namespace NoteeFY.Buisness.Managers
                 }
             }
         }
-
-
 
     }
 }

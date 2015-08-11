@@ -12,7 +12,7 @@ namespace NoteeFY.Buisness.DTOs
         public Type Type { get; set; }
 
         public int UserID { get; set; }
-        public List<TaskItemDTO> TaskItemsDTO { get; set; }
+        public List<TaskItemDTO> TaskItems { get; set; }
 
         public NoteDTO() { }
 
@@ -23,7 +23,7 @@ namespace NoteeFY.Buisness.DTOs
             Text = note.Text;
             Type = note.Type;
             UserID = note.UserID;
-            TaskItemsDTO = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();
+            TaskItems = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();
         }
 
     }

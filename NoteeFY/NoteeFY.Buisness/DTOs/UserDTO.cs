@@ -8,14 +8,14 @@ namespace NoteeFY.Buisness.DTOs
     {
         public int UserID { get; set; }
 
-        public List<NoteDTO> NotesDTO { get; set; }
+        public List<NoteDTO> Notes { get; set; }
 
         public UserDTO() { }
 
         public UserDTO(User user)
         {
             UserID = user.UserID;
-            NotesDTO = user.Notes.Select(n => new NoteDTO(n)).ToList();
+            Notes = user.Notes.Select(n => new NoteDTO(n)).ToList();
         }
     }
 }

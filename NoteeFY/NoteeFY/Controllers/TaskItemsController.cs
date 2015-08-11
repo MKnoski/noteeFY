@@ -2,6 +2,7 @@
 using System.Web.Http;
 using NoteeFY.Buisness.DTOs;
 using System.Web.Http.Description;
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Controllers
 {
@@ -10,21 +11,21 @@ namespace NoteeFY.Controllers
         private TaskItemsManager taskItemsManager = new TaskItemsManager();
 
         // POST: api/TaskItems
-        [ResponseType(typeof(TaskItemDTO))]
-        public IHttpActionResult PostTaskItem(TaskItemDTO taskItem)
+        [ResponseType(typeof(SaveResult<string>))]
+        public SaveResult<string> PostTaskItem(TaskItemDTO taskItem)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return new SaveResult<string>("error: bad request", false);
             }
 
             if (taskItemsManager.AddOrUpdateTaskItem(taskItem))
             {
-                return CreatedAtRoute("DefaultApi", new { id = taskItem.TaskItemID }, taskItem);
+                return new SaveResult<string>("success: task created/updated", true);
             }
             else
             {
-                return NotFound();
+                return new SaveResult<string>("error: note not found (can not join this taskItem to the note with id: " + taskItem.NoteID + ")", false);
             }
         }
 
