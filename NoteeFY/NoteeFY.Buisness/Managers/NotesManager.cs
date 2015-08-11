@@ -1,6 +1,7 @@
 ﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Data.DBContext;
 using NoteeFY.Data.Models;
+using System;
 using System.Linq;
 
 namespace NoteeFY.Buisness.Managers
@@ -44,6 +45,7 @@ namespace NoteeFY.Buisness.Managers
                     model.Title = note.Title;
                     model.Text = note.Text;
                     model.Type = note.Type;
+                    model.modificationDate = DateTime.Now;
 
                     db.SaveChanges();
 
