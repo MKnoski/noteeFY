@@ -10,7 +10,7 @@ namespace NoteeFY.Buisness.Managers
     { 
         public List<NoteDTO> GetNotes()
         {
-            using(NoteeContext db = new NoteeContext())
+            using (NoteeContext db = new NoteeContext())
             {
                 return db.Notes.ToList().Select(n => new NoteDTO(n)).ToList();
             }
@@ -20,9 +20,15 @@ namespace NoteeFY.Buisness.Managers
         {
             using (NoteeContext db = new NoteeContext())
             {
-                var note = db.Notes.Find(id);
-                if (note == null) return null;
-                else return new NoteDTO(note);
+                var note = db.Notes.SingleOrDefault(n => n.NoteID == id);
+                if (note == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return new NoteDTO(note);
+                }
             }
         }
 
@@ -33,7 +39,10 @@ namespace NoteeFY.Buisness.Managers
             {
                 if (db.Users.Any(u => u.UserID == note.UserID))
                 {
-                    if (note.NoteID > 0) model = db.Notes.Single(n => n.NoteID == note.NoteID);
+                    if (note.NoteID > 0)
+                    {
+                        model = db.Notes.Single(n => n.NoteID == note.NoteID);
+                    }
                     else
                     {
                         model = db.Notes.Create();
@@ -46,9 +55,12 @@ namespace NoteeFY.Buisness.Managers
                     model.Type = note.Type;
 
                     db.SaveChanges();
-                    
+
                 }
-                else return false;
+                else
+                {
+                    return false;
+                }
             }
 
             new TaskItemsManager().AddOrUpdateTaskItems(model.NoteID, note.TaskItemsDTO);
@@ -60,8 +72,11 @@ namespace NoteeFY.Buisness.Managers
         {
             using (NoteeContext db = new NoteeContext())
             {
-                Note note = db.Notes.Find(id);
-                if (note == null) return false;
+                Note note = db.Notes.SingleOrDefault(n => n.NoteID == id);
+                if (note == null)
+                {
+                    return false;
+                }
                 else
                 {
                     db.Notes.Remove(note);

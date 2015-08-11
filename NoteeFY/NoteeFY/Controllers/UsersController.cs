@@ -13,9 +13,15 @@ namespace NoteeFY.Controllers
         [ResponseType(typeof(UserDTO))]
         public IHttpActionResult GetUser(int id)
         {
-            UserDTO user = userManager.GetSingleUser(id);
-            if(user == null) return NotFound();
-            else return Ok(user);
+            UserDTO user = userManager.GetUser(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(user);
+            }
         } 
     }
 }

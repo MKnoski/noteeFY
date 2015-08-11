@@ -40,10 +40,13 @@ namespace NoteeFY.Buisness.Managers
         {
             using (NoteeContext db = new NoteeContext())
             {
-                if(db.Notes.Any(n => n.NoteID == taskItem.NoteID))
+                if (db.Notes.Any(n => n.NoteID == taskItem.NoteID))
                 {
                     TaskItem model;
-                    if (taskItem.TaskItemID > 0) model = db.TaskItems.Single(ti => ti.TaskItemID == taskItem.TaskItemID);
+                    if (taskItem.TaskItemID > 0)
+                    {
+                        model = db.TaskItems.Single(ti => ti.TaskItemID == taskItem.TaskItemID);
+                    }
                     else
                     {
                         model = db.TaskItems.Create();
@@ -57,7 +60,10 @@ namespace NoteeFY.Buisness.Managers
                     db.SaveChanges();
                     return true;
                 }
-                else return false;
+                else
+                {
+                    return false;
+                }
             }
         }
     }

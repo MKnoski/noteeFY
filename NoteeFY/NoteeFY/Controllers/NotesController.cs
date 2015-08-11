@@ -21,7 +21,10 @@ namespace NoteeFY.Controllers
         public IHttpActionResult GetNote(int id)
         {
             NoteDTO noteDTO = noteManager.GetNote(id);
-            if (noteDTO == null) return NotFound();
+            if (noteDTO == null)
+            {
+                return NotFound();
+            }
             return Ok(noteDTO);
         }
 
@@ -34,18 +37,28 @@ namespace NoteeFY.Controllers
                 return BadRequest(ModelState);
             }
 
-            bool result = noteManager.AddOrUpdateNote(note);
-
-            if (result) return CreatedAtRoute("DefaultApi", new { id = note.NoteID }, note);
-            else return NotFound();
+            if (noteManager.AddOrUpdateNote(note))
+            {
+                return CreatedAtRoute("DefaultApi", new { id = note.NoteID }, note);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // DELETE: api/Notes/3
         [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult DeleteNote(int id)
         {
-            if (noteManager.DeleteNote(id)) return Ok();
-            else return NotFound();
+            if (noteManager.DeleteNote(id))
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
     }
