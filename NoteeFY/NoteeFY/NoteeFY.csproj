@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="busy_loader.gif" />
     <Content Include="js\knockout\knockout-sortable.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />
     <Content Include="js\jquery\jquery-ui.js" />
