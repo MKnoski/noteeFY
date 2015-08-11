@@ -89,15 +89,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="addons.css" />
-    <Content Include="Knockout_Resources\knockout-sortable.js" />
-    <Content Include="Knockout_Resources\knockout-sortable.min.js" />
-    <Content Include="Knockout_Resources\jquery-1.9.1.js" />
-    <Content Include="Knockout_Resources\jquery-ui.js" />
-    <Content Include="Knockout_Resources\knockout-3.3.0.js" />
+    <Content Include="app.css" />
+    <Content Include="js\knockout\knockout-sortable.js" />
+    <Content Include="js\knockout\knockout-sortable.min.js" />
+    <Content Include="js\jquery\jquery-1.9.1.js" />
+    <Content Include="js\jquery\jquery-ui.js" />
+    <Content Include="js\knockout\knockout-3.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="app.js" />
+    <Content Include="note.js" />
+    <Content Include="user.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -126,10 +128,6 @@
     <ProjectReference Include="..\NoteeFY.Buisness\NoteeFY.Buisness.csproj">
       <Project>{da189790-b6c5-41b2-a537-b2e752caba09}</Project>
       <Name>NoteeFY.Buisness</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NoteeFY.Common\NoteeFY.Common.csproj">
-      <Project>{f93bc8a5-a5b2-49db-bbeb-3762ead619e2}</Project>
-      <Name>NoteeFY.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\NoteeFY.Data\NoteeFY.Data.csproj">
       <Project>{200535f2-4be7-456b-b1f0-fb5e79c8d1b0}</Project>

@@ -1,58 +1,26 @@
-function User(data) {
-    var self = this;
-    self.userID = ko.observable();
-    self.notes = ko.observableArray([]);
-
-    if (!data) {
-        return;
-    }
-
-    self.userID(data.UserID);
-    var mappedNotes = $.map(data.NotesDTO, function (item) { return new Note(item) });
-    self.notes(mappedNotes);
-}
-
-function Note(data) {
-    //Data
-    var self = this;
-    self.title = ko.observable(data.Title);
-    self.text = ko.observable(data.Text);
-    self.isEditTitle = ko.observable(false);
-    self.isEditText = ko.observable(false);
-
-    self.setEditTitle = function (state) {
-        self.isEditTitle(state);
-    };
-
-    self.setEditText = function (state) {
-        self.isEditText(state);
-    };
-
-}
-
 function AppViewModel() {
     //Data
     var self = this;
-    self.userIDInput = ko.observable("");
+    self.userID = ko.observable("");
     self.user = ko.observable(new User());
-    self.canLogIn = ko.observable(false);
+    self.loginError = ko.observable("");
     self.logged = ko.observable(false);
 
 //Functions
 
     self.logIn = function ()
     {
-        $.getJSON("api/Users/" + self.userIDInput(), function (allData)
+        $.getJSON("api/Users/" + self.userID(), function (allData)
         {
             var mappedUser = new User(allData);
             self.user(mappedUser);
             self.logged(true);
-        });
+        }).error(function () { self.loginError("Nie ma uzytkownika o podanym ID "); });
     }
 
     //Handler for Enter key
     self.onEnter = function (d, e) {
-        if (self.userIDInput() != "") {
+        if (self.userID() != "") {
             e.keyCode === 13 && self.logIn(); 
             return true;
         }

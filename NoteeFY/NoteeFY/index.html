@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <script type='text/javascript' src='Knockout_Resources/jquery-1.9.1.js'></script>
-    <script type="text/javascript" src="Knockout_Resources/jquery-ui.js"></script>
+    <script type='text/javascript' src='js/jquery/jquery-1.9.1.js'></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
 
-    <script type='text/javascript' src="Knockout_Resources/knockout-3.3.0.js"></script>
-    <script type='text/javascript' src="Knockout_Resources/knockout-sortable.js"></script>
+    <script type='text/javascript' src="js/knockout/knockout-3.3.0.js"></script>
+    <script type='text/javascript' src="js/knockout/knockout-sortable.js"></script>
     <title>NoteeFY</title>
 
     <!-- Bootstrap -->
@@ -18,7 +18,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" type="text/css" href="addons.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,11 +86,11 @@
                     <span align="center"><h3> Witaj w NoteeFY</h3></span>
                     <br />
                     <span style="display: inline;">
-                        Podaj ID <input data-bind="value: userIDInput, valueUpdate:'afterkeydown', event: {keypress: onEnter}" />
-                        <button class="btn btn-info" type="submit" data-bind="click: logIn, enable: userIDInput"><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
+                        Podaj ID <input data-bind="value: userID, valueUpdate:'afterkeydown', event: {keypress: onEnter}" />
+                        <button class="btn btn-info" type="submit" data-bind="click: logIn, enable: userID"><i class="fa fa-sign-in"></i>     ZALOGUJ</button>
                     </span>
                     <br /><br />
-                    <p><u><span style="color:red" align="center" data-bind="visible: canLogIn">Nie ma takiego użytkownika</span></u></p>
+                    <p><u><span style="color:red" align="center" data-bind=" text: loginError">Nie ma takiego użytkownika</span></u></p>
                 </td>
             </tr>
         </table>
@@ -98,6 +98,8 @@
 
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="user.js"></script>
+<script type="text/javascript" src="note.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>
