@@ -36,12 +36,13 @@ function AppViewModel() {
 
 //Functions
 
-    self.logIn = function () {
-        $.getJSON("api/Users/"+self.userIDInput(), function (allData) {
+    self.logIn = function ()
+    {
+        $.getJSON("api/Users/" + self.userIDInput(), function (allData)
+        {
             var mappedUser = new User(allData);
             //self.users(mappedUser);
             self.user(mappedUser);
-
             self.logged(true);
         });
     }

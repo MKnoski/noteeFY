@@ -40,5 +40,13 @@ namespace NoteeFY.Controllers
             else return NotFound();
         }
 
+        // DELETE: api/Notes/3
+        [ResponseType(typeof(NoteDTO))]
+        public IHttpActionResult DeleteNote(int id)
+        {
+            if (noteManager.DeleteNote(id)) return Ok();
+            else return NotFound();
+        }
+
     }
 }

@@ -54,5 +54,24 @@ namespace NoteeFY.Buisness.Managers
             new TaskItemsManager().AddOrUpdateTaskItems(model.NoteID, note.TaskItemsDTO);
             return true;
         }
+
+
+        public bool DeleteNote(int id)
+        {
+            using (NoteeContext db = new NoteeContext())
+            {
+                Note note = db.Notes.Find(id);
+                if (note == null) return false;
+                else
+                {
+                    db.Notes.Remove(note);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+        }
+
+
+
     }
 }
