@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl_PL">
 <head>
     <meta charset="utf-8">
@@ -57,13 +57,14 @@
 
         <div id='Notepad' data-bind="foreach: user().notes()">
             <div id='singleNote'>
-                
-                <span style="display: inline-block; width: 260px; height:54px; font-weight: bold;" data-bind="text: title, click: setEdit.bind($data, true), style: { display: !isEdit() ? 'inline-block' : 'none' }"></span>
-                <input class="form-control" placeholder="Tytuł" style="border:none" data-bind="value: title, visible: isEdit, event: { blur: setEdit.bind($data, false) }"></input>
+                <!-- Title -->
+                <span style="display: inline-block; width: 260px; height:54px; font-weight: bold;" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                <input class="form-control" placeholder="Tytuł" style="border:none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: setEditTitle.bind($data, false) }"></input>
 
                 <br>
-                <span style="display: inline-block; width: 260px; height:195px;" data-bind="text: text, click: setEdit.bind($data, true), style: { display: !isEdit() ? 'inline-block' : 'none' }"></span>
-                <textarea data-bind="value: text, visible: isEdit, event: { blur: setEdit.bind($data, false) }" class="form-control custom-control" rows="8" id="comment" style="resize: none"></textarea>
+                <!-- Text -->
+                <span style="display: inline-block; width: 260px; height:195px;" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                <textarea data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: setEditText.bind($data, false) }" class="form-control custom-control" rows="8" id="comment" style="resize: none"></textarea>
                 <br>
                 <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
 
@@ -97,6 +98,6 @@
 
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script type="text/javascript" src="logic.js"></script>
+<script type="text/javascript" src="app.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>

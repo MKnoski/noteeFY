@@ -17,10 +17,15 @@ function Note(data) {
     var self = this;
     self.title = ko.observable(data.Title);
     self.text = ko.observable(data.Text);
-    self.isEdit = ko.observable(false);
+    self.isEditTitle = ko.observable(false);
+    self.isEditText = ko.observable(false);
 
-    self.setEdit = function (state) {
-        self.isEdit(state);
+    self.setEditTitle = function (state) {
+        self.isEditTitle(state);
+    };
+
+    self.setEditText = function (state) {
+        self.isEditText(state);
     };
 
 }
@@ -30,7 +35,6 @@ function AppViewModel() {
     var self = this;
     self.userIDInput = ko.observable("");
     self.user = ko.observable(new User());
-    //self.users = ko.observableArray([]);
     self.canLogIn = ko.observable(false);
     self.logged = ko.observable(false);
 
@@ -41,7 +45,6 @@ function AppViewModel() {
         $.getJSON("api/Users/" + self.userIDInput(), function (allData)
         {
             var mappedUser = new User(allData);
-            //self.users(mappedUser);
             self.user(mappedUser);
             self.logged(true);
         });

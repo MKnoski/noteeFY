@@ -97,7 +97,7 @@
     <Content Include="Knockout_Resources\knockout-3.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="logic.js" />
+    <Content Include="app.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
