@@ -1,17 +1,13 @@
-﻿function Task(Text, IsDone) {
-    //Data
-    var self = this;
-    self.text = ko.observable(Text);
-    self.isDone = ko.observable(IsDone);
-}
-
-function Note(data) {
+﻿function Note(data) {
     //Data
     var self = this;
 
     self.title = ko.observable(data.Title);
     self.text = ko.observable(data.Text);
     self.type = ko.observable(data.Type);
+    self.userID = ko.observable(data.UserID);
+    self.noteID = ko.observable(data.NoteID);
+    self.modificationDate = ko.observable(data.modificationDate);
 
     self.tasks = ko.observableArray([]);
     self.currentTask = ko.observable("");
@@ -21,6 +17,16 @@ function Note(data) {
     self.isEditText = ko.observable(false);
 
     //Functions
+    self.lostFocusText = function() {
+        self.setEditText(false);
+        self.update();
+    };
+
+    self.lostFocusTitle = function () {
+        self.setEditTitle(false);
+        self.update();
+    };
+
     self.setEditTitle = function (state) {
         self.isEditTitle(state);
     };
@@ -37,7 +43,22 @@ function Note(data) {
     };
 
     self.removeTask = function(task) {
-         self.tasks.remove(task)
+        self.tasks.remove(task);
+    };
+
+    self.update = function () {
+        $.ajax({
+            url: "api/Notes/" + self.noteID(),
+            type: "POST",
+            data: {
+                NoteID: self.noteID(),
+                Title: self.title(),
+                Text: self.text(),
+                Type: self.type(),
+                UserID: self.userID(),
+                TaskItems: []
+            }
+        });
     };
 
     var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item.Text, item.IsDone) });

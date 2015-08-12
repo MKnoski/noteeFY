@@ -60,12 +60,12 @@
         <div id='singleNote'>
             <!-- Title -->
             <span style="display: inline-block; width: 260px; height: 59px; font-weight: bold;" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-            <input class="form-control" placeholder="Tytuł" style="border: none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: setEditTitle.bind($data, false) }"></input>
+            <input class="form-control" placeholder="Tytuł" style="border: none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: lostFocusTitle.bind($data) }"></input>
 
             <div id="NoteContent" data-bind="visible: type()===0">
                 <span style="display: inline-block; overflow: auto; width: 260px; height: 189px;" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }">
                     </span>
-                <textarea data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: setEditText.bind($data, false) }" class="form-control custom-control" rows="9" id="comment" style="resize: none"></textarea>
+                <textarea data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: lostFocusText.bind($data) }" class="form-control custom-control" rows="9" id="comment" style="resize: none"></textarea>
             </div>
 
             <div id="ToDoListContent" data-bind="visible: type()===1">
@@ -147,8 +147,9 @@
 
 </body>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script type="text/javascript" src="user.js"></script>
-<script type="text/javascript" src="note.js"></script>
-<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="js/models/user.js"></script>
+<script type="text/javascript" src="js/models/note.js"></script>
+<script type="text/javascript" src="js/models/task.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>

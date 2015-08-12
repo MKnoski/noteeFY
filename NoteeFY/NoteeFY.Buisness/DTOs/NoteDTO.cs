@@ -16,7 +16,10 @@ namespace NoteeFY.Buisness.DTOs
         public int UserID { get; set; }
         public List<TaskItemDTO> TaskItems { get; set; }
 
-        public NoteDTO() { }
+        public NoteDTO()
+        {
+            TaskItems = new List<TaskItemDTO>();
+        }
 
         public NoteDTO(Note note)
         {

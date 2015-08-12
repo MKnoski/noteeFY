@@ -97,9 +97,10 @@
     <Content Include="js\knockout\knockout-3.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="app.js" />
-    <Content Include="note.js" />
-    <Content Include="user.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\models\note.js" />
+    <Content Include="js\models\task.js" />
+    <Content Include="js\models\user.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
