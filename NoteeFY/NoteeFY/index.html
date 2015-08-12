@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
 
     <script type='text/javascript' src="js/knockout/knockout-3.3.0.js"></script>
-    <script type='text/javascript' src="js/knockout/knockout-sortable.js"></script>
+    <script type='text/javascript' src="js/knockout/knockout-sortable.min.js"></script>
     <title>NoteeFY</title>
 
     <!-- Bootstrap -->
@@ -81,22 +81,23 @@
                         <i class="fa fa-bars"></i>
                         <input style="border: none; width: 65%" data-bind="value: text"></input>
 
-                        <button class="btn btn-default" type="submit" data-bind="click: $parent.removeTask"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button class="btn btn-default" type="submit" data-bind="click: $parent.removeTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
                     </div>
                 </div>
 
             </div>
             <br>
             <div id="Menu">
-                <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
-                <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">GREEN</a></li>
-                    <li><a href="#">RED</a></li>
-                    <li><a href="#">YELLOW</a></li>
-                </ul>
-                <span style="float: right;"> Ostatnia modifikacja</span>
-            </div>
+                <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
+                    <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">GREEN</a></li>
+                        <li><a href="#">RED</a></li>
+                        <li><a href="#">YELLOW</a></li>
+                    </ul>
+                    <span style="float: right;" data-bind="text: modificationDate;"></span>
+</div>
         </div>
     </div>
     <div style="clear: both;"></div>

@@ -38,3 +38,13 @@ User.prototype.addNote = function () {
         }
     });
 };
+
+User.prototype.deleteNote = function (note) {
+    var self = this;
+    self.user().notes.remove(note);
+
+    $.ajax({
+        url: "api/Notes/" + note.noteID(),
+        type: "DELETE"
+    });
+};

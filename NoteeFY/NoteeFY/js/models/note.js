@@ -15,7 +15,6 @@
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
 
-
     if (data) {
         self.initialize(data);
     }
@@ -31,7 +30,7 @@ Note.prototype.initialize = function (data) {
     self.type (data.Type);
     self.userID (data.UserID);
     self.noteID (data.NoteID);
-    self.modificationDate(data.modificationDate);
+    self.modificationDate(data.ModificationDate.substring(11, 19));
 
     var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item.Text, item.IsDone) });
     self.tasks(mappedTasks);
@@ -68,8 +67,8 @@ Note.prototype.addTask = function () {
     };
 
 Note.prototype.removeTask = function (task) {
-        var self = this;
-        self.tasks.remove(task);
+    var self = this;
+    self.tasks.remove(task);
     };
 
 Note.prototype.update = function () {
@@ -84,9 +83,6 @@ Note.prototype.update = function () {
                 Type: self.type(),
                 UserID: self.userID(),
                 TaskItems: []
-            },
-            success: function (response) {
-                alert(response);
             }
         });
     };
