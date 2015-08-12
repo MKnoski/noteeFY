@@ -1,52 +1,79 @@
-﻿function Note(data) {
-    //Data
+﻿function Note(data, noteID, userID) {
     var self = this;
 
-    self.title = ko.observable(data.Title);
-    self.text = ko.observable(data.Text);
-    self.type = ko.observable(data.Type);
-    self.userID = ko.observable(data.UserID);
-    self.noteID = ko.observable(data.NoteID);
-    self.modificationDate = ko.observable(data.modificationDate);
+    self.title = ko.observable();
+    self.text = ko.observable();
+    self.type = ko.observable(0);
+    self.userID = ko.observable(userID);
+    self.noteID = ko.observable(noteID);
+    self.modificationDate = ko.observable();
 
     self.tasks = ko.observableArray([]);
-    self.currentTask = ko.observable("");
+    self.currentTask = ko.observable();
     self.selectedTask = ko.observable();
 
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
 
-    //Functions
-    self.lostFocusText = function() {
+
+    if (data) {
+        self.initialize(data);
+    }
+}
+
+
+
+
+Note.prototype.initialize = function (data) {
+    var self = this;
+    self.title (data.Title);
+    self.text (data.Text);
+    self.type (data.Type);
+    self.userID (data.UserID);
+    self.noteID (data.NoteID);
+    self.modificationDate(data.modificationDate);
+
+    var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item.Text, item.IsDone) });
+    self.tasks(mappedTasks);
+}
+
+Note.prototype.lostFocusText = function () {
+        var self = this;
         self.setEditText(false);
         self.update();
     };
 
-    self.lostFocusTitle = function () {
+Note.prototype.lostFocusTitle = function () {
+        var self = this;
         self.setEditTitle(false);
         self.update();
     };
 
-    self.setEditTitle = function (state) {
+Note.prototype.setEditTitle = function (state) {
+        var self = this;
         self.isEditTitle(state);
     };
 
-    self.setEditText = function (state) {
+Note.prototype.setEditText = function (state) {
+        var self = this;
         self.isEditText(state);
     };
 
-    self.addTask = function () {
+Note.prototype.addTask = function () {
+        var self = this;
         var task = new Task(self.currentTask(), false);
         self.tasks.push(task);
         self.selectedTask(task);
         self.currentTask("");
     };
 
-    self.removeTask = function(task) {
+Note.prototype.removeTask = function (task) {
+        var self = this;
         self.tasks.remove(task);
     };
 
-    self.update = function () {
+Note.prototype.update = function () {
+        var self = this;
         $.ajax({
             url: "api/Notes/" + self.noteID(),
             type: "POST",
@@ -57,12 +84,9 @@
                 Type: self.type(),
                 UserID: self.userID(),
                 TaskItems: []
+            },
+            success: function (response) {
+                alert(response);
             }
         });
     };
-
-    var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item.Text, item.IsDone) });
-    self.tasks(mappedTasks);
-
-
-}
