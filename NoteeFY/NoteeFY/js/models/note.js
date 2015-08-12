@@ -83,6 +83,12 @@ Note.prototype.update = function () {
                 Type: self.type(),
                 UserID: self.userID(),
                 TaskItems: []
+            },
+            success: function (response) {
+
+                self.modificationDate(response.Data.ModificationDate.substring(11, 19));
+
             }
         });
+
     };
