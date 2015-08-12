@@ -12,7 +12,7 @@ namespace NoteeFY.Data.Models
         public string Title { get; set; }
         public string Text { get; set; }
         public Type Type { get; set; }
-        public DateTime modificationDate { get; set; }
+        public DateTime ModificationDate { get; set; }
 
         public int UserID { get; set; }
         public User User { get; set; }

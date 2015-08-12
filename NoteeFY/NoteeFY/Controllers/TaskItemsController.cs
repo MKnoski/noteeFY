@@ -3,29 +3,47 @@ using System.Web.Http;
 using NoteeFY.Buisness.DTOs;
 using System.Web.Http.Description;
 using NoteeFY.Data.Models;
+using System.Web.Http.Results;
 
 namespace NoteeFY.Controllers
 {
-    public class TaskItemsController : ApiController
+    public class TaskItemsController : ApiControllerBase
     {
         private TaskItemsManager taskItemsManager = new TaskItemsManager();
 
+        
         // POST: api/TaskItems
-        [ResponseType(typeof(SaveResult<string>))]
-        public SaveResult<string> PostTaskItem(TaskItemDTO taskItem)
+        public JsonResult<ModificationResult<TaskItemDTO>> PostTaskItem(TaskItemDTO taskItem)
         {
-            if (!ModelState.IsValid)
+            var result = ValidateModelState<TaskItemDTO>();
+            if (result != null)
             {
-                return new SaveResult<string>("error: bad request", false);
+                return result;
             }
 
             if (taskItemsManager.AddOrUpdateTaskItem(taskItem))
             {
-                return new SaveResult<string>("success: task created/updated", true);
+                return Json(new ModificationResult<TaskItemDTO>(true)
+                {
+                    Data = taskItem
+                });
             }
             else
             {
-                return new SaveResult<string>("error: note not found (can not join this taskItem to the note with id: " + taskItem.NoteID + ")", false);
+                return Json(new ModificationResult<TaskItemDTO>("error: nie znaleziono notatki (nie mozna dolaczyc tego zadania do notatki o id: " + taskItem.NoteID + ")"));
+            }
+        }
+
+        // DELETE: api/TaskItems/3 - DELETE
+        public JsonResult<ModificationResult<TaskItemDTO>> DeleteTaskItem(int id)
+        {
+            if (taskItemsManager.DeleteTaskItem(id))
+            {
+                return Json(new ModificationResult<TaskItemDTO>(true));
+            }
+            else
+            {
+                return Json(new ModificationResult<TaskItemDTO>("error: nie znaleziono zadania (nie mozna znalezc zadania o id: " + id + ")"));
             }
         }
 

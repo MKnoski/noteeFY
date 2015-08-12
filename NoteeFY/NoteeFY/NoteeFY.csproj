@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\TaskItemsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

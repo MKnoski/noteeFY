@@ -3,10 +3,11 @@ using NoteeFY.Buisness.Managers;
 using NoteeFY.Data.Models;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 
 namespace NoteeFY.Controllers
 {
-    public class NotesController : ApiController
+    public class NotesController : ApiControllerBase
     {
         private NotesManager noteManager = new NotesManager();
 
@@ -14,46 +15,46 @@ namespace NoteeFY.Controllers
         [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult GetNote(int id)
         {
-            NoteDTO noteDTO = noteManager.GetNote(id);
-            if (noteDTO == null)
-            {
-                return NotFound();
-            }
-            return Ok(noteDTO);
+            var noteDto = noteManager.GetNote(id);
+            return noteDto == null ? (IHttpActionResult) NotFound() : Ok(noteDto);
         }
 
         // POST: api/Notes - ADD or UPDATE
-        [ResponseType(typeof(SaveResult<string>))]
-        public SaveResult<string> PostNote(NoteDTO note)
+        public JsonResult<ModificationResult<NoteDTO>> PostNote(NoteDTO note)
         {
-            if (!ModelState.IsValid)
+            var result = ValidateModelState<NoteDTO>();
+            if (result != null)
             {
-                return new SaveResult<string>("error: bad request", false);
+                return result;
             }
 
             if (noteManager.AddOrUpdateNote(note))
             {
-                return new SaveResult<string>("success: note created/updated", true);
+                return Json(new ModificationResult<NoteDTO>(true)
+                {
+                    Data = note
+                });
             }
             else
             {
-                return new SaveResult<string>("error: user not found (can not join this note to the user with id: " + note.UserID + ")", false);
+                return Json(new ModificationResult<NoteDTO>("error: nie znaleziono uzytkownika (nie mozna dolaczyc tej notatki do uzytkownika o id: " + note.UserID + ")"));
             }
         }
 
         // DELETE: api/Notes/3 - DELETE
-        [ResponseType(typeof(NoteDTO))]
-        public IHttpActionResult DeleteNote(int id)
+        public JsonResult<ModificationResult<NoteDTO>> DeleteNote(int id)
         {
             if (noteManager.DeleteNote(id))
             {
-                return Ok();
+                return Json(new ModificationResult<NoteDTO>(true));
             }
             else
             {
-                return NotFound();
+                return
+                    Json(
+                        new ModificationResult<NoteDTO>(
+                            "error: nie znaleziono notatki (nie mozna odnalezc notatki o id: " + id + ")"));
             }
         }
-
     }
 }

@@ -1,7 +1,7 @@
 ﻿using NoteeFY.Data.DBContext;
 using NoteeFY.Buisness.DTOs;
 using System.Linq;
-
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.Managers
 {
@@ -9,18 +9,37 @@ namespace NoteeFY.Buisness.Managers
     {
         public UserDTO GetUser(int id)
         {
-            using (NoteeContext db = new NoteeContext())
+            using (var db = new NoteeContext())
             {
                 var user = db.Users.SingleOrDefault(u => u.UserID == id);
-                if (user == null)
+                return user == null ? null : new UserDTO(user);
+            }
+        }
+
+
+        public void AddOrUpdateUser(UserDTO user)
+        {
+            using (var db = new NoteeContext())
+            {
+                User model;
+                if (user.UserID > 0)
                 {
-                    return null;
+                    model = db.Users.Single(u => u.UserID == user.UserID);
                 }
                 else
                 {
-                    return new UserDTO(user);
+                    model = db.Users.Create();
+                    db.Users.Add(model);
                 }
+
+                db.SaveChanges();
+                user.UserID = model.UserID;
+
+                new NotesManager().AddOrUpdateNotes(model.UserID, user.Notes);
+                user.Notes.Clear();
+                model.Notes.ToList().ForEach(n => user.Notes.Add(new NoteDTO(n)));
             }
+            
         }
     }
 }

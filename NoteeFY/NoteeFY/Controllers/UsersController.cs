@@ -1,27 +1,40 @@
 ﻿using NoteeFY.Buisness.DTOs;
 using NoteeFY.Buisness.Managers;
+using NoteeFY.Data.Models;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 
 namespace NoteeFY.Controllers
 {
-    public class UsersController : ApiController
+    public class UsersController : ApiControllerBase
     {
         private UsersManager userManager = new UsersManager();
 
-        // GET api/User/5
+        // GET api/Users/5
         [ResponseType(typeof(UserDTO))]
         public IHttpActionResult GetUser(int id)
         {
-            UserDTO user = userManager.GetUser(id);
-            if (user == null)
+            var user = userManager.GetUser(id);
+            return user == null ? (IHttpActionResult) NotFound() : Ok(user);
+        }
+
+        // POST: api/Users - ADD or UPDATE
+        public JsonResult<ModificationResult<UserDTO>> PostUser(UserDTO user)
+        {
+            var result = ValidateModelState<UserDTO>();
+            if (result != null)
             {
-                return NotFound();
+                return result;
             }
             else
             {
-                return Ok(user);
+                userManager.AddOrUpdateUser(user);
+                return Json(new ModificationResult<UserDTO>(true)
+                {
+                    Data = user
+                });
             }
-        } 
+        }
     }
 }

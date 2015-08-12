@@ -11,7 +11,7 @@ namespace NoteeFY.Buisness.DTOs
         public string Title { get; set; }
         public string Text { get; set; }
         public NoteeFY.Data.Models.Type Type { get; set; }
-        public DateTime modificationDate { get; set; }
+        public DateTime ModificationDate { get; set; }
 
         public int UserID { get; set; }
         public List<TaskItemDTO> TaskItems { get; set; }
@@ -27,7 +27,7 @@ namespace NoteeFY.Buisness.DTOs
             Title = note.Title;
             Text = note.Text;
             Type = note.Type;
-            modificationDate = note.modificationDate;
+            ModificationDate = note.ModificationDate;
             UserID = note.UserID;
             TaskItems = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();
         }
