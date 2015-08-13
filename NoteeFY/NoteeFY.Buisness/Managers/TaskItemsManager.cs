@@ -74,7 +74,7 @@ namespace NoteeFY.Buisness.Managers
         {
             using (var db = new NoteeContext())
             {
-                var taskItem = db.TaskItems.SingleOrDefault(ti => ti.NoteID == id);
+                var taskItem = db.TaskItems.SingleOrDefault(ti => ti.TaskItemID == id);
                 if (taskItem == null)
                 {
                     return false;

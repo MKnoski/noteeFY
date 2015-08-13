@@ -1,4 +1,4 @@
-#loggingWindow{
+#login-window{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,13 +9,9 @@
     border-radius: 15px 50px;
     background: #A1D490;
     padding: 20px;
-
-    /*visibility: hidden;
-        8AC007
-    */
 }
 
-#singleNote{
+#single-note{
     margin-top: 20px;
     margin-left: 20px;
     width: 300px;
@@ -27,7 +23,7 @@
     float: left;
 }
 
-#singleToDoList{
+#single-todolist{
     margin-top: 20px;
     margin-left: 20px;
     width: 300px;
@@ -37,17 +33,11 @@
     padding: 20px;
 }
 
-#Tasks{
-    float: left;
-    height: 165px;
-    overflow:auto
-}
-
 body {
   background-color: #ebebeb;
   }
 
-#loadingWindow{
+#loading-window{
    position: absolute;
    width: 100%;
    height: 100%;
@@ -55,7 +45,7 @@ body {
    opacity:0.65;
 }
 
-#busyIndicator{
+#busy-indicator{
    position: absolute;
    top: 45%;
    left: 50%;
@@ -63,4 +53,62 @@ body {
    margin-left: -75px;
    width: 150px;
    height: 150px;
+}
+
+#note-title {
+    height: 59px; 
+}
+
+#note-title-span{
+   display: inline-block; 
+   width: 260px; 
+   height: 59px; 
+   font-weight: bold;   
+   padding: 7px 0 0 12px;
+}
+
+#note-title-input{
+    border: none;
+    background: #FBEA6E;
+    font-weight: bold;
+
+}
+
+#note-content {
+    height: 200px;
+}
+
+#todolist-content {
+    height: 200px;
+}
+
+#note-content-span{
+   display: inline-block; 
+   overflow: auto; 
+   width: 260px; 
+   height: 189px;
+   padding: 6px 0 0 12px;
+}
+
+#note-content-textarea{
+    resize: none;
+    background: #FBEA6E;
+    border: none;
+}
+
+#tasks-input {
+    border: none;
+    width: 65%;
+    background: #FBEA6E;
+}
+
+#single-task {
+    width: 240px;
+}
+
+#tasks{
+    float: left;
+    height: 165px;
+    width: 260px;
+    overflow: auto;
 }

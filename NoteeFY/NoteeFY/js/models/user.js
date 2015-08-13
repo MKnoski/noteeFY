@@ -9,8 +9,7 @@
     }
 }
 
-
-
+// METHODS
 
 User.prototype.initialize = function (data) {
     var self = this;
@@ -19,7 +18,7 @@ User.prototype.initialize = function (data) {
     self.notes(mappedNotes);
 }
 
-User.prototype.addNote = function () {
+User.prototype.addNote = function (type) {
     var self = this;
 
     $.ajax({
@@ -28,12 +27,12 @@ User.prototype.addNote = function () {
         data: {
             Title: "",
             Text: "",
-            Type: 0,
+            Type: type,
             UserID: self.userID(),
             TaskItems: []
         },
         success: function (response) {
-            var note = new Note(null, response.Data.NoteID, response.Data.UserID);
+            var note = new Note(response.Data);
             self.notes.push(note);
         }
     });
@@ -41,10 +40,11 @@ User.prototype.addNote = function () {
 
 User.prototype.deleteNote = function (note) {
     var self = this;
-    self.user().notes.remove(note);
-
     $.ajax({
         url: "api/Notes/" + note.noteID(),
-        type: "DELETE"
+        type: "DELETE",
+        success: function () {
+            self.user().notes.remove(note);
+        }
     });
 };

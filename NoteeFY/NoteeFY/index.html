@@ -8,9 +8,9 @@
 
     <script type='text/javascript' src='js/jquery/jquery-1.9.1.js'></script>
     <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
-
     <script type='text/javascript' src="js/knockout/knockout-3.3.0.js"></script>
     <script type='text/javascript' src="js/knockout/knockout-sortable.min.js"></script>
+
     <title>NoteeFY</title>
 
     <!-- Bootstrap -->
@@ -20,18 +20,12 @@
 
     <link rel="stylesheet" type="text/css" href="app.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
-<div id="mainPage" data-bind="visible: logged()">
+<div id="main-page" data-bind="visible: logged()">
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav id="navigation-bar" class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Grupowanie "marki" i przycisku rozwijania mobilnego menu -->
             <div class="navbar-header">
@@ -43,70 +37,64 @@
             <!-- Grupowanie elementów menu w celu lepszego wyświetlania na urządzeniach moblinych -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float: right;">
                 <form class="navbar-form navbar-left" role="search">
-                    <button data-bind ="click: user().addNote.bind(user())" type="submit" class="btn btn-default"><i class="fa fa-plus-square"></i></button> 
-                    <div class="form-group">
+                    <button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default"><i class="fa fa-plus-square"></i> Nowa notatka</button>
+                    <button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default"><i class="fa fa-bars"></i>  Nowa ToDo Lista</button>
+                    <div style="display: none" id="search" class="form-group">
                         <input type="text" class="form-control" placeholder="Szukaj">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div id='Notepad' data-bind="foreach: user().notes()">
-        <div id='singleNote'>
-            <!-- Title -->
-            <span style="display: inline-block; width: 260px; height: 59px; font-weight: bold;" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-            <input class="form-control" placeholder="Tytuł" style="border: none" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: lostFocusTitle.bind($data) }"></input>
-
-            <div id="NoteContent" data-bind="visible: type()===0">
-                <span style="display: inline-block; overflow: auto; width: 260px; height: 189px;" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }">
-                    </span>
-                <textarea data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: lostFocusText.bind($data) }" class="form-control custom-control" rows="9" id="comment" style="resize: none"></textarea>
+    <div id="notepad" data-bind="foreach: user().notes()">
+        <div id="single-note">
+            <div id="note-title">
+                <span id="note-title-span" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                <input id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: lostFocusTitle.bind($data) }"/>
+            </div>
+            <div id="note-content" data-bind="visible: type()===0">
+                <span id="note-content-span" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                <textarea id="note-content-textarea" data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: lostFocusText.bind($data) }" class="form-control custom-control" rows="9"></textarea>
             </div>
 
-            <div id="ToDoListContent" data-bind="visible: type()===1">
-                <form class="form-inline" role="form">
+            <div id="todolist-content" data-bind="visible: type()===1">
+                <form id="adding-task" class="form-inline" role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" data-bind="value: currentTask" id="adding" placeholder="Napisz coś!">
+                        <input type="text" class="form-control" data-bind="value: currentTask" placeholder="Napisz coś!">
                         <button class="btn btn-default" data-bind="click: addTask" type="submit"><i class="fa fa-plus"></i></button>
                     </div>
                 </form>
 
                 <p>
 
-                <div id='Tasks' class="item" data-bind="foreach: tasks()">
-                    <div>
-                        <input type="checkbox" value="" data-bind="checked: isDone"></input>
-                        <i class="fa fa-bars"></i>
-                        <input style="border: none; width: 65%" data-bind="value: text"></input>
-
-                        <button class="btn btn-default" type="submit" data-bind="click: $parent.removeTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
+                <div id="tasks" class="item" data-bind="foreach: tasks()">
+                    <div id="single-task">
+                        <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnBottom.bind($parent) , event { blur updatetask.bind($data) }" />
+                        <i style="visibility: hidden" class="fa fa-bars"></i>
+                        <input id="tasks-input" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
+                        <button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
                     </div>
                 </div>
 
             </div>
             <br>
-            <div id="Menu">
+            <div id="menu">
                 <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
-                    <button class="btn btn-default"><i class="fa fa-th-list"></i></button>
-                    <button class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">GREEN</a></li>
-                        <li><a href="#">RED</a></li>
-                        <li><a href="#">YELLOW</a></li>
-                    </ul>
-                    <span style="float: right;" data-bind="text: modificationDate;"></span>
-</div>
+                <button style="visibility: hidden" class="btn btn-default"><i class="fa fa-th-list"></i></button>
+                <button style="visibility: hidden" class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+
+                <span style="float: right;" data-bind="text: modificationDate;"></span>
+            </div>
         </div>
     </div>
+
     <div style="clear: both;"></div>
-
-
 
 </div>
 
-<div id='loggingWindow' data-bind="visible: !logged()">
+<div id="login-window" data-bind="visible: !logged()">
     <table align="center">
         <tr height="100%">
             <td height="100%" width="100%" valign="middle" align="center">
@@ -125,8 +113,8 @@
 </div>
 
 <div id="loading" data-bind="visible: isLoading()">
-    <div id="loadingWindow"></div>
-    <div id="busyIndicator">
+    <div id="loading-window"></div>
+    <div id="busy-indicator">
         <table align="center">
             <tr height="100%">
                 <td height="100%" width="100%" valign="middle" align="center">

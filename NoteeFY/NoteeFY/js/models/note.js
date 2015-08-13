@@ -1,15 +1,15 @@
-﻿function Note(data, noteID, userID) {
+﻿function Note(data) {
     var self = this;
 
     self.title = ko.observable();
     self.text = ko.observable();
     self.type = ko.observable(0);
-    self.userID = ko.observable(userID);
-    self.noteID = ko.observable(noteID);
+    self.userID = ko.observable();
+    self.noteID = ko.observable();
     self.modificationDate = ko.observable();
 
     self.tasks = ko.observableArray([]);
-    self.currentTask = ko.observable();
+    self.currentTask = ko.observable("");
     self.selectedTask = ko.observable();
 
     self.isEditTitle = ko.observable(false);
@@ -20,8 +20,7 @@
     }
 }
 
-
-
+// METHODS
 
 Note.prototype.initialize = function (data) {
     var self = this;
@@ -32,20 +31,20 @@ Note.prototype.initialize = function (data) {
     self.noteID (data.NoteID);
     self.modificationDate(data.ModificationDate.substring(11, 19));
 
-    var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item.Text, item.IsDone) });
+    var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item) });
     self.tasks(mappedTasks);
 }
 
 Note.prototype.lostFocusText = function () {
         var self = this;
         self.setEditText(false);
-        self.update();
+        self.updateNote();
     };
 
 Note.prototype.lostFocusTitle = function () {
         var self = this;
         self.setEditTitle(false);
-        self.update();
+        self.updateNote();
     };
 
 Note.prototype.setEditTitle = function (state) {
@@ -59,20 +58,38 @@ Note.prototype.setEditText = function (state) {
     };
 
 Note.prototype.addTask = function () {
-        var self = this;
-        var task = new Task(self.currentTask(), false);
-        self.tasks.push(task);
-        self.selectedTask(task);
-        self.currentTask("");
-    };
-
-Note.prototype.removeTask = function (task) {
     var self = this;
-    self.tasks.remove(task);
-    };
+    $.ajax({
+        url: "api/TaskItems/",
+        type: "POST",
+        data: {
+            Text: self.currentTask,
+            IsDone: false,
+            NoteID: self.noteID
+        },
+        success: function (response) {
+            var task = new Task(response.Data);
+            self.tasks.push(task);
+            self.selectedTask(task);
+            self.currentTask("");
+        }
+    });
+};
 
-Note.prototype.update = function () {
-        var self = this;
+Note.prototype.deleteTask = function (task) {
+
+    var self = this;
+    $.ajax({
+        url: "api/TaskItems/" + task.taskID(),
+        type: "DELETE",
+        success: function () {
+            self.tasks.remove(task);
+        }
+    });
+};
+
+Note.prototype.updateNote = function () {
+    var self = this;
         $.ajax({
             url: "api/Notes/" + self.noteID(),
             type: "POST",
@@ -85,10 +102,21 @@ Note.prototype.update = function () {
                 TaskItems: []
             },
             success: function (response) {
-
                 self.modificationDate(response.Data.ModificationDate.substring(11, 19));
-
             }
         });
+};
 
-    };
+Note.prototype.goOnBottom = function (task) {
+    var temp = jQuery.extend(true, {}, task);
+    var self = this;
+
+    if (task.isDone()) {
+        self.tasks.destroy(task);
+        self.tasks.push(temp);
+    }
+    else {
+        self.tasks.destroy(task);
+        self.tasks.unshift(temp);
+    }
+};
