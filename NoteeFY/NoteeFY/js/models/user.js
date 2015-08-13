@@ -4,6 +4,7 @@
     self.userID = ko.observable();
     self.notes = ko.observableArray([]);
 
+
     if (data) {
         self.initialize(data);
     }
@@ -20,7 +21,7 @@ User.prototype.initialize = function (data) {
 
 User.prototype.addNote = function (type) {
     var self = this;
-
+    window.isLoading(true);
     $.ajax({
         url: "api/Notes/",
         type: "POST",
@@ -34,17 +35,20 @@ User.prototype.addNote = function (type) {
         success: function (response) {
             var note = new Note(response.Data);
             self.notes.push(note);
+            window.isLoading(false);
         }
     });
 };
 
 User.prototype.deleteNote = function (note) {
     var self = this;
+    window.isLoading(true);
     $.ajax({
         url: "api/Notes/" + note.noteID(),
         type: "DELETE",
         success: function () {
             self.user().notes.remove(note);
+            window.isLoading(false);
         }
     });
 };

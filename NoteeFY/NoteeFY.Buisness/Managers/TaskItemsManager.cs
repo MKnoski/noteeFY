@@ -33,6 +33,7 @@ namespace NoteeFY.Buisness.Managers
 
                     db.SaveChanges();
                     taskItem.TaskItemID = model.TaskItemID;
+                    new NotesManager().UpdateModificationTime(model.NoteID);
                 }
             }
         }
@@ -60,6 +61,7 @@ namespace NoteeFY.Buisness.Managers
 
                     db.SaveChanges();
                     taskItem.TaskItemID = model.TaskItemID;
+                    new NotesManager().UpdateModificationTime(model.NoteID);
                     return true;
                 }
                 else
@@ -83,6 +85,7 @@ namespace NoteeFY.Buisness.Managers
                 {
                     db.TaskItems.Remove(taskItem);
                     db.SaveChanges();
+                    new NotesManager().UpdateModificationTime(taskItem.NoteID);
                     return true;
                 }
             }

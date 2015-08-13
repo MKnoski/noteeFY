@@ -67,6 +67,14 @@ body {
    padding: 7px 0 0 12px;
 }
 
+#note-title-placeholder{
+   display: inline-block; 
+   width: 260px; 
+   height: 59px; 
+   font-weight: bold;   
+   padding: 7px 0 0 12px;
+}
+
 #note-title-input{
     border: none;
     background: #FBEA6E;

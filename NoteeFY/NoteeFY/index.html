@@ -51,19 +51,19 @@
     <div id="notepad" data-bind="foreach: user().notes()">
         <div id="single-note">
             <div id="note-title">
-                <span id="note-title-span" data-bind="text: title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                <span id="note-title-span" data-bind="text: !title() ? 'Tytuł' : title, click: setEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
                 <input id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: lostFocusTitle.bind($data) }"/>
             </div>
             <div id="note-content" data-bind="visible: type()===0">
-                <span id="note-content-span" data-bind="text: text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                <span id="note-content-span" data-bind="text: !text() ? 'Wprowadź tekst' : text, click: setEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
                 <textarea id="note-content-textarea" data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: lostFocusText.bind($data) }" class="form-control custom-control" rows="9"></textarea>
             </div>
 
             <div id="todolist-content" data-bind="visible: type()===1">
                 <form id="adding-task" class="form-inline" role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control" data-bind="value: currentTask" placeholder="Napisz coś!">
-                        <button class="btn btn-default" data-bind="click: addTask" type="submit"><i class="fa fa-plus"></i></button>
+                        <input type="text" class="form-control" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
+                        <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
                     </div>
                 </form>
 
@@ -71,7 +71,7 @@
 
                 <div id="tasks" class="item" data-bind="foreach: tasks()">
                     <div id="single-task">
-                        <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnBottom.bind($parent) , event { blur updatetask.bind($data) }" />
+                        <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnBottom.bind($parent) , event { blur: updatetask.bind($data) }" />
                         <i style="visibility: hidden" class="fa fa-bars"></i>
                         <input id="tasks-input" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
                         <button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>

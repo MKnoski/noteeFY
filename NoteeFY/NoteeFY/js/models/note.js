@@ -59,6 +59,7 @@ Note.prototype.setEditText = function (state) {
 
 Note.prototype.addTask = function () {
     var self = this;
+    window.isLoading(true);
     $.ajax({
         url: "api/TaskItems/",
         type: "POST",
@@ -72,50 +73,55 @@ Note.prototype.addTask = function () {
             self.tasks.push(task);
             self.selectedTask(task);
             self.currentTask("");
+            self.modificationDate(new Date().toLocaleString().substring(11, 19));
+            window.isLoading(false);
         }
     });
 };
 
 Note.prototype.deleteTask = function (task) {
-
     var self = this;
+    window.isLoading(true);
     $.ajax({
         url: "api/TaskItems/" + task.taskID(),
         type: "DELETE",
         success: function () {
             self.tasks.remove(task);
+            self.modificationDate(new Date().toLocaleString().substring(11, 19));
+            window.isLoading(false);
         }
     });
 };
 
-Note.prototype.updateNote = function () {
+Note.prototype.updateNote = function() {
     var self = this;
-        $.ajax({
-            url: "api/Notes/" + self.noteID(),
-            type: "POST",
-            data: {
-                NoteID: self.noteID(),
-                Title: self.title(),
-                Text: self.text(),
-                Type: self.type(),
-                UserID: self.userID(),
-                TaskItems: []
-            },
-            success: function (response) {
-                self.modificationDate(response.Data.ModificationDate.substring(11, 19));
-            }
-        });
+    window.isLoading(true);
+    $.ajax({
+        url: "api/Notes/" + self.noteID(),
+        type: "POST",
+        data: {
+            NoteID: self.noteID(),
+            Title: self.title(),
+            Text: self.text(),
+            Type: self.type(),
+            UserID: self.userID(),
+            TaskItems: []
+        },
+        success: function(response) {
+            self.modificationDate(response.Data.ModificationDate.substring(11, 19));
+            window.isLoading(false);
+        }
+    });
 };
 
-Note.prototype.goOnBottom = function (task) {
+Note.prototype.goOnBottom = function(task) {
     var temp = jQuery.extend(true, {}, task);
     var self = this;
 
     if (task.isDone()) {
         self.tasks.destroy(task);
         self.tasks.push(temp);
-    }
-    else {
+    } else {
         self.tasks.destroy(task);
         self.tasks.unshift(temp);
     }

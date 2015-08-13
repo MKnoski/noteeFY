@@ -113,5 +113,23 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
+        public bool UpdateModificationTime(int id)
+        {
+            using (var db = new NoteeContext())
+            {
+                var note = db.Notes.SingleOrDefault(n => n.NoteID == id);
+                if (note != null)
+                {
+                    note.ModificationDate = DateTime.Now;
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

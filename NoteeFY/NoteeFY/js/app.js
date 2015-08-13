@@ -5,12 +5,15 @@ function AppViewModel() {
     self.user = ko.observable(new User());
     self.loginError = ko.observable("");
     self.logged = ko.observable(false);
-    self.isLoading = ko.observable(false);
+    window.isLoading = ko.observable(false);
+    self.isLoading = ko.computed(function () {
+        return window.isLoading();
+    });
 
     //Functions
 
     self.logIn = function () {
-        self.isLoading(true);
+        window.isLoading(true);
         $.getJSON("api/Users/" + self.userID(), function (allData) {
             var mappedUser = new User(allData);
             self.user(mappedUser);
@@ -19,8 +22,7 @@ function AppViewModel() {
             // success!
         }).complete(function () {
             // always remove the loading, regardless of load/failure
-            self.isLoading(false);
-
+            window.isLoading(false);
         }).error(function () {
             self.loginError("Nie ma uzytkownika o podanym ID ");
         });
