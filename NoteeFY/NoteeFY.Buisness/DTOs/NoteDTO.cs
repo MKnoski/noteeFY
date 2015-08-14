@@ -13,7 +13,7 @@ namespace NoteeFY.Buisness.DTOs
         public NoteeFY.Data.Models.Type Type { get; set; }
         public DateTime ModificationDate { get; set; }
 
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public List<TaskItemDTO> TaskItems { get; set; }
 
         public NoteDTO()

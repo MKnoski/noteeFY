@@ -14,7 +14,7 @@ namespace NoteeFY.Data.Models
         public Type Type { get; set; }
         public DateTime ModificationDate { get; set; }
 
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public User User { get; set; }
 
         public virtual List<TaskItem> TaskItems { get; set; }

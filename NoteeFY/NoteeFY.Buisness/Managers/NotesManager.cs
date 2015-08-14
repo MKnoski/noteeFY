@@ -21,7 +21,7 @@ namespace NoteeFY.Buisness.Managers
 
 
 
-        public void AddOrUpdateNotes(int userId, IEnumerable<NoteDTO> notes)
+        public void AddOrUpdateNotes(string userId, IEnumerable<NoteDTO> notes)
         {
             foreach (var note in notes)
             {

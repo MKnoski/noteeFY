@@ -24,7 +24,7 @@ function AppViewModel() {
             // always remove the loading, regardless of load/failure
             window.isLoading(false);
         }).error(function () {
-            self.loginError("Nie ma uzytkownika o podanym ID ");
+            //tutaj blad
         });
     }
 

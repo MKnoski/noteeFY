@@ -6,7 +6,7 @@ namespace NoteeFY.Buisness.DTOs
 {
     public class UserDTO
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         public List<NoteDTO> Notes { get; set; }
 

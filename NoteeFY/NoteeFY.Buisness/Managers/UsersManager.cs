@@ -1,18 +1,29 @@
-﻿using NoteeFY.Data.DBContext;
+﻿using System.Collections.Generic;
+using NoteeFY.Data.DBContext;
 using NoteeFY.Buisness.DTOs;
 using System.Linq;
-using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.Managers
 {
     public class UsersManager
     {
-        public UserDTO GetUser(int id)
+        public UserDTO GetUser(string id)
         {
             using (var db = new NoteeContext())
             {
                 var user = db.Users.SingleOrDefault(u => u.UserID == id);
-                return user == null ? null : new UserDTO(user);
+                if (user == null)
+                {
+                    var us = new UserDTO()
+                    {
+                        UserID = id,
+                        Notes = new List<NoteDTO>()
+                    };
+                    AddOrUpdateUser(us);
+                    user = db.Users.SingleOrDefault(u => u.UserID == us.UserID);
+                    return new UserDTO(user);
+                }
+                else return new UserDTO(user);
             }
         }
 
@@ -21,14 +32,11 @@ namespace NoteeFY.Buisness.Managers
         {
             using (var db = new NoteeContext())
             {
-                User model;
-                if (user.UserID > 0)
-                {
-                    model = db.Users.Single(u => u.UserID == user.UserID);
-                }
-                else
+                var model = db.Users.SingleOrDefault(u => u.UserID == user.UserID);
+                if(model == null)
                 {
                     model = db.Users.Create();
+                    model.UserID = user.UserID;
                     db.Users.Add(model);
                 }
 

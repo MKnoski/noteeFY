@@ -13,7 +13,7 @@ namespace NoteeFY.Controllers
 
         // GET api/Users/5
         [ResponseType(typeof(UserDTO))]
-        public IHttpActionResult GetUser(int id)
+        public IHttpActionResult GetUser(string id)
         {
             var user = userManager.GetUser(id);
             return user == null ? (IHttpActionResult) NotFound() : Ok(user);
