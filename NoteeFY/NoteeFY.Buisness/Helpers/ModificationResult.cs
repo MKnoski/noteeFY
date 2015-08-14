@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace NoteeFY.Data.Models
+namespace NoteeFY.Buisness.Helpers
 {
     public class ModificationResult<T>
     {

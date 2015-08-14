@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="DBContext\NoteeContext.cs" />
     <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\ModificationResult.cs" />
     <Compile Include="Models\TaskItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
