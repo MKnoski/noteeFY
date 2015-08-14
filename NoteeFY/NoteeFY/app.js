@@ -1,5 +1,4 @@
 function AppViewModel() {
-    //Data
     var self = this;
     self.userID = ko.observable("");
     self.user = ko.observable(new User());
@@ -10,8 +9,6 @@ function AppViewModel() {
         return window.isLoading();
     });
 
-    //Functions
-
     self.logIn = function () {
         window.isLoading(true);
         $.getJSON("api/Users/" + self.userID(), function (allData) {
@@ -19,16 +16,13 @@ function AppViewModel() {
             self.user(mappedUser);
             self.logged(true);
         }).success(function () {
-            // success!
         }).complete(function () {
-            // always remove the loading, regardless of load/failure
             window.isLoading(false);
         }).error(function () {
             //tutaj blad
         });
     }
 
-    //Handler for Enter key
     self.onEnter = function (d, e) {
         if (self.userID() != "") {
             e.keyCode === 13 && self.logIn(); 

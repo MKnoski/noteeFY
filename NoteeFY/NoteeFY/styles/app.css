@@ -93,6 +93,7 @@ body {
 #note-content-span{
    display: inline-block; 
    overflow: auto; 
+   word-wrap:break-word;
    width: 260px; 
    height: 189px;
    padding: 6px 0 0 12px;

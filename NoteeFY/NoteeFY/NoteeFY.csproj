@@ -89,15 +89,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.css" />
-    <Content Include="busy_loader.gif" />
+    <Content Include="styles\app.css" />
+    <Content Include="images\busy_loader.gif" />
     <Content Include="js\knockout\knockout-sortable.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />
     <Content Include="js\jquery\jquery-ui.js" />
     <Content Include="js\knockout\knockout-3.3.0.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="js\app.js" />
+    <Content Include="app.js" />
     <Content Include="js\models\note.js" />
     <Content Include="js\models\task.js" />
     <Content Include="js\models\user.js" />

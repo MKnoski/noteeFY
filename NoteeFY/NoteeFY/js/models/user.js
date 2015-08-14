@@ -1,5 +1,4 @@
 ﻿function User(data) {
-    // Data
     var self = this;
     self.userID = ko.observable();
     self.notes = ko.observableArray([]);
@@ -9,8 +8,6 @@
         self.initialize(data);
     }
 }
-
-// METHODS
 
 User.prototype.initialize = function (data) {
     var self = this;

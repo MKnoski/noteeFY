@@ -10,7 +10,6 @@
 
     self.tasks = ko.observableArray([]);
     self.currentTask = ko.observable("");
-    self.selectedTask = ko.observable();
 
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
@@ -20,8 +19,6 @@
     }
 }
 
-// METHODS
-
 Note.prototype.initialize = function (data) {
     var self = this;
     self.title (data.Title);
@@ -29,33 +26,11 @@ Note.prototype.initialize = function (data) {
     self.type (data.Type);
     self.userID (data.UserID);
     self.noteID (data.NoteID);
-    self.modificationDate(data.ModificationDate.substring(11, 19));
+    self.modificationDate(self.getModificationDate(data));
 
     var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item) });
     self.tasks(mappedTasks);
 }
-
-Note.prototype.lostFocusText = function () {
-        var self = this;
-        self.setEditText(false);
-        self.updateNote();
-    };
-
-Note.prototype.lostFocusTitle = function () {
-        var self = this;
-        self.setEditTitle(false);
-        self.updateNote();
-    };
-
-Note.prototype.setEditTitle = function (state) {
-        var self = this;
-        self.isEditTitle(state);
-    };
-
-Note.prototype.setEditText = function (state) {
-        var self = this;
-        self.isEditText(state);
-    };
 
 Note.prototype.addTask = function () {
     var self = this;
@@ -71,9 +46,8 @@ Note.prototype.addTask = function () {
         success: function (response) {
             var task = new Task(response.Data);
             self.tasks.push(task);
-            self.selectedTask(task);
             self.currentTask("");
-            self.modificationDate(new Date().toLocaleString().substring(11, 19));
+            self.modificationDate(self.getModificationDate());
             window.isLoading(false);
         }
     });
@@ -87,7 +61,7 @@ Note.prototype.deleteTask = function (task) {
         type: "DELETE",
         success: function () {
             self.tasks.remove(task);
-            self.modificationDate(new Date().toLocaleString().substring(11, 19));
+            self.modificationDate(self.getModificationDate());
             window.isLoading(false);
         }
     });
@@ -108,13 +82,13 @@ Note.prototype.updateNote = function() {
             TaskItems: []
         },
         success: function(response) {
-            self.modificationDate(response.Data.ModificationDate.substring(11, 19));
+            self.modificationDate(self.getModificationDate(response.Data));
             window.isLoading(false);
         }
     });
 };
 
-Note.prototype.goOnBottom = function(task) {
+Note.prototype.goOnListBottom = function(task) {
     var temp = jQuery.extend(true, {}, task);
     var self = this;
 
@@ -126,3 +100,13 @@ Note.prototype.goOnBottom = function(task) {
         self.tasks.unshift(temp);
     }
 };
+
+Note.prototype.getModificationDate = function (data) {
+    if (data) {
+        return data.ModificationDate.substring(11, 19);
+    } else {
+        return new Date().toLocaleString().substring(11, 19);
+    }
+
+    
+}
