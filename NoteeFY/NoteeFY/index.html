@@ -34,7 +34,7 @@
         </nav>
 
         <div id="notepad" data-bind="foreach: user().notes()">
-            <div id="single-note">
+            <div class="single-note" data-bind="event: { mouseenter: showMenu, mouseleave: hideMenu }">
                 <div id="note-title">
                     <span id="note-title-span" data-bind="text: !title() ? 'Tytuł' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
                     <input id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }" />
@@ -51,7 +51,7 @@
                             <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
                         </div>
                     </form>
-                    <br/>
+                    <br />
                     <div id="tasks" class="item" data-bind="foreach: tasks()">
                         <div id="single-task">
                             <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)" />
@@ -61,14 +61,16 @@
                         </div>
                     </div>
                 </div>
-                <br/>
-                <div id="menu">
+                <br />
+
+                <div class="menu" style="display: none;">
                     <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
                     <button style="visibility: hidden" class="btn btn-default"><i class="fa fa-th-list"></i></button>
                     <button style="visibility: hidden" class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
 
                     <span style="float: right;" data-bind="text: modificationDate;"></span>
                 </div>
+
             </div>
         </div>
 
@@ -123,5 +125,12 @@
     <script type="text/javascript" src="js/models/task.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    jQuery('html').hover(function() {
+        console.log(jQuery('.menu').length);
+        jQuery('.menu').hide();
+    })
+</script>
 </body>
 </html>

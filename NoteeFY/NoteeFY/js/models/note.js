@@ -14,6 +14,13 @@
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
 
+    self.showMenu = function(data, event) {
+        jQuery(event.target).find('.menu').show();
+    };
+    self.hideMenu = function (data, event) {
+        jQuery(event.target).find('.menu').hide();
+    };
+
     if (data) {
         self.initialize(data);
     }
