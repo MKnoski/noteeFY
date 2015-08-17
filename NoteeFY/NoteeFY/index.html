@@ -40,7 +40,7 @@
                     <input maxlength ="50" id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }" />
                 </div>
                 <div id="note-content" data-bind="visible: type()===0">
-                    <span id="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : text, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                    <span id="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : textAsHtml, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
                     <textarea id="note-content-textarea" data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: updateNote.bind($data) }" class="form-control custom-control" rows="9"></textarea>
                 </div>
 

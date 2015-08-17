@@ -14,6 +14,13 @@
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
 
+    self.textAsHtml = ko.computed(function () {
+        if (!self.text()) {
+            return '';
+        }
+        return self.text().replace(/\n/g, "</br>");
+    });
+
     if (data) {
         self.initialize(data);
     }

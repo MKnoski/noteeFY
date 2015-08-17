@@ -87,6 +87,7 @@ body {
    width: 260px; 
    height: 189px;
    padding: 6px 0 0 12px;
+   text-align: justify;
 }
 
 #note-content-textarea{
