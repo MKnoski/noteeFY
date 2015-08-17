@@ -111,3 +111,11 @@ body {
     width: 260px;
     overflow: auto;
 }
+
+.menu {
+    display: none;
+}
+
+.single-note:hover .menu {
+    display : block;
+}
