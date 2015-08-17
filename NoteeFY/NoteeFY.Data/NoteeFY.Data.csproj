@@ -42,6 +42,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,15 +51,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBContext\NoteeContext.cs" />
-    <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\TaskItem.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Extensions\Note.cs" />
+    <Compile Include="Note.cs">
+      <DependentUpon>NoteeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NoteeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NoteeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NoteeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteeModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskItem.cs">
+      <DependentUpon>NoteeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>NoteeModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="NoteeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NoteeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="NoteeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NoteeModel.edmx</DependentUpon>
+      <LastGenOutput>NoteeModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="NoteeModel.edmx.diagram">
+      <DependentUpon>NoteeModel.edmx</DependentUpon>
+    </None>
+    <None Include="NoteeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NoteeModel.edmx</DependentUpon>
+      <LastGenOutput>NoteeModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

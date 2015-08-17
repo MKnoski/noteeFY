@@ -19,7 +19,6 @@ function AppViewModel() {
         }).complete(function () {
             window.isLoading(false);
         }).error(function () {
-            //tutaj blad
         });
     }
 

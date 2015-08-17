@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data.Models;
+using NoteeFY.Data;
 
 namespace NoteeFY.Buisness.DTOs
 {

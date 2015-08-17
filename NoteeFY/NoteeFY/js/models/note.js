@@ -19,18 +19,18 @@
     }
 }
 
-Note.prototype.initialize = function (data) {
+Note.prototype.initialize = function(data) {
     var self = this;
-    self.title (data.Title);
-    self.text (data.Text);
-    self.type (data.Type);
-    self.userID (data.UserID);
-    self.noteID (data.NoteID);
+    self.title(data.Title);
+    self.text(data.Text);
+    self.type(data.Type);
+    self.userID(data.UserID);
+    self.noteID(data.NoteID);
     self.modificationDate(self.getModificationDate(data));
 
-    var mappedTasks = $.map(data.TaskItems, function (item) { return new Task(item) });
+    var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
     self.tasks(mappedTasks);
-}
+};
 
 Note.prototype.addTask = function () {
     var self = this;
@@ -99,14 +99,14 @@ Note.prototype.goOnListBottom = function(task) {
         self.tasks.destroy(task);
         self.tasks.unshift(temp);
     }
+
+    task.updateTask();
 };
 
-Note.prototype.getModificationDate = function (data) {
+Note.prototype.getModificationDate = function(data) {
     if (data) {
         return data.ModificationDate.substring(11, 19);
     } else {
         return new Date().toLocaleString().substring(11, 19);
     }
-
-    
-}
+};
