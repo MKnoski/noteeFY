@@ -56,7 +56,7 @@
                         <div id="single-task">
                             <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)" />
                             <i style="visibility: hidden" class="fa fa-bars"></i>
-                            <input id="tasks-input" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
+                            <input id="tasks-input" data-bind="tooltip: {title: text(),placement: 'left'} ,value: shortText,click: isEditTask.bind($data, true), event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
                             <button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
     <script type="text/javascript" src="js/jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="js/knockout/knockout-3.3.0.debug.js"></script>
     <script type="text/javascript" src="js/knockout/knockout-sortable.min.js"></script>
-
+    <script type="text/javascript" src="js/knockout/knockout-bootstrap.min.js"></script>
     <script type="text/javascript" src="js/models/user.js"></script>
     <script type="text/javascript" src="js/models/note.js"></script>
     <script type="text/javascript" src="js/models/task.js"></script>

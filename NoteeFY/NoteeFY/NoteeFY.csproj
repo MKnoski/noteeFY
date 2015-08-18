@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\knockout\knockout-3.3.0.debug.js" />
+    <Content Include="js\knockout\knockout-bootstrap.min.js" />
     <Content Include="styles\app.css" />
     <Content Include="images\busy_loader.gif" />
     <Content Include="js\knockout\knockout-sortable.min.js" />

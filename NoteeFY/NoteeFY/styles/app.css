@@ -100,6 +100,10 @@ body {
     border: none;
     width: 65%;
     background: #FBEA6E;
+    }
+
+#tasks-span {
+    display: inline-block; 
 }
 
 #single-task {
