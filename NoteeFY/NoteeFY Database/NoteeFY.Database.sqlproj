@@ -72,5 +72,6 @@
   <ItemGroup>
     <None Include="dbo\Publish Profiles\NoteeFY.Database.publish.xml" />
     <None Include="dbo\Compares\DBtoProject.scmp" />
+    <None Include="dbo\Compares\ProjectToDB.scmp" />
   </ItemGroup>
 </Project>
