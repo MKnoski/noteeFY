@@ -46,7 +46,7 @@ body {
 }
 
 #note-title {
-    height: 59px; 
+    height: 60px;
 }
 
 #note-title-span{
@@ -96,10 +96,12 @@ body {
     border: none;
 }
 
-#tasks-input {
+.tasks-textarea {
     border: none;
-    width: 65%;
+    /*width: 65%;*/
+    overflow:hidden;    
     background: #FBEA6E;
+    resize: none;
     }
 
 #tasks-span {

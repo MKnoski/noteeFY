@@ -4,20 +4,6 @@
     self.isDone = ko.observable(data.IsDone);
     self.taskID = ko.observable(data.TaskItemID);
     self.noteID = ko.observable(data.NoteID);
-    self.isEditTask = ko.observable(false);
-
-    self.shortText = ko.computed(function () {
-        if (!self.text()) {
-            return '';
-        }
-
-        if (self.text().length > 15 && self.isEditTask() === false) {
-            return self.text().substring(0, 15) + "...";
-        }        
-        else {
-            return self.text();
-        }
-    });
 
     self.updateTask = function() {
         window.isLoading(true);
@@ -30,10 +16,10 @@
                 IsDone: self.isDone(),
                 NoteID: self.noteID()
             },
-            complete: function() {
+            complete: function () {
+                tasksTestAutoGrow();
                 window.isLoading(false);
             }
         });
-        self.isEditTask(false);
     };
 }

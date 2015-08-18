@@ -12,7 +12,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="styles/app.css" />
 </head>
-<body>
+<body onafterprint="init();">
     <div id="main-page" data-bind="visible: logged()">
         <nav id="navigation-bar" class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -37,7 +37,7 @@
             <div class="single-note">
                 <div id="note-title">
                     <span id="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-                    <input maxlength ="50" id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }" />
+                    <input maxlength="34" id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }" />
                 </div>
                 <div id="note-content" data-bind="visible: type()===0">
                     <span id="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : textAsHtml, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
@@ -47,17 +47,21 @@
                 <div id="todolist-content" data-bind="visible: type()===1">
                     <form id="adding-task" class="form-inline" role="form">
                         <div class="form-group">
-                            <input type="text" class="form-control" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
+                            <input type="text" class="form-control" maxlength="100" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
                             <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
                         </div>
                     </form>
                     <br />
                     <div id="tasks" class="item" data-bind="foreach: tasks()">
                         <div id="single-task">
-                            <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)" />
-                            <i style="visibility: hidden" class="fa fa-bars"></i>
-                            <input id="tasks-input" data-bind="tooltip: {title: text(),placement: 'left'} ,value: shortText,click: isEditTask.bind($data, true), event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
-                            <button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
+                            <table>
+                                <tr>
+                                    <td><input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)" /></td>
+                                    <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
+                                    <td><textarea class="tasks-textarea" rows="1" cols="22" maxlength="100" onpageshow="autoGrow(this)" onkeyup="autoGrow(this)" data-bind="    value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }"></textarea></td>
+                                    <td><button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

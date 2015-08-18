@@ -21,6 +21,19 @@
         return self.text().replace(/\n/g, "</br>");
     });
 
+    //self.shortTitle = ko.computed(function () {
+    //    if (!self.title()) {
+    //        return '';
+    //    }
+
+    //    if (self.title().length > 30 && self.isEditTitle() === false) {
+    //        return self.title().substring(0, 30) + "...";
+    //    }
+    //    else {
+    //        return self.title();
+    //    }
+    //});
+
     if (data) {
         self.initialize(data);
     }
@@ -55,6 +68,7 @@ Note.prototype.addTask = function () {
             self.tasks.push(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
+            tasksTestAutoGrow();
             window.isLoading(false);
         }
     });
