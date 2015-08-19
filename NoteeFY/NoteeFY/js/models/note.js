@@ -6,6 +6,7 @@
     self.type = ko.observable(0);
     self.userID = ko.observable();
     self.noteID = ko.observable();
+    self.color = ko.observable();
     self.modificationDate = ko.observable();
 
     self.tasks = ko.observableArray([]);
@@ -21,19 +22,6 @@
         return self.text().replace(/\n/g, "</br>");
     });
 
-    //self.shortTitle = ko.computed(function () {
-    //    if (!self.title()) {
-    //        return '';
-    //    }
-
-    //    if (self.title().length > 30 && self.isEditTitle() === false) {
-    //        return self.title().substring(0, 30) + "...";
-    //    }
-    //    else {
-    //        return self.title();
-    //    }
-    //});
-
     if (data) {
         self.initialize(data);
     }
@@ -46,6 +34,7 @@ Note.prototype.initialize = function(data) {
     self.type(data.Type);
     self.userID(data.UserID);
     self.noteID(data.NoteID);
+    self.color(data.Color);
     self.modificationDate(self.getModificationDate(data));
 
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
@@ -68,7 +57,7 @@ Note.prototype.addTask = function () {
             self.tasks.push(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
-            tasksTestAutoGrow();
+            tasksTextAutoGrow();
             window.isLoading(false);
         }
     });
@@ -100,6 +89,7 @@ Note.prototype.updateNote = function() {
             Text: self.text(),
             Type: self.type(),
             UserID: self.userID(),
+            Color: self.color(),
             TaskItems: []
         },
         success: function(response) {
@@ -131,3 +121,18 @@ Note.prototype.getModificationDate = function(data) {
         return new Date().toLocaleString().substring(11, 19);
     }
 };
+
+Note.prototype.addColorPicker = function (note, event) {
+    $(event.target).colpick({
+            layout: 'hex',
+            submit: 0,
+            color: 'FBEA6E',
+            onChange: function(hsb, hex, rgb, el, bySetColor) {
+                note.color('#' + hex);
+            },
+            onHide: function() {
+                note.updateNote();
+            }
+        }
+    );
+}

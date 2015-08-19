@@ -24,6 +24,7 @@ User.prototype.addNote = function (type) {
         data: {
             Title: "",
             Text: "",
+            Color: "#FBEA6E",
             Type: type,
             UserID: self.userID(),
             TaskItems: []

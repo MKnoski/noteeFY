@@ -16,7 +16,7 @@ function AppViewModel() {
             self.user(mappedUser);
             self.logged(true);
         }).success(function () {
-            tasksTestAutoGrow();
+            tasksTextAutoGrow();
         }).complete(function() {
             window.isLoading(false);
         }).error(function() {
@@ -38,7 +38,7 @@ function AppViewModel() {
 
 ko.applyBindings(new AppViewModel());
 
-function tasksTestAutoGrow() {
+function tasksTextAutoGrow() {
     var textareas = document.getElementsByClassName("tasks-textarea");
     for (var index = 0; index < textareas.length; index++) {
         autoGrow(textareas[index]);

@@ -25,6 +25,7 @@ namespace NoteeFY.Data
         public int Type { get; set; }
         public System.DateTime ModificationDate { get; set; }
         public string UserID { get; set; }
+        public string Color { get; set; }
     
         public virtual User User { get; set; }
         public virtual ICollection<TaskItem> TaskItems { get; set; }

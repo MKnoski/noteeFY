@@ -15,6 +15,7 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="ModificationDate" Type="datetime" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="TaskItems">
           <Key>
@@ -88,6 +89,7 @@
           <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Notes_Users1" FromRole="Notes" ToRole="Users" />
           <NavigationProperty Name="TaskItems" Relationship="Self.FK_TaskItems_Notes" FromRole="Notes" ToRole="TaskItems" />
+          <Property Name="Color" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TaskItem">
           <Key>
@@ -156,6 +158,7 @@
           <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="NoteeFYModel.Note">
               <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="NoteID" ColumnName="NoteID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
