@@ -29,10 +29,12 @@ User.prototype.addNote = function (type) {
             UserID: self.userID(),
             TaskItems: []
         },
+        complete: function () {
+            window.isLoading(false);
+        },
         success: function (response) {
             var note = new Note(response.Data);
             self.notes.push(note);
-            window.isLoading(false);
         }
     });
 };

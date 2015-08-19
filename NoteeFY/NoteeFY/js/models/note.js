@@ -94,6 +94,8 @@ Note.prototype.updateNote = function() {
         },
         success: function(response) {
             self.modificationDate(self.getModificationDate(response.Data));
+        },
+        complete: function () {
             window.isLoading(false);
         }
     });
@@ -116,9 +118,12 @@ Note.prototype.goOnListBottom = function(task) {
 
 Note.prototype.getModificationDate = function(data) {
     if (data) {
-        return data.ModificationDate.substring(11, 19);
+        //return data.ModificationDate.substring(11, 19);
+        moment.locale('pl');
+        return moment(data.ModificationDate).startOf('second').fromNow();
     } else {
-        return new Date().toLocaleString().substring(11, 19);
+        moment.locale('pl');
+        return moment(moment()).startOf('second').fromNow();
     }
 };
 
