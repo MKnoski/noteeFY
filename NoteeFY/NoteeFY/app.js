@@ -1,3 +1,5 @@
+var NoteeFy = {};
+
 function AppViewModel() {
     var self = this;
     self.userID = ko.observable("");
@@ -16,7 +18,14 @@ function AppViewModel() {
             self.user(mappedUser);
             self.logged(true);
         }).success(function () {
-            tasksTextAutoGrow();
+            $('.notepad').masonry({
+                // options
+                itemSelector: '.single-note',
+                gutter: 5
+            });
+            $('.note-content-textarea').autosize();
+            $('.tasks-textarea').autosize();
+            NoteeFy.refreshLayout();
         }).complete(function() {
             window.isLoading(false);
         }).error(function() {
@@ -34,18 +43,9 @@ function AppViewModel() {
         }
     };
 
-}
-
-ko.applyBindings(new AppViewModel());
-
-function tasksTextAutoGrow() {
-    var textareas = document.getElementsByClassName("tasks-textarea");
-    for (var index = 0; index < textareas.length; index++) {
-        autoGrow(textareas[index]);
+    NoteeFy.refreshLayout = function() {
+        $('.notepad').masonry('layout');
     }
 }
 
-function autoGrow(element) {
-    element.style.height = "5px";
-    element.style.height = (element.scrollHeight) + "px";
-}
+ko.applyBindings(new AppViewModel());

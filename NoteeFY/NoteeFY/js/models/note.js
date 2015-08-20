@@ -57,7 +57,8 @@ Note.prototype.addTask = function () {
             self.tasks.push(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
-            tasksTextAutoGrow();
+            $('.tasks-textarea').autosize();
+            NoteeFy.refreshLayout();
             window.isLoading(false);
         }
     });
@@ -72,6 +73,7 @@ Note.prototype.deleteTask = function (task) {
         success: function () {
             self.tasks.remove(task);
             self.modificationDate(self.getModificationDate());
+            NoteeFy.refreshLayout();
             window.isLoading(false);
         }
     });
@@ -116,13 +118,11 @@ Note.prototype.goOnListBottom = function(task) {
     task.updateTask();
 };
 
-Note.prototype.getModificationDate = function(data) {
+Note.prototype.getModificationDate = function (data) {
+    moment.locale('pl');
     if (data) {
-        //return data.ModificationDate.substring(11, 19);
-        moment.locale('pl');
         return moment(data.ModificationDate).startOf('second').fromNow();
     } else {
-        moment.locale('pl');
         return moment(moment()).startOf('second').fromNow();
     }
 };

@@ -17,7 +17,7 @@
                 NoteID: self.noteID()
             },
             complete: function () {
-                tasksTextAutoGrow();
+                NoteeFy.refreshLayout();
                 window.isLoading(false);
             }
         });

@@ -35,19 +35,28 @@ User.prototype.addNote = function (type) {
         success: function (response) {
             var note = new Note(response.Data);
             self.notes.push(note);
+            var allNotes = document.getElementsByClassName("single-note");
+            var singleNoteToAdd = allNotes[allNotes.length - 1];
+            $('.notepad').masonry('appended', singleNoteToAdd);
+            NoteeFy.refreshLayout();
+            $('.note-content-textarea').autosize();
         }
     });
 };
 
-User.prototype.deleteNote = function (note) {
+User.prototype.deleteNote = function (note, event) {
     var self = this;
     window.isLoading(true);
     $.ajax({
         url: "api/Notes/" + note.noteID(),
         type: "DELETE",
+        complete: function () {
+            window.isLoading(false);
+        },
         success: function () {
             self.user().notes.remove(note);
-            window.isLoading(false);
+            var singleNoteToRemove = event.currentTarget.parentElement.parentElement;
+            $('.notepad').masonry('remove', singleNoteToRemove).masonry('layout');
         }
     });
 };
