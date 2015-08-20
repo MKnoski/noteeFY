@@ -52,7 +52,7 @@
     <Compile Include="DTOs\NoteDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\TaskItemDTO.cs" />
-    <Compile Include="Helpers\ModificationResult.cs" />
+    <Compile Include="Responses\ModificationResult.cs" />
     <Compile Include="Managers\NotesManager.cs" />
     <Compile Include="Managers\TaskItemsManager.cs" />
     <Compile Include="Managers\UsersManager.cs" />

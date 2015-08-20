@@ -61,8 +61,8 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Compares" />
-    <Folder Include="dbo\Publish Profiles" />
+    <Folder Include="Compares" />
+    <Folder Include="Publish_Profiles" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Users.sql" />
@@ -70,8 +70,8 @@
     <Build Include="dbo\Tables\TaskItems.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbo\Publish Profiles\NoteeFY.Database.publish.xml" />
-    <None Include="dbo\Compares\DBtoProject.scmp" />
-    <None Include="dbo\Compares\ProjectToDB.scmp" />
+    <None Include="Compares\DBtoProject.scmp" />
+    <None Include="Compares\ProjectToDB.scmp" />
+    <None Include="Publish_Profiles\NoteeFY.Database.publish.xml" />
   </ItemGroup>
 </Project>

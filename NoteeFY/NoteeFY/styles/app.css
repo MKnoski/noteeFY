@@ -45,11 +45,11 @@ body {
    height: 150px;
 }
 
-#note-title {
+.note-title {
     height: 60px;
 }
 
-#note-title-span{
+.note-title-span{
    display: inline-block; 
    width: 260px; 
    height: 59px; 
@@ -58,29 +58,21 @@ body {
    word-wrap: break-word;
 }
 
-#note-title-placeholder{
-   display: inline-block; 
-   width: 260px; 
-   height: 59px; 
-   font-weight: bold;   
-   padding: 7px 0 0 12px;
-}
-
-#note-title-input{
+.note-title-input{
     border: none;
     background: #FBEA6E;
     font-weight: bold;
 }
 
-#note-content {
+.note-content {
     height: 200px;
 }
 
-#todolist-content {
+.todolist-content {
     height: 200px;
 }
 
-#note-content-span{
+.note-content-span{
    display: inline-block; 
    overflow: auto; 
    word-wrap:break-word;
@@ -90,7 +82,7 @@ body {
    text-align: justify;
 }
 
-#note-content-textarea{
+.note-content-textarea{
     resize: none;
     background: #FBEA6E;
     border: none;
@@ -104,15 +96,11 @@ body {
     resize: none;
     }
 
-#tasks-span {
-    display: inline-block; 
-}
-
-#single-task {
+.single-task {
     width: 240px;
 }
 
-#tasks{
+.tasks{
     float: left;
     height: 165px;
     width: 260px;
@@ -126,3 +114,8 @@ body {
 .single-note:hover .menu {
     display : block;
 }   
+
+.btn {
+    padding: 5px 5px 5px 5px;
+    margin: 0 0 0 0;
+}
