@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using NoteeFY.Buisness.DTOs;
+﻿using NoteeFY.Buisness.DTOs;
 using System.Linq;
-using NoteeFY.Data;
+using NoteeFY.Data.DBContext;
 
 namespace NoteeFY.Buisness.Managers
 {
@@ -11,19 +10,8 @@ namespace NoteeFY.Buisness.Managers
         {
             using (var db = new NoteeContext())
             {
-                var user = db.Users.SingleOrDefault(u => u.UserID == id);
-                if (user == null)
-                {
-                    var us = new UserDTO()
-                    {
-                        UserID = id,
-                        Notes = new List<NoteDTO>()
-                    };
-                    AddOrUpdateUser(us);
-                    user = db.Users.SingleOrDefault(u => u.UserID == us.UserID);
-                    return new UserDTO(user);
-                }
-                else return new UserDTO(user);
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == id);
+                return user == null ? null : new UserDTO(user);
             }
         }
 
@@ -32,12 +20,12 @@ namespace NoteeFY.Buisness.Managers
         {
             using (var db = new NoteeContext())
             {
-                var model = db.Users.SingleOrDefault(u => u.UserID == user.UserID);
+                var model = db.SubUsers.SingleOrDefault(u => u.UserID == user.UserID);
                 if(model == null)
                 {
-                    model = db.Users.Create();
+                    model = db.SubUsers.Create();
                     model.UserID = user.UserID;
-                    db.Users.Add(model);
+                    db.SubUsers.Add(model);
                 }
 
                 db.SaveChanges();

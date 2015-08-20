@@ -1,4 +1,4 @@
-﻿using NoteeFY.Data;
+﻿using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.DTOs
 {

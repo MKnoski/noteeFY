@@ -8,15 +8,7 @@ namespace NoteeFY.Controllers
     {
         protected JsonResult<ModificationResult<T>> ValidateModelState<T>()
         {
-            if (!ModelState.IsValid)
-            {
-                return Json(new ModificationResult<T>("error: Zly model"));
-            }
-            else
-            {
-                return null;
-            }
+            return !ModelState.IsValid ? Json(new ModificationResult<T>("error: Zly model")) : null;
         }
-
     }
 }

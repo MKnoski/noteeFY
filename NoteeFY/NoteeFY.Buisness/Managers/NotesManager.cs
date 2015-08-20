@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data;
+using NoteeFY.Data.DBContext;
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.Managers
 {
@@ -34,13 +35,13 @@ namespace NoteeFY.Buisness.Managers
                     else
                     {
                         model = db.Notes.Create();
-                        model.User = db.Users.Single(u => u.UserID == userId);
+                        model.User = db.SubUsers.Single(u => u.UserID == userId);
                         db.Notes.Add(model);
                     }
 
                     model.Title = note.Title;
                     model.Text = note.Text;
-                    model.Type = (int)note.Type;
+                    model.Type = note.Type;
                     model.ModificationDate = DateTime.Now;
 
                     db.SaveChanges();
@@ -59,7 +60,7 @@ namespace NoteeFY.Buisness.Managers
             using (var db = new NoteeContext())
             {
                 Note model;
-                if (db.Users.Any(u => u.UserID == note.UserID))
+                if (db.SubUsers.Any(u => u.UserID == note.UserID))
                 {
                     if (note.NoteID > 0)
                     {
@@ -68,13 +69,13 @@ namespace NoteeFY.Buisness.Managers
                     else
                     {
                         model = db.Notes.Create();
-                        model.User = db.Users.Single(u => u.UserID == note.UserID);
+                        model.User = db.SubUsers.Single(u => u.UserID == note.UserID);
                         db.Notes.Add(model);
                     }
 
                     model.Title = note.Title;
                     model.Text = note.Text;
-                    model.Type = (int)note.Type;
+                    model.Type = note.Type;
                     model.ModificationDate = DateTime.Now;
 
                     db.SaveChanges();

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data;
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.DTOs
 {
@@ -10,7 +10,10 @@ namespace NoteeFY.Buisness.DTOs
 
         public List<NoteDTO> Notes { get; set; }
 
-        public UserDTO() { }
+        public UserDTO()
+        {
+            Notes = new List<NoteDTO>();
+        }
 
         public UserDTO(User user)
         {

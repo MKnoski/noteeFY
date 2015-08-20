@@ -1,0 +1,67 @@
+﻿@using NoteeFY.Data.Models
+@model NoteeFY.Data.Models.LoginViewModel
+
+<!DOCTYPE html>
+<html lang="pl_PL">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <title>NoteeFY</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/styles/app.css"/>
+</head>
+<body>
+    @{
+        if (Request.IsAuthenticated)
+        {
+            Response.Redirect("~/Home/NoteeFY");
+        }
+        else
+        {
+            <div class="row">
+                <section id="loginForm">
+                    <div id="login-window">
+                        <table align="center">
+                            <tr height="100%">
+                                <td height="100%" width="100%" valign="middle" align="center">
+                                    <h3> <span align="center">Witaj w NoteeFY</span></h3>
+                                    <br /><br />
+                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })<br />
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "Hasło" })
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+                                        </div>
+                                        <br />
+                                        <input type="submit" value="Zaloguj!" class="login-button" />
+                                        <br /><br />
+                                    }
+                                    @Html.ActionLink(" Dodaj użytkownika!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "add-user-button" })<br /><br />
+                                    @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        }
+    }
+
+    <script type="text/javascript" src="/js/jquery/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/knockout/knockout-3.3.0.debug.js"></script>
+    <script type="text/javascript" src="/js/knockout/knockout-sortable.min.js"></script>
+    <script type="text/javascript" src="/js/knockout/knockout-bootstrap.min.js"></script>
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

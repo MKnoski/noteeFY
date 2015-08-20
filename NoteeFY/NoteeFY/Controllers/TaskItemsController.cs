@@ -1,7 +1,7 @@
-﻿using NoteeFY.Buisness.Managers;
+﻿using System.Web.Http.Results;
 using NoteeFY.Buisness.DTOs;
-using System.Web.Http.Results;
 using NoteeFY.Buisness.Helpers;
+using NoteeFY.Buisness.Managers;
 
 namespace NoteeFY.Controllers
 {

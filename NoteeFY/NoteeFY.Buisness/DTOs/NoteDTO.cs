@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data;
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.DTOs
 {
@@ -26,7 +26,7 @@ namespace NoteeFY.Buisness.DTOs
             NoteID = note.NoteID;
             Title = note.Title;
             Text = note.Text;
-            Type = note.NoteType;
+            Type = note.Type;
             ModificationDate = note.ModificationDate;
             UserID = note.UserID;
             TaskItems = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();

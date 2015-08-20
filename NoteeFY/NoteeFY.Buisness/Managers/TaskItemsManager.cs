@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NoteeFY.Buisness.DTOs;
-using NoteeFY.Data;
+using NoteeFY.Data.DBContext;
+using NoteeFY.Data.Models;
 
 namespace NoteeFY.Buisness.Managers
 {
