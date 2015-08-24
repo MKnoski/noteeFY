@@ -54,8 +54,13 @@
             </div>
             <div class="todolist-content" data-bind="visible: type()===1">
                 <div class="form-group">
-                    <input type="text" class="form-control adding" maxlength="100" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
-                    <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
+                    <table>
+                        <tr>
+                            <td><input type="text" class="form-control adding" maxlength="100" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!"></td>
+                            <td>&nbsp&nbsp&nbsp</td>
+                            <td><button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button></td>
+                        </tr>
+                    </table>
                 </div>
                 <br/>
                 <div class="tasks item" data-bind="foreach: tasks()">

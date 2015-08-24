@@ -54,7 +54,7 @@ Note.prototype.addTask = function () {
         },
         success: function (response) {
             var task = new Task(response.Data);
-            self.tasks.push(task);
+            self.tasks.unshift(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
             $('.tasks-textarea').autosize();
@@ -116,6 +116,7 @@ Note.prototype.goOnListBottom = function(task) {
     }
 
     task.updateTask();
+    $('.tasks-textarea').autosize();
 };
 
 Note.prototype.getModificationDate = function (data) {
