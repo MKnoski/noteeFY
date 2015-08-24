@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteeFY.Buisness", "NoteeFY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteeFY", "NoteeFY\NoteeFY.csproj", "{6D71A6E1-30F4-4DB4-8AAC-2C9A7267E3C0}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NoteeFY.Database", "..\..\..\..\Downloads\NoteeFY-master\NoteeFY-master\NoteeFY\NoteeFY Database\NoteeFY.Database.sqlproj", "{B3399B25-0136-4269-A441-45C08AF2FC82}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NoteeFY.Database", "NoteeFY Database\NoteeFY.Database.sqlproj", "{B3399B25-0136-4269-A441-45C08AF2FC82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
