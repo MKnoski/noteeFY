@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Web.Mvc;
 
 namespace NoteeFY.Data.Models
 {
@@ -57,7 +54,7 @@ namespace NoteeFY.Data.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź hasło")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Hasła nie są zgodne.")]
+        [Compare("Password", ErrorMessage = "Hasła nie są zgodne.")]
         public string ConfirmPassword { get; set; }
     }
 

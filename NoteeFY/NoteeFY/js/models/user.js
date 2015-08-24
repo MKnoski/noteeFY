@@ -3,7 +3,6 @@
     self.userID = ko.observable();
     self.notes = ko.observableArray([]);
 
-
     if (data) {
         self.initialize(data);
     }
@@ -12,9 +11,9 @@
 User.prototype.initialize = function (data) {
     var self = this;
     self.userID(data.UserID);
-    var mappedNotes = $.map(data.Notes, function (item) { return new Note(item) });
+    var mappedNotes = $.map(data.Notes, function (item) { return new Note(item); });
     self.notes(mappedNotes);
-}
+};
 
 User.prototype.addNote = function (type) {
     var self = this;
@@ -25,27 +24,39 @@ User.prototype.addNote = function (type) {
         data: {
             Title: "",
             Text: "",
+            Color: "#FBEA6E",
             Type: type,
             UserID: self.userID(),
             TaskItems: []
         },
+        complete: function () {
+            window.isLoading(false);
+        },
         success: function (response) {
             var note = new Note(response.Data);
             self.notes.push(note);
-            window.isLoading(false);
+            var allNotes = document.getElementsByClassName("single-note");
+            var singleNoteToAdd = allNotes[allNotes.length - 1];
+            $('.notepad').masonry('appended', singleNoteToAdd);
+            NoteeFy.refreshLayout();
+            $('.note-content-textarea').autosize();
         }
     });
 };
 
-User.prototype.deleteNote = function (note) {
+User.prototype.deleteNote = function (note, event) {
     var self = this;
     window.isLoading(true);
     $.ajax({
         url: "api/Notes/" + note.noteID(),
         type: "DELETE",
+        complete: function () {
+            window.isLoading(false);
+        },
         success: function () {
             self.user().notes.remove(note);
-            window.isLoading(false);
+            var singleNoteToRemove = event.currentTarget.parentElement.parentElement;
+            $('.notepad').masonry('remove', singleNoteToRemove).masonry('layout');
         }
     });
 };

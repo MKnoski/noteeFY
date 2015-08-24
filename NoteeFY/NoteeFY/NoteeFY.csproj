@@ -191,13 +191,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\busy_loader.gif" />
     <Content Include="js\app.js" />
+    <Content Include="js\external\colpick.js" />
+    <Content Include="js\external\moment-with-locales.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />
     <Content Include="js\jquery\jquery-ui.js" />
     <Content Include="js\knockout\knockout-3.3.0.debug.js" />
@@ -220,6 +221,7 @@
     <Content Include="js\Scripts\respond.min.js" />
     <Content Include="Styles\app.css" />
     <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\colpick.css" />
     <Content Include="Styles\Content\bootstrap.css" />
     <Content Include="Styles\Content\bootstrap.min.css" />
     <Content Include="Styles\Content\Site.css" />

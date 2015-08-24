@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data.DBContext;
-using NoteeFY.Data.Models;
+using NoteeFY.Data;
 
 namespace NoteeFY.Buisness.Managers
 {
@@ -41,8 +40,9 @@ namespace NoteeFY.Buisness.Managers
 
                     model.Title = note.Title;
                     model.Text = note.Text;
-                    model.Type = note.Type;
+                    model.NoteType = note.Type;
                     model.ModificationDate = DateTime.Now;
+                    model.Color = note.Color;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;
@@ -75,8 +75,9 @@ namespace NoteeFY.Buisness.Managers
 
                     model.Title = note.Title;
                     model.Text = note.Text;
-                    model.Type = note.Type;
+                    model.NoteType = note.Type;
                     model.ModificationDate = DateTime.Now;
+                    model.Color = note.Color;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;

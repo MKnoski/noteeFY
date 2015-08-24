@@ -14,7 +14,7 @@ namespace NoteeFY
     {
         public void ConfigureAuth(IAppBuilder app)
         {
-            app.CreatePerOwinContext(NoteeContext.Create);
+            app.CreatePerOwinContext(IdentityContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

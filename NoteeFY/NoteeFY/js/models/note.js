@@ -6,6 +6,7 @@
     self.type = ko.observable(0);
     self.userID = ko.observable();
     self.noteID = ko.observable();
+    self.color = ko.observable();
     self.modificationDate = ko.observable();
 
     self.tasks = ko.observableArray([]);
@@ -33,6 +34,7 @@ Note.prototype.initialize = function(data) {
     self.type(data.Type);
     self.userID(data.UserID);
     self.noteID(data.NoteID);
+    self.color(data.Color);
     self.modificationDate(self.getModificationDate(data));
 
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
@@ -55,6 +57,8 @@ Note.prototype.addTask = function () {
             self.tasks.push(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
+            $('.tasks-textarea').autosize();
+            NoteeFy.refreshLayout();
             window.isLoading(false);
         }
     });
@@ -69,6 +73,7 @@ Note.prototype.deleteTask = function (task) {
         success: function () {
             self.tasks.remove(task);
             self.modificationDate(self.getModificationDate());
+            NoteeFy.refreshLayout();
             window.isLoading(false);
         }
     });
@@ -86,10 +91,13 @@ Note.prototype.updateNote = function() {
             Text: self.text(),
             Type: self.type(),
             UserID: self.userID(),
+            Color: self.color(),
             TaskItems: []
         },
-        success: function(response) {
+        success: function (response) {
             self.modificationDate(self.getModificationDate(response.Data));
+        },
+        complete: function () {
             window.isLoading(false);
         }
     });
@@ -110,10 +118,26 @@ Note.prototype.goOnListBottom = function(task) {
     task.updateTask();
 };
 
-Note.prototype.getModificationDate = function(data) {
+Note.prototype.getModificationDate = function (data) {
+    moment.locale('pl');
     if (data) {
-        return data.ModificationDate.substring(11, 19);
+        return moment(data.ModificationDate).startOf('second').fromNow();
     } else {
-        return new Date().toLocaleString().substring(11, 19);
+        return moment(moment()).startOf('second').fromNow();
     }
 };
+
+Note.prototype.addColorPicker = function (note, event) {
+    $(event.target).colpick({
+        layout: 'hex',
+        submit: 0,
+        color: 'FBEA6E',
+        onChange: function (hsb, hex, rgb, el, bySetColor) {
+            note.color('#' + hex);
+        },
+        onHide: function () {
+            note.updateNote();
+        }
+    }
+    );
+}

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteeFY.Buisness", "NoteeFY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteeFY", "NoteeFY\NoteeFY.csproj", "{6D71A6E1-30F4-4DB4-8AAC-2C9A7267E3C0}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NoteeFY.Database", "..\..\..\..\Downloads\NoteeFY-master\NoteeFY-master\NoteeFY\NoteeFY Database\NoteeFY.Database.sqlproj", "{B3399B25-0136-4269-A441-45C08AF2FC82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{6D71A6E1-30F4-4DB4-8AAC-2C9A7267E3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D71A6E1-30F4-4DB4-8AAC-2C9A7267E3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D71A6E1-30F4-4DB4-8AAC-2C9A7267E3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3399B25-0136-4269-A441-45C08AF2FC82}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

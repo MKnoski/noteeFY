@@ -9,8 +9,10 @@
 
     <title>NoteeFY</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/styles/app.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/styles/app.css" />
+    <link rel="stylesheet" href="~/styles/colpick.css" type="text/css" />
 </head>
 <body>
 <div id="main-page">
@@ -40,48 +42,46 @@
     </nav>
 
 
-    <div id="notepad" data-bind="foreach: user().notes()">
-            <div class="single-note">
-                <div id="note-title">
-                    <span id="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-                    <input maxlength="50" id="note-title-input" class="form-control" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }" />
+    <div class="notepad" data-bind="foreach: user().notes()">
+        <div class="single-note" data-bind="style: {background: color()}">
+            <div class="note-title">
+                <span class="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                <input class="note-title-input form-control" maxlength="34" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }, style: {background: color()}"/>
+            </div>
+            <div class="note-content" data-bind="visible: type()===0">
+                <span class="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : textAsHtml, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
+                <textarea class="note-content-textarea form-control custom-control" onkeyup="NoteeFy.refreshLayout()" data-bind="    value: text, visible: isEditText, hasFocus: isEditText, event: { blur: updateNote.bind($data) }, style: {background: color()}"></textarea>
+            </div>
+            <div class="todolist-content" data-bind="visible: type()===1">
+                <div class="form-group">
+                    <input type="text" class="form-control adding" maxlength="100" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
+                    <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
                 </div>
-                <div id="note-content" data-bind="visible: type()===0">
-                    <span id="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : textAsHtml, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
-                    <textarea id="note-content-textarea" data-bind="value: text, visible: isEditText, hasFocus: isEditText, event: { blur: updateNote.bind($data) }" class="form-control custom-control" rows="9"></textarea>
-                </div>
-
-                <div id="todolist-content" data-bind="visible: type()===1">
-                    <form id="adding-task" class="form-inline" role="form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!">
-                            <button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button>
-                        </div>
-                    </form>
-                    <br />
-                    <div id="tasks" class="item" data-bind="foreach: tasks()">
-                        <div id="single-task">
-                            <input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)" />
-                            <i style="visibility: hidden" class="fa fa-bars"></i>
-                            <input id="tasks-input" data-bind="tooltip: {title: text(),placement: 'left'} ,value: shortText,click: isEditTask.bind($data, true), event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' }" />
-                            <button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
-                        </div>
+                <br/>
+                <div class="tasks item" data-bind="foreach: tasks()">
+                    <div class="single-task">
+                        <table>
+                            <tr>
+                                <td><input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)"/></td>
+                                <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
+                                <td><textarea class="tasks-textarea" rows="1" cols="42" maxlength="100" onkeyup="NoteeFy.refreshLayout()" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
+                                <td><button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <br />
-
-                <div class="menu">
-                    <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
-                    <button style="visibility: hidden" class="btn btn-default"><i class="fa fa-th-list"></i></button>
-                    <button style="visibility: hidden" class="btn btn-default" type="button" data-toggle="dropdown"><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-
-                    <span style="float: right;" data-bind="text: modificationDate"></span>
-                </div>
-
+            </div>
+            <br/>
+            <div class="menu">
+                <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
+                <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) } "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+                <span style="float: right;" data-bind="text: modificationDate;"></span>
             </div>
         </div>
-        <div style="clear: both;"></div>
+    </div>
+    <div style="clear: both;"></div>
 </div>
+
 
 <div id="loading" data-bind="visible: isLoading()">
     <div id="loading-window"></div>
@@ -102,16 +102,20 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/js/jquery/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="/js/jquery/jquery-ui.js"></script>
-<script type="text/javascript" src="/js/knockout/knockout-3.3.0.debug.js"></script>
-<script type="text/javascript" src="/js/knockout/knockout-sortable.min.js"></script>
-<script type="text/javascript" src="/js/knockout/knockout-bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/models/user.js"></script>
-<script type="text/javascript" src="/js/models/note.js"></script>
-<script type="text/javascript" src="/js/models/task.js"></script>
-<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="~/js/jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="~/js/jquery/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="~/js/knockout/knockout-3.3.0.debug.js"></script>
+<script type="text/javascript" src="~/js/knockout/knockout-sortable.min.js"></script>
+<script type="text/javascript" src="~/js/external/colpick.js"></script>
+<script type="text/javascript" src="~/js/external/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="~/js/models/user.js"></script>
+<script type="text/javascript" src="~/js/models/note.js"></script>
+<script type="text/javascript" src="~/js/models/task.js"></script>
+<script type="text/javascript" src="~/js/app.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.4/jquery.autosize.min.js"></script>
+
 
 </body>
 </html>

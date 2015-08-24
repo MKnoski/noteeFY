@@ -1,3 +1,15 @@
+body {
+  background-color: #ebebeb;
+  }
+
+#loading-window{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #000000 ;
+   opacity:0.65;
+}
+
 #login-window{
     position: absolute;
     top: 50%;
@@ -11,30 +23,6 @@
     padding: 20px;
 }
 
-.single-note{
-    margin-top: 20px;
-    margin-left: 20px;
-    width: 300px;
-    height: 340px;
-    border-radius: 15px 15px;
-    background: #FBEA6E;
-    padding: 20px;
-    display: inline-block;
-    float: left;
-}
-
-body {
-  background-color: #ebebeb;
-  }
-
-#loading-window{
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   background: #000000 ;
-   opacity:0.65;
-}
-
 #busy-indicator{
    position: absolute;
    top: 45%;
@@ -45,84 +33,94 @@ body {
    height: 150px;
 }
 
-#note-title {
-    height: 59px; 
+.single-note{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 390px;
+    /*height: 340px;*/
+    border-radius: 15px 15px;
+    background: #FBEA6E;
+    padding: 12px;
+    display: inline-block;
+    float: left;    
 }
 
-#note-title-span{
+.note-title {
+    height: 60px;
+}
+
+.note-title-span{
    display: inline-block; 
-   width: 260px; 
+   width: 350px; 
    height: 59px; 
    font-weight: bold;   
    padding: 7px 0 0 12px;
    word-wrap: break-word;
 }
 
-#note-title-placeholder{
-   display: inline-block; 
-   width: 260px; 
-   height: 59px; 
-   font-weight: bold;   
-   padding: 7px 0 0 12px;
-}
-
-#note-title-input{
+.note-title-input{
     border: none;
     background: #FBEA6E;
     font-weight: bold;
 }
 
-#note-content {
-    height: 200px;
+.note-content {
+    /*height: 200px;*/
+    min-height: 55px;
 }
 
-#todolist-content {
-    height: 200px;
+.todolist-content {
+    /*height: 200px;*/
 }
 
-#note-content-span{
+.note-content-span{
    display: inline-block; 
    overflow: auto; 
    word-wrap:break-word;
-   width: 260px; 
-   height: 189px;
+   width: 350px; 
+   /*height: 189px;*/
    padding: 6px 0 0 12px;
    text-align: justify;
 }
 
-#note-content-textarea{
+.note-content-textarea{
     resize: none;
     background: #FBEA6E;
     border: none;
 }
 
-#tasks-input {
+.tasks-textarea {
     border: none;
-    width: 65%;
+    /*width: 65%;*/
+    overflow:hidden;    
     background: #FBEA6E;
+    resize: none;
     }
 
-#tasks-span {
-    display: inline-block; 
+.single-task {
+    width: 350px;
 }
 
-#single-task {
-    width: 240px;
-}
-
-#tasks{
+.tasks{
     float: left;
-    height: 165px;
-    width: 260px;
+    /*height: 165px;*/
+    width: 370px;
     overflow: auto;
 }
 
 .menu {
-    display: none;
+    /*display: none;*/
+    visibility: hidden;
 }
 
 .single-note:hover .menu {
-    display : block;
+    /*display : block;*/
+    visibility: visible;
+}   
+
+.btn {
+    padding: 1px 6px;
+    margin: 0 0 0 0;
 }
 
 .google-button {

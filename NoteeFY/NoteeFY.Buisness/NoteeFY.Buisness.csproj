@@ -38,6 +38,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,7 +52,7 @@
     <Compile Include="DTOs\NoteDTO.cs" />
     <Compile Include="DTOs\TaskItemDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
-    <Compile Include="Helpers\ModificationResult.cs" />
+    <Compile Include="Responses\ModificationResult.cs" />
     <Compile Include="Managers\NotesManager.cs" />
     <Compile Include="Managers\TaskItemsManager.cs" />
     <Compile Include="Managers\UsersManager.cs" />

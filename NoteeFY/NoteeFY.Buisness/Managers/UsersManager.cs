@@ -1,6 +1,6 @@
-﻿using NoteeFY.Buisness.DTOs;
-using System.Linq;
-using NoteeFY.Data.DBContext;
+﻿using System.Linq;
+using NoteeFY.Buisness.DTOs;
+using NoteeFY.Data;
 
 namespace NoteeFY.Buisness.Managers
 {

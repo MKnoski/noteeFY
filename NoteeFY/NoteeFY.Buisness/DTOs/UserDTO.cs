@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NoteeFY.Data.Models;
+using NoteeFY.Data;
+
 
 namespace NoteeFY.Buisness.DTOs
 {
@@ -15,7 +16,7 @@ namespace NoteeFY.Buisness.DTOs
             Notes = new List<NoteDTO>();
         }
 
-        public UserDTO(User user)
+        public UserDTO(SubUser user)
         {
             UserID = user.UserID;
             Notes = user.Notes.Select(n => new NoteDTO(n)).ToList();
