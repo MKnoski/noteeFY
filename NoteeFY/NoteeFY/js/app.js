@@ -22,8 +22,12 @@ function AppViewModel() {
             itemSelector: '.single-note',
             gutter: 5
         });
-        $('.note-content-textarea').autosize();
-        $('.tasks-textarea').autosize();
+        //$('.note-content-textarea').autosize();
+        //$('.tasks-textarea').autosize();
+        //autosize(document.querySelectorAll('textarea'));
+
+        autosize($('textarea'));
+
         NoteeFy.refreshLayout();
     }).complete(function () {
         window.isLoading(false);

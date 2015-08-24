@@ -197,6 +197,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\busy_loader.gif" />
     <Content Include="js\app.js" />
+    <Content Include="js\external\autosize.min.js" />
     <Content Include="js\external\colpick.js" />
     <Content Include="js\external\moment-with-locales.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />

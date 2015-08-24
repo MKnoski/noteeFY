@@ -83,6 +83,7 @@ body {
     resize: none;
     background: #FBEA6E;
     border: none;
+    overflow:hidden;  
 }
 
 .tasks-textarea {

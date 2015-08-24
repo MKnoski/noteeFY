@@ -50,7 +50,7 @@
             </div>
             <div class="note-content" data-bind="visible: type()===0">
                 <span class="note-content-span" data-bind="html: !text() ? '<i>Wprowadź tekst</i>' : textAsHtml, click: isEditText.bind($data, true), style: { display: !isEditText() ? 'inline-block' : 'none' }"></span>
-                <textarea class="note-content-textarea form-control custom-control" onkeyup="NoteeFy.refreshLayout()" data-bind="    value: text, visible: isEditText, hasFocus: isEditText, event: { blur: updateNote.bind($data) }, style: {background: color()}"></textarea>
+                <textarea class="note-content-textarea form-control" onkeyup="NoteeFy.refreshLayout()" data-bind="    value: text, visible: isEditText, hasFocus: isEditText, event: { blur: updateNote.bind($data) }, style: {background: color()}"></textarea>
             </div>
             <div class="todolist-content" data-bind="visible: type()===1">
                 <div class="form-group">
@@ -69,7 +69,7 @@
                             <tr>
                                 <td><input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)"/></td>
                                 <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
-                                <td><textarea class="tasks-textarea form-control" rows="1" cols="42" maxlength="100" onkeyup="NoteeFy.refreshLayout()" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
+                                <td><textarea class="tasks-textarea" rows="1" cols="42" maxlength="100" onkeyup="NoteeFy.refreshLayout()" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
                                 <td><button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button></td>
                             </tr>
                         </table>
