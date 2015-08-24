@@ -4,7 +4,7 @@
 
     public partial class Note
     {
-        public NoteType NoteType 
+        public NoteType NoteType
         {
             get
             {

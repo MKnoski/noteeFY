@@ -94,7 +94,7 @@ Note.prototype.updateNote = function() {
             Color: self.color(),
             TaskItems: []
         },
-        success: function(response) {
+        success: function (response) {
             self.modificationDate(self.getModificationDate(response.Data));
         },
         complete: function () {
@@ -129,15 +129,15 @@ Note.prototype.getModificationDate = function (data) {
 
 Note.prototype.addColorPicker = function (note, event) {
     $(event.target).colpick({
-            layout: 'hex',
-            submit: 0,
-            color: 'FBEA6E',
-            onChange: function(hsb, hex, rgb, el, bySetColor) {
-                note.color('#' + hex);
-            },
-            onHide: function() {
-                note.updateNote();
-            }
+        layout: 'hex',
+        submit: 0,
+        color: 'FBEA6E',
+        onChange: function (hsb, hex, rgb, el, bySetColor) {
+            note.color('#' + hex);
+        },
+        onHide: function () {
+            note.updateNote();
         }
+    }
     );
 }

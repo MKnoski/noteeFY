@@ -2,6 +2,7 @@
 using System.Linq;
 using NoteeFY.Data;
 
+
 namespace NoteeFY.Buisness.DTOs
 {
     public class UserDTO
@@ -10,9 +11,12 @@ namespace NoteeFY.Buisness.DTOs
 
         public List<NoteDTO> Notes { get; set; }
 
-        public UserDTO() { }
+        public UserDTO()
+        {
+            Notes = new List<NoteDTO>();
+        }
 
-        public UserDTO(User user)
+        public UserDTO(SubUser user)
         {
             UserID = user.UserID;
             Notes = user.Notes.Select(n => new NoteDTO(n)).ToList();

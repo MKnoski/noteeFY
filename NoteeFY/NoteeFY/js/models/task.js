@@ -5,7 +5,7 @@
     self.taskID = ko.observable(data.TaskItemID);
     self.noteID = ko.observable(data.NoteID);
 
-    self.updateTask = function() {
+    self.updateTask = function () {
         window.isLoading(true);
         $.ajax({
             url: "api/TaskItems/" + self.taskID(),

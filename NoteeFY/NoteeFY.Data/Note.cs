@@ -14,6 +14,7 @@ namespace NoteeFY.Data
     
     public partial class Note
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Note()
         {
             this.TaskItems = new HashSet<TaskItem>();
@@ -27,7 +28,8 @@ namespace NoteeFY.Data
         public string UserID { get; set; }
         public string Color { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual SubUser User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskItem> TaskItems { get; set; }
     }
 }

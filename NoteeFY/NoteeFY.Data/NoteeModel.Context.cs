@@ -9,7 +9,6 @@
 
 namespace NoteeFY.Data
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
@@ -25,8 +24,12 @@ namespace NoteeFY.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Note> Notes { get; set; }
         public virtual DbSet<TaskItem> TaskItems { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<SubUser> SubUsers { get; set; }
     }
 }

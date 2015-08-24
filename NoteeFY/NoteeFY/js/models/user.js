@@ -8,10 +8,10 @@
     }
 }
 
-User.prototype.initialize = function(data) {
+User.prototype.initialize = function (data) {
     var self = this;
     self.userID(data.UserID);
-    var mappedNotes = $.map(data.Notes, function(item) { return new Note(item); });
+    var mappedNotes = $.map(data.Notes, function (item) { return new Note(item); });
     self.notes(mappedNotes);
 };
 
