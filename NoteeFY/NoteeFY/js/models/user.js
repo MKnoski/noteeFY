@@ -39,7 +39,7 @@ User.prototype.addNote = function (type) {
             var singleNoteToAdd = allNotes[allNotes.length - 1];
             $('.notepad').masonry('prepended', singleNoteToAdd);
             NoteeFy.refreshLayout();
-            $('.note-content-textarea').autosize();
+            //$('.note-content-textarea').autosize();
         }
     });
 };
