@@ -43,6 +43,7 @@ namespace NoteeFY.Buisness.Managers
                     model.NoteType = note.Type;
                     model.ModificationDate = DateTime.Now;
                     model.Color = note.Color;
+                    model.ImageUrl = model.ImageUrl;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;
@@ -78,6 +79,7 @@ namespace NoteeFY.Buisness.Managers
                     model.NoteType = note.Type;
                     model.ModificationDate = DateTime.Now;
                     model.Color = note.Color;
+                    model.ImageUrl = note.ImageUrl;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;
