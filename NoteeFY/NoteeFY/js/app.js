@@ -22,12 +22,8 @@ function AppViewModel() {
             itemSelector: '.single-note',
             gutter: 5
         });
-        //$('.note-content-textarea').autosize();
-        //$('.tasks-textarea').autosize();
-        //autosize(document.querySelectorAll('textarea'));
-
-        autosize($('textarea'));
-
+        //autosize($('textarea'));
+        NoteeFy.refreshTextarea();
         NoteeFy.refreshLayout();
     }).complete(function () {
         window.isLoading(false);
@@ -36,6 +32,10 @@ function AppViewModel() {
 
     NoteeFy.refreshLayout = function () {
         $('.notepad').masonry('layout');
+    }
+
+    NoteeFy.refreshTextarea = function () {
+        autosize($('textarea'));
     }
 }
 

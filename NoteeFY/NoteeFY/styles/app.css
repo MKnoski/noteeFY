@@ -80,10 +80,10 @@ body {
 }
 
 .note-content-textarea{
-    resize: none;
-    background: #FBEA6E;
     border: none;
-    overflow:hidden;  
+    overflow:hidden;    
+    background: #FBEA6E;
+    resize: none;
 }
 
 .tasks-textarea {

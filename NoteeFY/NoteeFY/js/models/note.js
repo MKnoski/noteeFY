@@ -57,7 +57,8 @@ Note.prototype.addTask = function () {
             self.tasks.unshift(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
-            //$('.tasks-textarea').autosize();
+            //autosize($('textarea'));
+            NoteeFy.refreshTextarea();
             NoteeFy.refreshLayout();
             window.isLoading(false);
         }
@@ -116,7 +117,8 @@ Note.prototype.goOnListBottom = function(task) {
     }
 
     task.updateTask();
-    //$('.tasks-textarea').autosize();
+    //autosize($('textarea'));
+    NoteeFy.refreshTextarea();
 };
 
 Note.prototype.getModificationDate = function (data) {
