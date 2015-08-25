@@ -43,7 +43,7 @@ Note.prototype.initialize = function(data) {
 
 Note.prototype.addTask = function () {
     var self = this;
-    window.isLoading(true);
+    NoteeFy.changeNotificationStatus(1);
     $.ajax({
         url: "api/TaskItems/",
         type: "POST",
@@ -59,14 +59,14 @@ Note.prototype.addTask = function () {
             self.modificationDate(self.getModificationDate());
             NoteeFy.refreshTextarea();
             NoteeFy.refreshLayout();
-            window.isLoading(false);
+            NoteeFy.changeNotificationStatus(0);
         }
     });
 };
 
 Note.prototype.deleteTask = function (task) {
     var self = this;
-    window.isLoading(true);
+    NoteeFy.changeNotificationStatus(1);
     $.ajax({
         url: "api/TaskItems/" + task.taskID(),
         type: "DELETE",
@@ -74,14 +74,14 @@ Note.prototype.deleteTask = function (task) {
             self.tasks.remove(task);
             self.modificationDate(self.getModificationDate());
             NoteeFy.refreshLayout();
-            window.isLoading(false);
+            NoteeFy.changeNotificationStatus(0);
         }
     });
 };
 
 Note.prototype.updateNote = function() {
     var self = this;
-    window.isLoading(true);
+    NoteeFy.changeNotificationStatus(1);
     $.ajax({
         url: "api/Notes/" + self.noteID(),
         type: "POST",
@@ -98,7 +98,8 @@ Note.prototype.updateNote = function() {
             self.modificationDate(self.getModificationDate(response.Data));
         },
         complete: function () {
-            window.isLoading(false);
+            NoteeFy.changeNotificationStatus(0);
+            NoteeFy.refreshLayout();
         }
     });
 };

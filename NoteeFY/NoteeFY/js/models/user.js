@@ -17,7 +17,7 @@ User.prototype.initialize = function (data) {
 
 User.prototype.addNote = function (type) {
     var self = this;
-    window.isLoading(true);
+    NoteeFy.changeNotificationStatus(1);
     $.ajax({
         url: "api/Notes/",
         type: "POST",
@@ -30,7 +30,7 @@ User.prototype.addNote = function (type) {
             TaskItems: []
         },
         complete: function () {
-            window.isLoading(false);
+            NoteeFy.changeNotificationStatus(0);
         },
         success: function (response) {
             var note = new Note(response.Data);
@@ -46,12 +46,12 @@ User.prototype.addNote = function (type) {
 
 User.prototype.deleteNote = function (note, event) {
     var self = this;
-    window.isLoading(true);
+    NoteeFy.changeNotificationStatus(1);
     $.ajax({
         url: "api/Notes/" + note.noteID(),
         type: "DELETE",
         complete: function () {
-            window.isLoading(false);
+            NoteeFy.changeNotificationStatus(0);
         },
         success: function () {
             self.user().notes.remove(note);

@@ -33,9 +33,10 @@
                     <li><a>Witaj @User.Identity.GetUserName()!</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default "><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
-                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default "><i class="fa fa-bars"></i> Nowa ToDo Lista</button></li>
-                    <li class="li-padding-custom"><button type="submit" class="btn btn-default" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i></button></li>
+                    <li class="li-padding-custom"> <img data-bind="attr:{src: notification}" />&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
+                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa ToDo Lista</button></li>
+                    <li class="li-padding-custom"><button type="submit" class="btn btn-default navbar-btn" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i></button></li>
                 </ul>
             </div>
         </div>

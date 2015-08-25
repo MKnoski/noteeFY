@@ -6,7 +6,7 @@
     self.noteID = ko.observable(data.NoteID);
 
     self.updateTask = function () {
-        window.isLoading(true);
+        NoteeFy.changeNotificationStatus(1);
         $.ajax({
             url: "api/TaskItems/" + self.taskID(),
             type: "POST",
@@ -18,7 +18,7 @@
             },
             complete: function () {
                 NoteeFy.refreshLayout();
-                window.isLoading(false);
+                NoteeFy.changeNotificationStatus(0);
             }
         });
     };

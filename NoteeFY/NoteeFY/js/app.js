@@ -3,6 +3,7 @@ function AppViewModel() {
     var self = this;
     self.userID = ko.observable("");
     self.user = ko.observable(new User());
+    self.notification = ko.observable("/images/zapisano.png");
     self.loginError = ko.observable("");
     self.logged = ko.observable(false);
     window.isLoading = ko.observable(false);
@@ -28,13 +29,22 @@ function AppViewModel() {
     }).error(function () {
     });
 
-    NoteeFy.refreshLayout = function () {
-        $('.notepad').masonry('layout');
+    NoteeFy.changeNotificationStatus = function (status) {
+        if (status === 0) {
+            self.notification("/images/zapisano.png");
+        }
+        if (status === 1) {
+            self.notification("/images/zapisywanie.gif");
+        }
     }
+}
 
-    NoteeFy.refreshTextarea = function () {
-        autosize($('textarea'));
-    }
+NoteeFy.refreshLayout = function () {
+    $('.notepad').masonry('layout');
+}
+
+NoteeFy.refreshTextarea = function () {
+    autosize($('textarea'));
 }
 
 ko.applyBindings(new AppViewModel());
