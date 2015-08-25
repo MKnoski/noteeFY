@@ -18,11 +18,9 @@ function AppViewModel() {
         self.logged(true);
     }).success(function () {
         $('.notepad').masonry({
-            // options
             itemSelector: '.single-note',
             gutter: 5
         });
-        //autosize($('textarea'));
         NoteeFy.refreshTextarea();
         NoteeFy.refreshLayout();
     }).complete(function () {

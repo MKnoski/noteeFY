@@ -38,7 +38,6 @@ User.prototype.addNote = function (type) {
             var allNotes = document.getElementsByClassName("single-note");
             var singleNoteToAdd = allNotes[allNotes.length - 1];
             $('.notepad').masonry('prepended', singleNoteToAdd);
-            //autosize($('textarea'));
             NoteeFy.refreshTextarea();
             NoteeFy.refreshLayout();
         }

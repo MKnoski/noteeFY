@@ -57,7 +57,6 @@ Note.prototype.addTask = function () {
             self.tasks.unshift(task);
             self.currentTask("");
             self.modificationDate(self.getModificationDate());
-            //autosize($('textarea'));
             NoteeFy.refreshTextarea();
             NoteeFy.refreshLayout();
             window.isLoading(false);
@@ -115,18 +114,16 @@ Note.prototype.goOnListBottom = function(task) {
         self.tasks.destroy(task);
         self.tasks.unshift(temp);
     }
-
     task.updateTask();
-    //autosize($('textarea'));
     NoteeFy.refreshTextarea();
 };
 
 Note.prototype.getModificationDate = function (data) {
     moment.locale('pl');
     if (data) {
-        return moment(data.ModificationDate).startOf('second').fromNow();
+        return moment(data.ModificationDate).startOf('minute').fromNow();
     } else {
-        return moment(moment()).startOf('second').fromNow();
+        return moment(moment()).startOf('minute').fromNow();
     }
 };
 
