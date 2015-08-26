@@ -87,10 +87,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBContext\NoteeContext.cs" />
+    <Compile Include="Identity\IdentityContext.cs" />
     <Compile Include="Extensions\Note.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Note.cs">
       <DependentUpon>NoteeModel.tt</DependentUpon>
     </Compile>
