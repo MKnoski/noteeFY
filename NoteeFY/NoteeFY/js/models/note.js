@@ -7,6 +7,7 @@
     self.userID = ko.observable();
     self.noteID = ko.observable();
     self.color = ko.observable();
+    self.label = ko.observable();
     self.modificationDate = ko.observable();
     self.modificationDateFull = ko.observable();
     self.imageUrl = ko.observable();
@@ -37,6 +38,7 @@ Note.prototype.initialize = function(data) {
     self.noteID(data.NoteID);
     self.imageUrl(data.ImageUrl);
     self.color(data.Color);
+    self.label(data.Label);
     self.modificationDate(self.getModificationDate(data));
     self.modificationDateFull(self.getFullModificationDate(data));
 
@@ -104,6 +106,7 @@ Note.prototype.updateNote = function() {
             UserID: self.userID(),
             Color: self.color(),
             ImageUrl: self.imageUrl(),
+            Label: self.label(),
             TaskItems: []
         },
         success: function (response) {
@@ -190,4 +193,20 @@ Note.prototype.deleteImage = function() {
                 NoteeFy.refreshLayout();
             }
     });
+}
+
+Note.prototype.openModal = function () {
+    var self = this;
+    //$('#myModal').on('hide.bs.modal', function(e) {
+    //    self.label($('input:radio[name=optradio]:checked').val());
+    //});
+    $("#myModal").on('hidden.bs.modal', function () {
+        $(this).data('modal', null);
+    });
+    $('#saveButton').on('click', function () {
+        self.label($('input:radio[name=optradio]:checked').val());
+        self.updateNote();
+        $('#myModal').modal('hide');
+    });
+    $('#myModal').modal('show');
 }
