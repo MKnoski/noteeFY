@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace NoteeFY.Data.Models
+namespace NoteeFY.Data.Identity
 {
     public class ApplicationUser : IdentityUser
     {

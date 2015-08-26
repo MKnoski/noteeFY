@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using NoteeFY.Data.Models;
 
-namespace NoteeFY.Data.DBContext
+namespace NoteeFY.Data.Identity
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>
     {

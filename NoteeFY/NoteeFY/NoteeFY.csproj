@@ -217,17 +217,6 @@
     <Content Include="js\models\note.js" />
     <Content Include="js\models\task.js" />
     <Content Include="js\models\user.js" />
-    <Content Include="js\Scripts\bootstrap.js" />
-    <Content Include="js\Scripts\bootstrap.min.js" />
-    <Content Include="js\Scripts\jquery-1.10.2.js" />
-    <Content Include="js\Scripts\jquery-1.10.2.min.js" />
-    <Content Include="js\Scripts\jquery.validate.js" />
-    <Content Include="js\Scripts\jquery.validate.min.js" />
-    <Content Include="js\Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="js\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="js\Scripts\modernizr-2.6.2.js" />
-    <Content Include="js\Scripts\respond.js" />
-    <Content Include="js\Scripts\respond.min.js" />
     <Content Include="Styles\app.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\colpick.css" />
@@ -238,9 +227,6 @@
     <Content Include="Styles\font-awesome\css\font-awesome.min.css" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Styles\font-awesome\HELP-US-OUT.txt" />
-    <None Include="js\Scripts\jquery.validate-vsdoc.js" />
-    <None Include="js\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="js\Scripts\jquery-1.10.2.min.map" />
     <None Include="js\Scripts\_references.js" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.ttf" />

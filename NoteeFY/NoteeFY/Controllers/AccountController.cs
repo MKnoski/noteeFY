@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NoteeFY.Buisness.DTOs;
 using NoteeFY.Buisness.Managers;
+using NoteeFY.Data.Identity;
 using NoteeFY.Data.Models;
 
 namespace NoteeFY.Controllers
