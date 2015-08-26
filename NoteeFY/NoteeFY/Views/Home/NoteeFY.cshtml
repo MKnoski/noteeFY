@@ -84,9 +84,9 @@
             <div class="menu">
                 <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
                 <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) } "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl()"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl()"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl()"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
+                <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl(), click: addImage"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
+                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: addImage"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
+                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: deleteImage"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
                 <span style="float: right;" data-bind="text: modificationDate"></span>
             </div>
         </div>
@@ -120,6 +120,7 @@
 <script type="text/javascript" src="~/js/knockout/knockout-3.3.0.debug.js"></script>
 <script type="text/javascript" src="~/js/knockout/knockout-sortable.min.js"></script>
 <script type="text/javascript" src="~/js/external/colpick.js"></script>
+<script type="text/javascript" src="~/js/external/bootbox.min.js"></script>
 <script type="text/javascript" src="~/js/external/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="~/js/models/user.js"></script>
 <script type="text/javascript" src="~/js/models/note.js"></script>

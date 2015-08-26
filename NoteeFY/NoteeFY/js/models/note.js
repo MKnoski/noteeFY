@@ -144,3 +144,30 @@ Note.prototype.addColorPicker = function (note, event) {
     }
     );
 }
+
+Note.prototype.addImage = function () {
+    var self = this;
+    bootbox.prompt({
+        title: "Podaj link URL obrazka:",
+        value: "https://",
+        callback: function (result) {
+            if (result != null) {
+                self.imageUrl(result);
+                self.updateNote();
+                NoteeFy.refreshLayout();
+            }
+        }
+    });
+}
+
+Note.prototype.deleteImage = function() {
+    var self = this;
+    bootbox.confirm("Czy na pewno chcesz usunać obrazek?",
+        function (result) {
+            if (result === true) {
+                self.imageUrl("");
+                self.updateNote();
+                NoteeFy.refreshLayout();
+            }
+    });
+}
