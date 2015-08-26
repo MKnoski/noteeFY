@@ -20,7 +20,7 @@ function AppViewModel() {
             itemSelector: '.single-note',
             gutter: 5
         });
-        imagesLoaded(document.querySelector('.notepad'), function (instance) {
+        imagesLoaded(document.querySelector('.notepad'), function () {
             NoteeFy.refreshLayout();
             window.isLoading(false);
         });
