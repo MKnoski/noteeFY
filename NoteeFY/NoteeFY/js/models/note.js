@@ -14,7 +14,7 @@
     self.newTask = ko.observable("");
 
     self.isEditTitle = ko.observable(false);
-    self.isEditText = ko.observable(false);
+    self.isEditText = ko.observable(true);
 
     self.textAsHtml = ko.computed(function () {
         if (!self.text()) {
@@ -66,6 +66,13 @@ Note.prototype.addTask = function () {
         }
     });
 };
+
+Note.prototype.sendTask = function(data, event) {
+    if (event.which == 13) {
+        this.addTask();
+    }
+    return true;
+}
 
 Note.prototype.deleteTask = function (task) {
     var self = this;
