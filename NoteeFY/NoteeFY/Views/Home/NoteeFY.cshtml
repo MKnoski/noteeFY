@@ -42,9 +42,12 @@
         </div>
     </nav>
 
-
     <div class="notepad" data-bind="foreach: user().notes()">
         <div class="single-note" data-bind="style: {background: color()}">
+            <br/>
+            <div data-bind="visible: imageUrl()">
+                <table align="center"><tr><td><img class="image-resized" data-bind="attr:{src: imageUrl}" alt="Podany link jest błędny bądz nie aktywny."></td></tr></table>
+            </div><br/>
             <div class="note-title">
                 <span class="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
                 <input class="note-title-input form-control" maxlength="45" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }, style: {background: color()}"/>
@@ -81,7 +84,10 @@
             <div class="menu">
                 <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
                 <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) } "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-                <span style="float: right;" data-bind="text: modificationDate;"></span>
+                <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl()"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
+                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl()"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
+                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl()"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
+                <span style="float: right;" data-bind="text: modificationDate"></span>
             </div>
         </div>
     </div>

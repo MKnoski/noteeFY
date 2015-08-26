@@ -241,3 +241,12 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.image-resized {
+    max-height: 300px;
+    max-width: 300px;
+    min-height: 100px;
+    min-width: 100px;
+    width:100%;
+    height: auto;
+}

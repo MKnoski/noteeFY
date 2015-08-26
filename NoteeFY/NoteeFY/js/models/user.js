@@ -27,6 +27,7 @@ User.prototype.addNote = function (type) {
             Color: "#FBEA6E",
             Type: type,
             UserID: self.userID(),
+            ImageUrl: "",
             TaskItems: []
         },
         complete: function () {
@@ -60,3 +61,4 @@ User.prototype.deleteNote = function (note, event) {
         }
     });
 };
+

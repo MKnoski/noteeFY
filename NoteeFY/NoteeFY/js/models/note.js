@@ -8,7 +8,7 @@
     self.noteID = ko.observable();
     self.color = ko.observable();
     self.modificationDate = ko.observable();
-
+    self.imageUrl = ko.observable();
     self.tasks = ko.observableArray([]);
     self.currentTask = ko.observable("");
 
@@ -34,6 +34,7 @@ Note.prototype.initialize = function(data) {
     self.type(data.Type);
     self.userID(data.UserID);
     self.noteID(data.NoteID);
+    self.imageUrl(data.ImageUrl);
     self.color(data.Color);
     self.modificationDate(self.getModificationDate(data));
 
@@ -92,6 +93,7 @@ Note.prototype.updateNote = function() {
             Type: self.type(),
             UserID: self.userID(),
             Color: self.color(),
+            ImageUrl: self.imageUrl(),
             TaskItems: []
         },
         success: function (response) {
