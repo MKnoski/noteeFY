@@ -47,6 +47,4 @@ NoteeFy.refreshTextarea = function () {
     autosize($('textarea'));
 }
 
-
-
 ko.applyBindings(new AppViewModel());

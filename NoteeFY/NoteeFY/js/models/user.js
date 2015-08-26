@@ -47,18 +47,23 @@ User.prototype.addNote = function (type) {
 
 User.prototype.deleteNote = function (note, event) {
     var self = this;
-    NoteeFy.changeNotificationStatus(1);
-    $.ajax({
-        url: "api/Notes/" + note.noteID(),
-        type: "DELETE",
-        complete: function () {
-            NoteeFy.changeNotificationStatus(0);
-        },
-        success: function () {
-            self.user().notes.remove(note);
-            var singleNoteToRemove = event.currentTarget.parentElement.parentElement;
-            $('.notepad').masonry('remove', singleNoteToRemove).masonry('layout');
-        }
-    });
+    bootbox.confirm("Czy na pewno chcesz usunać notatkę?",
+        function (result) {
+            if (result === true) {
+                NoteeFy.changeNotificationStatus(1);
+                $.ajax({
+                    url: "api/Notes/" + note.noteID(),
+                    type: "DELETE",
+                    complete: function () {
+                        NoteeFy.changeNotificationStatus(0);
+                    },
+                    success: function () {
+                        self.user().notes.remove(note);
+                        var singleNoteToRemove = event.currentTarget.parentElement.parentElement;
+                        $('.notepad').masonry('remove', singleNoteToRemove).masonry('layout');
+                    }
+                });
+            }
+        });
 };
 
