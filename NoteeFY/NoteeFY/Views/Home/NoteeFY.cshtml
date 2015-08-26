@@ -36,11 +36,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="li-padding-custom"> <img data-bind="attr:{src: notification}"/></li>
                     <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
-                    @* ReSharper disable once EmptyGeneralCatchClause *@
+                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa lista zadań</button></li>
                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
                     {
                         try{@Html.AntiForgeryToken()}
-                        catch (Exception){}
+                        catch (Exception){/* ignore*/}
                         <li class="li-padding-custom"><button type="submit" class="btn btn-default navbar-btn" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit();"><i class="fa fa-sign-out"></i></button></li>
                     }
                 </ul>

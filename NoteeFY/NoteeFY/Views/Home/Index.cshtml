@@ -1,5 +1,5 @@
 ﻿@using NoteeFY.Data.Models
-@model NoteeFY.Data.Models.LoginViewModel
+@model LoginViewModel
 
 <!DOCTYPE html>
 <html lang="pl_PL">
@@ -25,12 +25,14 @@
             <div class="row">
                 <section id="loginForm">
                     <div id="login-window">
+                        @* ReSharper disable once Html.Obsolete *@
                         <table align="center">
                             <tr height="100%">
+                                @* ReSharper disable Html.Obsolete *@
                                 <td height="100%" width="100%" valign="middle" align="center">
                                     <h3> <span align="center">Witaj w NoteeFY</span></h3>
                                     <br /><br />
-                                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })<br />

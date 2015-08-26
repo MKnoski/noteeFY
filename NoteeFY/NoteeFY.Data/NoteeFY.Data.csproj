@@ -87,18 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNetRole.cs">
-      <DependentUpon>NoteeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUser.cs">
-      <DependentUpon>NoteeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>NoteeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>NoteeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DBContext\NoteeContext.cs" />
     <Compile Include="Extensions\Note.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
