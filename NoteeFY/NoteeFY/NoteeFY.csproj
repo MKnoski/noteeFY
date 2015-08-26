@@ -196,8 +196,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\busy_loader.gif" />
-    <Content Include="images\zapisano.png" />
-    <Content Include="images\zapisywanie.GIF" />
+    <Content Include="images\saved.png" />
+    <Content Include="images\saving.GIF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="js\app.js" />
     <Content Include="js\external\autosize.min.js" />
     <Content Include="js\external\bootbox.min.js" />

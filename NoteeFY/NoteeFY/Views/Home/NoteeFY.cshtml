@@ -33,9 +33,9 @@
                     <li><a>Witaj @User.Identity.GetUserName()!</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="li-padding-custom"> <img data-bind="attr:{src: notification}" />&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+                    <li class="li-padding-custom"> <img data-bind="attr:{src: notification}"/></li>
                     <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
-                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa ToDo Lista</button></li>
+                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa lista zadań</button></li>
                     <li class="li-padding-custom"><button type="submit" class="btn btn-default navbar-btn" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i></button></li>
                 </ul>
             </div>
@@ -60,9 +60,8 @@
                 <div class="form-group">
                     <table>
                         <tr>
-                            <td><input type="text" class="form-control adding" maxlength="100" data-bind="value: currentTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!"></td>
-                            <td>&nbsp&nbsp&nbsp</td>
-                            <td><button class="btn btn-default" data-bind="disable: !currentTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button></td>
+                            <td><input type="text" class="form-control adding" maxlength="100" data-bind="value: newTask, valueUpdate:'afterkeydown'" placeholder="Napisz coś!"></td>
+                            <td class="plus"><button class="btn btn-default" data-bind="disable: !newTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button></td>
                         </tr>
                     </table>
                 </div>
@@ -71,10 +70,10 @@
                     <div class="single-task">
                         <table>
                             <tr>
-                                <td><input type="checkbox" value="" data-bind="checked: isDone, click: $parent.goOnListBottom.bind($parent)"/></td>
+                                <td><input type="checkbox" value="" data-bind="checked: isDone, click: $parent.reorderTasks.bind($parent)" /></td>
                                 <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
                                 <td><textarea class="tasks-textarea" rows="1" cols="42" maxlength="100" onkeyup="NoteeFy.refreshLayout()" data-bind="value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
-                                <td><button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button></td>
+                                <td><button class="btn btn-default" type="submit" data-bind="click: $parent.deleteTask.bind($parent)"><i class="fa fa-times"></i></button></td>
                             </tr>
                         </table>
                     </div>
@@ -82,12 +81,12 @@
             </div>
             <br/>
             <div class="menu">
-                <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-times"></i></button>
+                <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent)"><i class="fa fa-trash-o fa-lg"></i></button>
                 <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) } "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
                 <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl(), click: addImage"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
                 <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: addImage"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
                 <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: deleteImage"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
-                <span style="float: right;" data-bind="text: modificationDate"></span>
+                <span style="float: right;" data-bind="text: modificationDate, attr: { title: modificationDateFull }"></span>
             </div>
         </div>
     </div>

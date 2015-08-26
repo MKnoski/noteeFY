@@ -117,7 +117,15 @@ body {
 }
 
 .adding {
-    width:300px
+    width:320px
+}
+
+.li-padding-custom{
+    padding-right : 10px !important
+}
+
+.plus {
+    padding-left : 20px !important
 }
 
 .google-button {

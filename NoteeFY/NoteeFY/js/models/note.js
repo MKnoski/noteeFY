@@ -8,9 +8,10 @@
     self.noteID = ko.observable();
     self.color = ko.observable();
     self.modificationDate = ko.observable();
+    self.modificationDateFull = ko.observable();
     self.imageUrl = ko.observable();
     self.tasks = ko.observableArray([]);
-    self.currentTask = ko.observable("");
+    self.newTask = ko.observable("");
 
     self.isEditTitle = ko.observable(false);
     self.isEditText = ko.observable(false);
@@ -37,6 +38,7 @@ Note.prototype.initialize = function(data) {
     self.imageUrl(data.ImageUrl);
     self.color(data.Color);
     self.modificationDate(self.getModificationDate(data));
+    self.modificationDateFull(self.getFullModificationDate(data));
 
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
     self.tasks(mappedTasks);
@@ -49,14 +51,14 @@ Note.prototype.addTask = function () {
         url: "api/TaskItems/",
         type: "POST",
         data: {
-            Text: self.currentTask,
+            Text: self.newTask,
             IsDone: false,
             NoteID: self.noteID
         },
         success: function (response) {
             var task = new Task(response.Data);
             self.tasks.unshift(task);
-            self.currentTask("");
+            self.newTask("");
             self.modificationDate(self.getModificationDate());
             NoteeFy.refreshTextarea();
             NoteeFy.refreshLayout();
@@ -74,6 +76,7 @@ Note.prototype.deleteTask = function (task) {
         success: function () {
             self.tasks.remove(task);
             self.modificationDate(self.getModificationDate());
+            self.modificationDateFull(self.modificationDateFull());
             NoteeFy.refreshLayout();
             NoteeFy.changeNotificationStatus(0);
         }
@@ -98,6 +101,7 @@ Note.prototype.updateNote = function() {
         },
         success: function (response) {
             self.modificationDate(self.getModificationDate(response.Data));
+            self.modificationDateFull(self.modificationDateFull(response.Data));
         },
         complete: function () {
             NoteeFy.changeNotificationStatus(0);
@@ -106,7 +110,7 @@ Note.prototype.updateNote = function() {
     });
 };
 
-Note.prototype.goOnListBottom = function(task) {
+Note.prototype.reorderTasks = function(task) {
     var temp = jQuery.extend(true, {}, task);
     var self = this;
 
@@ -124,9 +128,18 @@ Note.prototype.goOnListBottom = function(task) {
 Note.prototype.getModificationDate = function (data) {
     moment.locale('pl');
     if (data) {
-        return moment(data.ModificationDate).startOf('minute').fromNow();
+        return moment(data.ModificationDate).format("l");
     } else {
-        return moment(moment()).startOf('minute').fromNow();
+        return moment(moment()).format("l");
+    }
+};
+
+Note.prototype.getFullModificationDate = function (data) {
+    moment.locale('pl');
+    if (data) {
+        return moment(data.ModificationDate).format("LLLL");
+    } else {
+        return moment(moment()).format("LLLL");
     }
 };
 

@@ -3,9 +3,7 @@ function AppViewModel() {
     var self = this;
     self.userID = ko.observable("");
     self.user = ko.observable(new User());
-    self.notification = ko.observable("/images/zapisano.png");
-    self.loginError = ko.observable("");
-    self.logged = ko.observable(false);
+    self.notification = ko.observable("/images/saved.png");
     window.isLoading = ko.observable(false);
     self.isLoading = ko.computed(function () {
         return window.isLoading();
@@ -16,7 +14,6 @@ function AppViewModel() {
     $.getJSON("api/Users", function (allData) {
         var mappedUser = new User(allData);
         self.user(mappedUser);
-        self.logged(true);
     }).success(function () {
         $('.notepad').masonry({
             itemSelector: '.single-note',
@@ -31,10 +28,10 @@ function AppViewModel() {
 
     NoteeFy.changeNotificationStatus = function (status) {
         if (status === 0) {
-            self.notification("/images/zapisano.png");
+            self.notification("/images/saved.png");
         }
         if (status === 1) {
-            self.notification("/images/zapisywanie.gif");
+            self.notification("/images/saving.gif");
         }
     }
 }
