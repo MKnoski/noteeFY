@@ -7,6 +7,7 @@ using NoteeFY.Buisness.Managers;
 
 namespace NoteeFY.Controllers
 {
+    [Authorize]
     public class NotesController : ApiControllerBase
     {
         private NotesManager noteManager = new NotesManager();
@@ -15,7 +16,7 @@ namespace NoteeFY.Controllers
         [ResponseType(typeof(NoteDTO))]
         public IHttpActionResult GetNote(int id)
         {
-            var noteDto = noteManager.GetNote(id);
+            var noteDto = noteManager.GetNote(id, User.Identity.Name);
             return noteDto == null ? (IHttpActionResult) NotFound() : Ok(noteDto);
         }
 
@@ -28,7 +29,7 @@ namespace NoteeFY.Controllers
                 return result;
             }
 
-            if (noteManager.AddOrUpdateNote(note))
+            if (noteManager.AddOrUpdateNote(note, User.Identity.Name))
             {
                 return Json(new ModificationResult<NoteDTO>(true)
                 {
@@ -44,7 +45,7 @@ namespace NoteeFY.Controllers
         // DELETE: api/Notes/3 - DELETE
         public JsonResult<ModificationResult<NoteDTO>> DeleteNote(int id)
         {
-            if (noteManager.DeleteNote(id))
+            if (noteManager.DeleteNote(id, User.Identity.Name))
             {
                 return Json(new ModificationResult<NoteDTO>(true));
             }

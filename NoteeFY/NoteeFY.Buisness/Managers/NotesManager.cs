@@ -9,16 +9,19 @@ namespace NoteeFY.Buisness.Managers
     public class NotesManager
     {
 
-        public NoteDTO GetNote(int id)
+        public NoteDTO GetNote(int id, string authorizedUserID)
         {
             using (var db = new NoteeContext())
             {
                 var note = db.Notes.SingleOrDefault(n => n.NoteID == id);
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == note.UserID);
+                if (user.UserID != authorizedUserID)
+                {
+                    return null;
+                }
                 return note == null ? null : new NoteDTO(note);
             }
         }
-
-
 
         public void AddOrUpdateNotes(string userId, IEnumerable<NoteDTO> notes)
         {
@@ -55,11 +58,15 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-
-        public bool AddOrUpdateNote(NoteDTO note)
+        public bool AddOrUpdateNote(NoteDTO note, string authorizedUserID)
         {
             using (var db = new NoteeContext())
             {
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == note.UserID);
+                if (user.UserID != authorizedUserID)
+                {
+                    return false;
+                }
                 Note model;
                 if (db.SubUsers.Any(u => u.UserID == note.UserID))
                 {
@@ -97,12 +104,16 @@ namespace NoteeFY.Buisness.Managers
             return true;
         }
 
-
-        public bool DeleteNote(int id)
+        public bool DeleteNote(int id, string authorizedUserID)
         {
             using (var db = new NoteeContext())
             {
                 var note = db.Notes.SingleOrDefault(n => n.NoteID == id);
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == note.UserID);
+                if (user.UserID != authorizedUserID)
+                {
+                    return false;
+                }
                 if (note != null)
                 {
                     db.Notes.Remove(note);

@@ -37,11 +37,13 @@ namespace NoteeFY.Buisness.Managers
             }
         }
 
-        public bool AddOrUpdateTaskItem(TaskItemDTO taskItem)
+        public bool AddOrUpdateTaskItem(TaskItemDTO taskItem, string authorizedUserID)
         {
             using (var db = new NoteeContext())
             {
-                if (db.Notes.Any(n => n.NoteID == taskItem.NoteID))
+                var note = db.Notes.SingleOrDefault(n => n.NoteID == taskItem.NoteID);
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == note.UserID);
+                if (db.Notes.Any(n => n.NoteID == taskItem.NoteID) && user.UserID == authorizedUserID)
                 {
                     TaskItem model;
                     if (taskItem.TaskItemID > 0)
@@ -71,11 +73,19 @@ namespace NoteeFY.Buisness.Managers
         }
 
 
-        public bool DeleteTaskItem(int id)
+        public bool DeleteTaskItem(int id, string authorizedUserID)
         {
             using (var db = new NoteeContext())
             {
                 var taskItem = db.TaskItems.SingleOrDefault(ti => ti.TaskItemID == id);
+                var note = db.Notes.SingleOrDefault(n => n.NoteID == taskItem.NoteID);
+                var user = db.SubUsers.SingleOrDefault(u => u.UserID == note.UserID);
+
+                if (authorizedUserID != user.UserID)
+                {
+                    return false;
+                }
+
                 if (taskItem == null)
                 {
                     return false;
