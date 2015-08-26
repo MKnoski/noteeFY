@@ -19,7 +19,7 @@
 
     self.textAsHtml = ko.computed(function () {
         if (!self.text()) {
-            return '';
+            return "";
         }
         return self.text().replace(/\n/g, "</br>");
     });
@@ -70,7 +70,7 @@ Note.prototype.addTask = function () {
 };
 
 Note.prototype.sendTask = function(data, event) {
-    if (event.which == 13) {
+    if (event.which === 13) {
         this.addTask();
     }
     return true;
@@ -158,7 +158,7 @@ Note.prototype.addColorPicker = function (note, event) {
         layout: 'hex',
         submit: 0,
         color: 'FBEA6E',
-        onChange: function (hsb, hex, rgb, el, bySetColor) {
+        onChange: function (hsb, hex) {
             note.color('#' + hex);
         },
         onHide: function () {
