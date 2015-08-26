@@ -44,10 +44,9 @@
 
     <div class="notepad" data-bind="foreach: user().notes()">
         <div class="single-note" data-bind="style: {background: color()}">
-            <br/>
             <div data-bind="visible: imageUrl()">
-                <table align="center"><tr><td><img class="image-resized" data-bind="attr:{src: imageUrl}" alt="Podany link jest błędny bądz nie aktywny."></td></tr></table>
-            </div><br/>
+                <br /><table align="center"><tr><td><img class="image-resized" data-bind="attr:{src: imageUrl}" alt="Podany link jest błędny bądz nie aktywny."></td></tr></table><br />
+            </div>
             <div class="note-title">
                 <span class="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
                 <input class="note-title-input form-control" maxlength="45" placeholder="Tytuł" data-bind="value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }, style: {background: color()}"/>
