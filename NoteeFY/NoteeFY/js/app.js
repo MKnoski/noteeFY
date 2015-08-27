@@ -20,44 +20,6 @@ function AppViewModel() {
             itemSelector: '.single-note',
             gutter: 5
         });
-        var list = $('.notepad');
-        list.isotope({
-            transformsEnabled: false,
-            itemSelector: '.single-note',
-            onLayout: function () {
-                list.css('overflow', 'visible');
-            }
-        });
-        list.sortable({
-            cursor: 'move',
-            start: function (event, ui) {
-                ui.item.addClass('grabbing moving').removeClass('isotopey');
-                ui.placeholder.addClass('starting').removeClass('moving').css({
-                    top: ui.originalPosition.top,
-                    left: ui.originalPosition.left
-                });
-                list.isotope('reloadItems');
-            },
-            change: function (event, ui) {
-                ui.placeholder.removeClass('starting');
-                list.isotope('reloadItems').isotope({
-                    sortBy: 'original-order'
-                });
-            },
-            beforeStop: function (event, ui) {
-                ui.placeholder.after(ui.item);
-            },
-            stop: function (event, ui) {
-                ui.item.removeClass('grabbing').addClass('isotopey');
-                list.isotope('reloadItems').isotope({
-                    sortBy: 'original-order'
-                }, function () {
-                    if (!ui.item.is('.grabbing')) {
-                        ui.item.removeClass('moving');
-                    }
-                });
-            }
-        });
         imagesLoaded(document.querySelector('.notepad'), function () {
             NoteeFy.refreshLayout();
             window.isLoading(false);
@@ -79,7 +41,7 @@ function AppViewModel() {
 }
 
 NoteeFy.refreshLayout = function () {
-    $('.notepad').isotope('reloadItems').isotope();
+    $('.notepad').masonry('layout');
 }
 
 NoteeFy.refreshTextarea = function () {

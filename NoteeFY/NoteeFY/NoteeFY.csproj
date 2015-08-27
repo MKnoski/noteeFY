@@ -206,7 +206,6 @@
     <Content Include="js\external\colpick.js" />
     <Content Include="js\external\imagesloaded.pkgd.js" />
     <Content Include="js\external\imagesloaded.pkgd.min.js" />
-    <Content Include="js\external\isotope.js" />
     <Content Include="js\external\masonry.pkgd.js" />
     <Content Include="js\external\moment-with-locales.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />

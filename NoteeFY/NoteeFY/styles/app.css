@@ -42,35 +42,6 @@ body {
     padding: 20px;
     display: inline-block;
     float: left;
-
-    transition: all 800ms ease;
-    transition-property: transform, top, left, right;
-}
-
- .ui-sortable-placeholder {
-        visibility: visible!important;
-        background: #aaa;
-       
-    }
-
-  .starting {
-          transition-property: none;
-        }
-
-.moving {
-        transition: transform 400ms ease;    
-
-}
-
-
-
-.isotope-item {
-  z-index: 2;
-}
-
-.isotope-hidden.isotope-item {
-  pointer-events: none;
-  z-index: 1;
 }
 
 .note-title {
