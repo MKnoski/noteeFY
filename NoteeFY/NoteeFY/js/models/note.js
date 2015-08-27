@@ -48,9 +48,6 @@ Note.prototype.initialize = function(data) {
     }
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
     self.tasks(mappedTasks);
-    if (data.IsLocked == true) {
-        //self.lockContainer(self);
-    }
 };
 
 Note.prototype.addTask = function () {
@@ -119,7 +116,7 @@ Note.prototype.updateNote = function() {
         },
         success: function (response) {
             self.modificationDate(self.getModificationDate(response.Data));
-            self.modificationDateFull(self.modificationDateFull(response.Data));
+            self.modificationDateFull(self.getFullModificationDate(response.Data));
         },
         complete: function () {
             NoteeFy.changeNotificationStatus(0);
@@ -223,20 +220,14 @@ Note.prototype.deleteImage = function() {
 
 Note.prototype.addLabel = function () {
     var self = this;
-    //$('#myModal').on('hide.bs.modal', function(e) {
-    //    self.label($('input:radio[name=optradio]:checked').val());
-    //});
-    $("#myModal").on('hidden.bs.modal', function () {
-        $(this).data('modal', null);
-    });
-    $('#saveButton').on('click', function () {
-        self.label($('input:radio[name=optradio]:checked').val());
+    $('.modal-button').on('click', function (event) {
+        self.label($(this).text());
         self.updateNote();
         self.isLabelSet(true);
         $('.modal-button').off();
         $('.myModal').modal('hide');
     });
-    $('#myModal').modal('show');
+    $('.myModal').modal('show');
 }
 
 Note.prototype.deleteLabel = function() {
@@ -246,28 +237,14 @@ Note.prototype.deleteLabel = function() {
     self.isLabelSet(false);
 }
 
-//Note.prototype.lockContainer = function (container) {
-//    var lockingElements = container.getElementsByClassName("locking");
-//    for (var element in lockingElements) {
-//        lockingElements[element].disabled = true;
-//    }
-//}
-
 Note.prototype.lockNote = function (data, event) {
     var self = this;
-    //var singleNote = event.currentTarget.parentElement.parentElement;
-    //self.lockContainer(singleNote);
     self.isLocked(true);
     self.updateNote();
 }
 
 Note.prototype.unlockNote = function (data, event) {
     var self = this;
-    //var singleNote = event.currentTarget.parentElement.parentElement;
-    //var lockingElements = singleNote.getElementsByClassName("locking");
-    //for (var element in lockingElements) {
-    //    lockingElements[element].disabled = false;
-    //}
     self.isLocked(false);
     self.updateNote();
 }

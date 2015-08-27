@@ -80,7 +80,7 @@
                             <tr>
                                 <td><input tabindex="-1" type="checkbox" value="" data-bind="disable: $parent.isLocked, checked: isDone, click: $parent.reorderTasks.bind($parent)" /></td>
                                 <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
-                                <td><textarea class="tasks-textarea" rows="1" cols="42" maxlength="100" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: $parent.isLocked,value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
+                                <td><textarea class="tasks-textarea" rows="1" cols="40" maxlength="100" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: $parent.isLocked,value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
                                 <td><button class="btn btn-default" tabindex="-1" type="submit" data-bind="disable: $parent.isLocked, click: $parent.deleteTask.bind($parent)"><i class="fa fa-times"></i></button></td>
                             </tr>
                         </table>

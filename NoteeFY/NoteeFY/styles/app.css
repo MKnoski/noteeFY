@@ -124,7 +124,11 @@ body {
 }
 
 .plus {
-    padding-left : 20px !important
+    padding-left : 7px !important
+}
+
+.modal-button {
+    border: none;
 }
 
 .google-button {
