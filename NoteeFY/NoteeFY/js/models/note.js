@@ -15,7 +15,7 @@
     self.newTask = ko.observable("");
 
     self.isEditTitle = ko.observable(false);
-    self.isLabelSet = ko.observable(false);
+    self.isEditText = ko.observable(true);
 
     self.textAsHtml = ko.computed(function () {
         if (!self.text()) {
@@ -41,9 +41,7 @@ Note.prototype.initialize = function(data) {
     self.label(data.Label);
     self.modificationDate(self.getModificationDate(data));
     self.modificationDateFull(self.getFullModificationDate(data));
-    if (data.Label != null) {
-        self.isLabelSet(true);
-    }
+
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
     self.tasks(mappedTasks);
 };
@@ -181,55 +179,34 @@ Note.prototype.addImage = function () {
                 self.updateNote();
                 NoteeFy.refreshLayout();
             }
-        },
-        buttons: {
-            confirm: {
-                label: "Dodaj obrazek"
-            },
-            cancel: {
-                label: "Anuluj"
-            }
         }
     });
 }
 
 Note.prototype.deleteImage = function() {
     var self = this;
-    bootbox.confirm({
-        message: "Czy na pewno chcesz usunać obrazek?",
-        callback: function(result) {
+    bootbox.confirm("Czy na pewno chcesz usunać obrazek?",
+        function (result) {
             if (result === true) {
                 self.imageUrl("");
                 self.updateNote();
                 NoteeFy.refreshLayout();
             }
-        },
-        buttons: {
-            confirm: {
-                label: "TAK"
-            },
-            cancel: {
-                label: "NIE"
-            }
-        }
     });
 }
 
-Note.prototype.addLabel = function () {
+Note.prototype.openModal = function () {
     var self = this;
-    $('.modal-button').on('click', function (event) {
-        self.label($(this).text());
+    //$('#myModal').on('hide.bs.modal', function(e) {
+    //    self.label($('input:radio[name=optradio]:checked').val());
+    //});
+    $("#myModal").on('hidden.bs.modal', function () {
+        $(this).data('modal', null);
+    });
+    $('#saveButton').on('click', function () {
+        self.label($('input:radio[name=optradio]:checked').val());
         self.updateNote();
-        self.isLabelSet(true);
-        $('.modal-button').off();
-        $('.myModal').modal('hide');
+        $('#myModal').modal('hide');
     });
-    $('.myModal').modal('show');
-}
-
-Note.prototype.deleteLabel = function() {
-    var self = this;
-    self.label("");
-    self.updateNote();
-    self.isLabelSet(false);
+    $('#myModal').modal('show');
 }
