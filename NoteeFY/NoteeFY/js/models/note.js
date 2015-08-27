@@ -223,14 +223,20 @@ Note.prototype.deleteImage = function() {
 
 Note.prototype.addLabel = function () {
     var self = this;
-    $('.modal-button').on('click', function (event) {
-        self.label($(this).text());
+    //$('#myModal').on('hide.bs.modal', function(e) {
+    //    self.label($('input:radio[name=optradio]:checked').val());
+    //});
+    $("#myModal").on('hidden.bs.modal', function () {
+        $(this).data('modal', null);
+    });
+    $('#saveButton').on('click', function () {
+        self.label($('input:radio[name=optradio]:checked').val());
         self.updateNote();
         self.isLabelSet(true);
         $('.modal-button').off();
         $('.myModal').modal('hide');
     });
-    $('.myModal').modal('show');
+    $('#myModal').modal('show');
 }
 
 Note.prototype.deleteLabel = function() {
