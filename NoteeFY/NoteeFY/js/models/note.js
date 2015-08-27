@@ -16,6 +16,7 @@
 
     self.isEditTitle = ko.observable(false);
     self.isLabelSet = ko.observable(false);
+    self.isLocked = ko.observable(false);
 
     self.textAsHtml = ko.computed(function () {
         if (!self.text()) {
@@ -39,6 +40,7 @@ Note.prototype.initialize = function(data) {
     self.imageUrl(data.ImageUrl);
     self.color(data.Color);
     self.label(data.Label);
+    self.isLocked(data.IsLocked);
     self.modificationDate(self.getModificationDate(data));
     self.modificationDateFull(self.getFullModificationDate(data));
     if (data.Label != null) {
@@ -46,6 +48,9 @@ Note.prototype.initialize = function(data) {
     }
     var mappedTasks = $.map(data.TaskItems, function(item) { return new Task(item); });
     self.tasks(mappedTasks);
+    if (data.IsLocked == true) {
+        //self.lockContainer(self);
+    }
 };
 
 Note.prototype.addTask = function () {
@@ -109,6 +114,7 @@ Note.prototype.updateNote = function() {
             Color: self.color(),
             ImageUrl: self.imageUrl(),
             Label: self.label(),
+            isLocked: self.isLocked(),
             TaskItems: []
         },
         success: function (response) {
@@ -232,4 +238,30 @@ Note.prototype.deleteLabel = function() {
     self.label("");
     self.updateNote();
     self.isLabelSet(false);
+}
+
+//Note.prototype.lockContainer = function (container) {
+//    var lockingElements = container.getElementsByClassName("locking");
+//    for (var element in lockingElements) {
+//        lockingElements[element].disabled = true;
+//    }
+//}
+
+Note.prototype.lockNote = function (data, event) {
+    var self = this;
+    //var singleNote = event.currentTarget.parentElement.parentElement;
+    //self.lockContainer(singleNote);
+    self.isLocked(true);
+    self.updateNote();
+}
+
+Note.prototype.unlockNote = function (data, event) {
+    var self = this;
+    //var singleNote = event.currentTarget.parentElement.parentElement;
+    //var lockingElements = singleNote.getElementsByClassName("locking");
+    //for (var element in lockingElements) {
+    //    lockingElements[element].disabled = false;
+    //}
+    self.isLocked(false);
+    self.updateNote();
 }

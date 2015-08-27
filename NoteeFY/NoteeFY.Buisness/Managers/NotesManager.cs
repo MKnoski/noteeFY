@@ -47,7 +47,8 @@ namespace NoteeFY.Buisness.Managers
                     model.ModificationDate = DateTime.Now;
                     model.Color = note.Color;
                     model.ImageUrl = note.ImageUrl;
-                    model.Label = note.ImageUrl;
+                    model.Label = note.Label;
+                    model.isLocked = note.IsLocked;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;
@@ -89,6 +90,7 @@ namespace NoteeFY.Buisness.Managers
                     model.Color = note.Color;
                     model.ImageUrl = note.ImageUrl;
                     model.Label = note.Label;
+                    model.isLocked = note.IsLocked;
 
                     db.SaveChanges();
                     note.NoteID = model.NoteID;

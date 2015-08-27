@@ -18,6 +18,7 @@
           <Property Name="Color" Type="nvarchar" MaxLength="10" />
           <Property Name="ImageUrl" Type="nvarchar(max)" />
           <Property Name="Label" Type="nvarchar(max)" />
+          <Property Name="isLocked" Type="bit" />
         </EntityType>
         <EntityType Name="TaskItems">
           <Key>
@@ -94,6 +95,7 @@
           <NavigationProperty Name="TaskItems" Relationship="Self.FK_TaskItems_Notes" FromRole="Notes" ToRole="TaskItems" />
           <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Label" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isLocked" Type="Boolean" />
         </EntityType>
         <EntityType Name="TaskItem">
           <Key>
@@ -162,6 +164,7 @@
           <EntitySetMapping Name="Notes">
             <EntityTypeMapping TypeName="NoteeFYModel.Note">
               <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="isLocked" ColumnName="isLocked" />
                 <ScalarProperty Name="Label" ColumnName="Label" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="NoteID" ColumnName="NoteID" />

@@ -29,6 +29,7 @@ namespace NoteeFY.Data
         public string Color { get; set; }
         public string ImageUrl { get; set; }
         public string Label { get; set; }
+        public Nullable<bool> isLocked { get; set; }
     
         public virtual SubUser User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

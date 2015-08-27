@@ -15,6 +15,7 @@ namespace NoteeFY.Buisness.DTOs
         public string Color { get; set; }
         public string ImageUrl { get; set; }
         public string Label { get; set; }
+        public Nullable<bool> IsLocked { get; set; }
 
         public string UserID { get; set; }
         public List<TaskItemDTO> TaskItems { get; set; }
@@ -35,6 +36,8 @@ namespace NoteeFY.Buisness.DTOs
             Color = note.Color;
             ImageUrl = note.ImageUrl;
             Label = note.Label;
+            IsLocked = note.isLocked;
+
             TaskItems = note.TaskItems.Select(ti => new TaskItemDTO(ti)).ToList();
         }
 
