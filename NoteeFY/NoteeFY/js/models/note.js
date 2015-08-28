@@ -175,14 +175,22 @@ Note.prototype.addColorPicker = function (note, event) {
 
 Note.prototype.addImage = function () {
     var self = this;
-    bootbox.prompt({
+    var $box = bootbox.prompt({
         title: "Podaj link URL obrazka:",
+        placeholder: "https://",
         value: self.imageUrl(),
         callback: function (result) {
             if (result != null) {
-                self.imageUrl(result);
-                self.updateNote();
-                NoteeFy.refreshLayout();
+                var regex = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|svg|tiff?|jif|jfif|jp2?x|j2k?c|fpx|pcd|pdf)$/;
+                if (regex.test(result)) {
+                    self.imageUrl(result);
+                    self.updateNote();
+                    NoteeFy.refreshLayout();
+                }
+                else {
+                    bootbox.alert("Podany link URL: <br/><br/><a><u>" + result + "</u></a><br/><br/> jest błędny.");
+                    $box();
+                }
             }
         },
         buttons: {

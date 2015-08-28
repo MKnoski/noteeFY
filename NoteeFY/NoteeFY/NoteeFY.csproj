@@ -201,13 +201,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="js\app.js" />
-    <Content Include="js\external\additional-methods.min.js" />
     <Content Include="js\external\autosize.min.js" />
     <Content Include="js\external\bootbox.min.js" />
     <Content Include="js\external\colpick.js" />
     <Content Include="js\external\imagesloaded.pkgd.js" />
     <Content Include="js\external\imagesloaded.pkgd.min.js" />
-    <Content Include="js\external\jquery.validate.min.js" />
     <Content Include="js\external\masonry.pkgd.js" />
     <Content Include="js\external\moment-with-locales.min.js" />
     <Content Include="js\jquery\jquery-1.9.1.js" />
