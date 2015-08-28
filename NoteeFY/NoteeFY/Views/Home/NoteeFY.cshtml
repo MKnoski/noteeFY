@@ -49,7 +49,7 @@
             </div>
         </nav>
 
-        <div class="notepad" data-bind="foreach: user().notes()">
+        <div class="notepad" data-bind="foreach: user().notes(), visble: user().notes().length, style: { display: user().notes().length > 0 ? 'block' : 'none' }" style="display: none">
             <div class="single-note" data-bind="style: {background: color()}">
                 <div align="right">
                     <span class="badge" data-bind="text: label"></span>

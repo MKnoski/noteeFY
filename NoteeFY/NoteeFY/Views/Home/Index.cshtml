@@ -36,7 +36,7 @@
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })<br />
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "Hasło" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "Hasło" })<br/>
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                         <div class="checkbox">
                                             @Html.CheckBoxFor(m => m.RememberMe)

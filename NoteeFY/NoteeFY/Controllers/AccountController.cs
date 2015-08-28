@@ -70,21 +70,22 @@ namespace NoteeFY.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Home/Index.cshtml");
+                ModelState.AddModelError("", "Pola Email i Hasło są wymagane.");
             }
-
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            else
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                default:
-                    ModelState.AddModelError("", "Błędna próba logowania.");
-                    return View("~/Views/Home/Index.cshtml");
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    default:
+                        ModelState.AddModelError("", "Podane hasło lub adres email są niepoprawne.");
+                        return View("~/Views/Home/Index.cshtml");
+                }
             }
+            return View("~/Views/Home/Index.cshtml");
         }
-
-       
 
         //
         // GET: /Account/Register
