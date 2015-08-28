@@ -2,6 +2,10 @@ body {
   background-color: #ebebeb;
   }
 
+.register-control {
+    width: 300px;
+}
+
 .loading-window{
    position: absolute;
    width: 100%;
