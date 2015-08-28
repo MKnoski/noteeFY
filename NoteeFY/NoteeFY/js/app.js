@@ -12,6 +12,7 @@ function AppViewModel() {
     window.isLoading(true);
 
     $.getJSON("api/Users", function (allData) {
+        allData.Notes = allData.Notes.reverse();
         var mappedUser = new User(allData);
         self.user(mappedUser);
     }).success(function () {
