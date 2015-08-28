@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -107,14 +108,25 @@ namespace NoteeFY.Controllers
                 if (result.Succeeded)
                 {
                     new UsersManager().AddOrUpdateUser(new UserDTO() { UserID = model.Email });
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(user, false, false);
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);   
+                else
+                {
+                    var errorData = result.Errors.ToArray();
+                    if (errorData.Length == 2 && errorData[0].Split(' ').First() == "Name")
+                    {
+                        var error = "Adres email " + model.Email + " jest już zajęty";
+                        ModelState.AddModelError("", error);
+                    }
+                    else
+                    {
+                        AddErrors(result);
+                    }
+                }    
             }
             return View(model);
         }
-
 
         //
         // POST: /Account/ExternalLogin
