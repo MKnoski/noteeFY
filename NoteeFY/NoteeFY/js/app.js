@@ -41,11 +41,25 @@ function AppViewModel() {
 }
 
 NoteeFy.refreshLayout = function () {
+    NoteeFy.isLogged();
     $('.notepad').masonry('layout');
 }
 
 NoteeFy.refreshTextarea = function () {
+    NoteeFy.isLogged();
     autosize($('textarea'));
+}
+
+NoteeFy.isLogged = function() {
+    $.ajax({
+        url: "api/Users/IsLogged",
+        type: "OPTIONS",
+        success: function (result) {
+            if (!result) {
+                location.reload();
+            }
+        }
+    });
 }
 
 ko.applyBindings(new AppViewModel());

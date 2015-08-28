@@ -37,5 +37,11 @@ namespace NoteeFY.Controllers
                 });
             }
         }
+
+        [AllowAnonymous]
+        public bool OptionsIsLogged()
+        {
+            return User.Identity.IsAuthenticated;
+        }
     }
 }
