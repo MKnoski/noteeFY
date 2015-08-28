@@ -230,8 +230,13 @@ For usage and examples: colpick.com/plugin
 			//Show/hide the color picker
 			show = function (ev) {
 				// Prevent the trigger of any direct parent
-				ev.stopPropagation();
-				var cal = $('#' + $(this).data('colpickId'));
+			    ev.stopPropagation();
+
+			    if ($(ev.target).closest('.single-note').find('.note-title-input').is(':disabled')) {
+			        return false;
+			    }
+
+			    var cal = $('#' + $(this).data('colpickId'));
 				cal.data('colpick').onBeforeShow.apply(this, [cal.get(0)]);
 				var pos = $(this).offset();
 				var top = pos.top + this.offsetHeight;
