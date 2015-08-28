@@ -159,10 +159,10 @@ Note.prototype.getFullModificationDate = function (data) {
 };
 
 Note.prototype.addColorPicker = function (note, event) {
-    $(event.target).colpick({
+    $(event.target.closest(".picker")).colpick({
         layout: 'hex',
         submit: 0,
-        color: 'FBEA6E',
+        color: note.color(),
         onChange: function (hsb, hex) {
             note.color('#' + hex);
         },

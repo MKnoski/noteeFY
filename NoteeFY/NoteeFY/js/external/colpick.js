@@ -232,10 +232,6 @@ For usage and examples: colpick.com/plugin
 				// Prevent the trigger of any direct parent
 			    ev.stopPropagation();
 
-			    if ($(ev.target).closest('.single-note').find('.note-title-input').is(':disabled')) {
-			        return false;
-			    }
-
 			    var cal = $('#' + $(this).data('colpickId'));
 				cal.data('colpick').onBeforeShow.apply(this, [cal.get(0)]);
 				var pos = $(this).offset();
