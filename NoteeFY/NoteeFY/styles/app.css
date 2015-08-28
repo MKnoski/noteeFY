@@ -51,6 +51,7 @@ body {
 
 .note-title {
     height: 60px;
+    display: inline-block;
 }
 
 .note-title-span{
@@ -64,7 +65,7 @@ body {
 
 .note-title-input{
     border: none;
-    width: 350px; 
+    width: 320px; 
     background: #FBEA6E;
     font-weight: bold;
 }
@@ -136,6 +137,11 @@ body {
 
 .modal-button {
     border: none;
+}
+
+.locker {
+    position: absolute;
+    left: 350px;
 }
 
 .google-button {
