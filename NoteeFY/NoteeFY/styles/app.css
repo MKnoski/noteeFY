@@ -265,3 +265,7 @@ body {
     width:100%;
     height: auto;
 }
+
+.form-control-reg{
+    width: 30%;
+}
