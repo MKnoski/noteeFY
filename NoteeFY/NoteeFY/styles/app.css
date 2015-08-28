@@ -88,6 +88,8 @@ body {
     overflow:hidden;    
     background: #FBEA6E;
     resize: none;
+    webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .tasks-textarea {

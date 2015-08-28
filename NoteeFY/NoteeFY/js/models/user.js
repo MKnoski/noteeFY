@@ -47,8 +47,9 @@ User.prototype.addNote = function (type) {
 
 User.prototype.deleteNote = function (note, event) {
     var self = this;
-    bootbox.confirm("Czy na pewno chcesz usunać notatkę?",
-        function (result) {
+    bootbox.confirm({
+        message: "Czy na pewno chcesz usunać notatkę?",
+        callback: function (result) {
             if (result === true) {
                 NoteeFy.changeNotificationStatus(1);
                 $.ajax({
@@ -64,6 +65,15 @@ User.prototype.deleteNote = function (note, event) {
                     }
                 });
             }
-        });
+        },
+        buttons: {
+            confirm: {
+                label: "Potwierdź"
+            },
+            cancel: {
+                label: "Anuluj"
+            }
+        }
+    });
 };
 
