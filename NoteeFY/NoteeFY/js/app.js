@@ -21,11 +21,10 @@ function AppViewModel() {
             gutter: 5
         });
         imagesLoaded(document.querySelector('.notepad'), function () {
-            NoteeFy.refreshLayout();
             window.isLoading(false);
+            NoteeFy.refreshTextarea();
+            NoteeFy.refreshLayout();
         });
-        NoteeFy.refreshTextarea();
-        NoteeFy.refreshLayout();
     }).complete(function () {
     }).error(function () {
     });

@@ -18,94 +18,95 @@
 <body>
 <div id="main-page">
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">NoteeFY</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a>Witaj @User.Identity.GetUserName()!</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="li-padding-custom"> <img data-bind="attr:{src: notification}"/></li>
-                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
-                    <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa lista zadań</button></li>
-                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
-                    {
-                        try{@Html.AntiForgeryToken()}
-                        catch (Exception){/* ignore*/}
-                        <li class="li-padding-custom"><button type="submit" class="btn btn-default navbar-btn" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit();"><i class="fa fa-sign-out"></i></button></li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <div class="notepad" data-bind="foreach: user().notes()">
-        <div class="single-note" data-bind="style: {background: color()}">
-            <div align="right">
-                <span class="badge" data-bind="text: label"></span>
-            </div>
-            <div data-bind="visible: imageUrl()">
-                <br /><table align="center"><tr><td><img class="image-resized" data-bind="attr:{src: imageUrl}" alt="Podany link jest błędny bądz nie aktywny."></td></tr></table><br />
-            </div>
-            <div class="note-title">
-                <span class="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
-                <input class="note-title-input form-control" maxlength="45" placeholder="Tytuł" data-bind="disable: isLocked, value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }, style: {background: color()}" />
-            </div>
-            <div class="note-content" data-bind="visible: type()===0">
-                <textarea cols="42" class="form-control note-content-textarea" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: isLocked, value: text, event: { blur: updateNote.bind($data) }, style: {background: color()}"></textarea>
-            </div>
-            <div class="todolist-content" data-bind="visible: type()===1">
-                <div class="form-group">
-                    <table>
-                        <tr>
-                            <td><input type="text" class="form-control adding" maxlength="100" data-bind="disable: isLocked, value: newTask, valueUpdate:'afterkeydown', event:{keypress: sendTask}" placeholder="Napisz coś!"></td>
-                            <td class="plus"><button class="btn btn-default" data-bind="disable: !newTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button></td>
-                        </tr>
-                    </table>
+    <div id="content" data-bind="visible: !isLoading()">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">NoteeFY</a>
                 </div>
-                <br />
-                <div class="tasks item" data-bind="foreach: tasks()">
-                    <div class="single-task">
+
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a>Witaj @User.Identity.GetUserName()!</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="li-padding-custom"> <img data-bind="attr:{src: notification}"/></li>
+                        <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),0)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-plus-square"></i> Nowa notatka</button></li>
+                        <li class="li-padding-custom"><button data-bind="click: user().addNote.bind(user(),1)" type="submit" class="btn btn-default navbar-btn"><i class="fa fa-bars"></i> Nowa lista zadań</button></li>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+                        {
+                            try{@Html.AntiForgeryToken()}
+                            catch (Exception){/* ignore*/}
+                            <li class="li-padding-custom"><button type="submit" class="btn btn-default navbar-btn" title="Wyloguj" onclick="javascript: document.getElementById('logoutForm').submit();"><i class="fa fa-sign-out"></i></button></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="notepad" data-bind="foreach: user().notes()">
+            <div class="single-note" data-bind="style: {background: color()}">
+                <div align="right">
+                    <span class="badge" data-bind="text: label"></span>
+                </div>
+                <div data-bind="visible: imageUrl()">
+                    <br/><table align="center"><tr><td><img class="image-resized" data-bind="attr:{src: imageUrl}" alt="Podany link jest błędny bądz nie aktywny."></td></tr></table><br/>
+                </div>
+                <div class="note-title">
+                    <span class="note-title-span" data-bind="html: !title() ? '<i>Tytuł</i>' : title, click: isEditTitle.bind($data, true), style: { display: !isEditTitle() ? 'inline-block' : 'none' }"></span>
+                    <input class="note-title-input form-control" maxlength="45" placeholder="Tytuł" data-bind="disable: isLocked, value: title, visible: isEditTitle, hasFocus: isEditTitle, event: { blur: updateNote.bind($data) }, style: {background: color()}"/>
+                </div>
+                <div class="note-content" data-bind="visible: type()===0">
+                    <textarea cols="42" class="form-control note-content-textarea" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: isLocked, value: text, event: { blur: updateNote.bind($data) }, style: {background: color()}"></textarea>
+                </div>
+                <div class="todolist-content" data-bind="visible: type()===1">
+                    <div class="form-group">
                         <table>
                             <tr>
-                                <td><input tabindex="-1" type="checkbox" value="" data-bind="disable: $parent.isLocked, checked: isDone, click: $parent.reorderTasks.bind($parent)" /></td>
-                                <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
-                                <td><textarea class="tasks-textarea" rows="1" cols="40" maxlength="100" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: $parent.isLocked,value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
-                                <td><button class="btn btn-default" tabindex="-1" type="submit" data-bind="disable: $parent.isLocked, click: $parent.deleteTask.bind($parent)"><i class="fa fa-times"></i></button></td>
+                                <td><input type="text" class="form-control adding" maxlength="100" data-bind="disable: isLocked, value: newTask, valueUpdate:'afterkeydown', event:{keypress: sendTask}" placeholder="Napisz coś!"></td>
+                                <td class="plus"><button class="btn btn-default" data-bind="disable: !newTask(), click: addTask" type="submit"><i class="fa fa-plus"></i></button></td>
                             </tr>
                         </table>
                     </div>
+                    <br/>
+                    <div class="tasks item" data-bind="foreach: tasks()">
+                        <div class="single-task">
+                            <table>
+                                <tr>
+                                    <td><input tabindex="-1" type="checkbox" value="" data-bind="disable: $parent.isLocked, checked: isDone, click: $parent.reorderTasks.bind($parent)"/></td>
+                                    <td><i style="visibility: hidden" class="fa fa-bars"></i></td>
+                                    <td><textarea class="tasks-textarea" rows="1" cols="40" maxlength="100" onkeydown="NoteeFy.refreshLayout()" data-bind="disable: $parent.isLocked,value: text, event: { blur: updateTask.bind($data) }, style: { textDecoration: isDone() ? 'line-through' : '' , background: $parent.color()}"></textarea></td>
+                                    <td><button class="btn btn-default" tabindex="-1" type="submit" data-bind="disable: $parent.isLocked, click: $parent.deleteTask.bind($parent)"><i class="fa fa-times"></i></button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="menu">
+                    <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent), disable: isLocked"><i class="fa fa-trash-o fa-lg"></i></button>
+                    <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) }, disable: isLocked "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
+                    <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl(), click: addImage, disable: isLocked"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
+                    <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: addImage, disable: isLocked"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
+                    <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: deleteImage, disable: isLocked"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
+                    <button class="btn btn-default" data-bind="click: addLabel, visible: !isLabelSet(), disable: isLocked"><i class="fa fa-tag"></i></button>
+                    <button class="btn btn-default" data-bind="click: deleteLabel, visible: isLabelSet, disable: isLocked"><i class="fa fa-times"></i><i class="fa fa-tag"></i></button>
+                    <button class="btn btn-default" data-bind="click: lockNote, visible: !isLocked()"><i class="fa fa-lock"></i></button>
+                    <button class="btn btn-default" data-bind="click: unlockNote, visible: isLocked"><i class="fa fa-unlock"></i></button>
+                    <span style="float: right;" data-bind="text: modificationDate, attr: { title: modificationDateFull }"></span>
                 </div>
             </div>
-            <br />
-            <div class="menu">
-                <button class="btn btn-default" type="submit" data-bind="click: $parent.user().deleteNote.bind($parent), disable: isLocked"><i class="fa fa-trash-o fa-lg"></i></button>
-                <button class="picker btn btn-default" type="button" data-bind="event: { mouseover: addColorPicker.bind($data) }, disable: isLocked "><i class="fa fa-paint-brush"> <span class="caret"></span></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: !imageUrl(), click: addImage, disable: isLocked"><i class="fa fa-plus"> <i class="fa fa-picture-o"></i></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: addImage, disable: isLocked"><i class="fa fa-retweet"> <i class="fa fa-picture-o"></i></i></button>
-                <button class="btn btn-default" type="submit" data-bind="visible: imageUrl(), click: deleteImage, disable: isLocked"><i class="fa fa-times"> <i class="fa fa-picture-o"></i></i></button>
-                <button class="btn btn-default" data-bind="click: addLabel, visible: !isLabelSet(), disable: isLocked"><i class="fa fa-tag"></i></button>
-                <button class="btn btn-default" data-bind="click: deleteLabel, visible: isLabelSet, disable: isLocked"><i class="fa fa-times"></i><i class="fa fa-tag"></i></button>
-                <button class="btn btn-default" data-bind="click: lockNote, visible: !isLocked()"><i class="fa fa-lock"></i></button>
-                <button class="btn btn-default" data-bind="click: unlockNote, visible: isLocked"><i class="fa fa-unlock"></i></button>
-                <span style="float: right;" data-bind="text: modificationDate, attr: { title: modificationDateFull }"></span>
-            </div>
         </div>
+        <div style="clear: both;"></div>
     </div>
-    <div style="clear: both;"></div>
 </div>
-
-
+    
 <div id="loading" data-bind="visible: isLoading()">
     <div class="loading-window"></div>
     <div id="busy-indicator">
