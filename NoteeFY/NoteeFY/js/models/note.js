@@ -228,7 +228,7 @@ Note.prototype.deleteImage = function() {
 
 Note.prototype.addLabel = function () {
     var self = this;
-    $('.modal-button').on('click', function (event) {
+    $('.modal-button').on('click', function () {
         self.label($(this).text());
         self.updateNote();
         self.isLabelSet(true);
@@ -245,13 +245,13 @@ Note.prototype.deleteLabel = function() {
     self.isLabelSet(false);
 }
 
-Note.prototype.lockNote = function (data, event) {
+Note.prototype.lockNote = function () {
     var self = this;
     self.isLocked(true);
     self.updateNote();
 }
 
-Note.prototype.unlockNote = function (data, event) {
+Note.prototype.unlockNote = function () {
     var self = this;
     self.isLocked(false);
     self.updateNote();
