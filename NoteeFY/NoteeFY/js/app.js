@@ -19,7 +19,8 @@ function AppViewModel() {
         window.isLoading(true);
         $('.notepad').masonry({
             itemSelector: '.single-note',
-            gutter: 5
+            gutter: 10,
+            isFitWidth: true
         });
         imagesLoaded(document.querySelector('.notepad'), function () {
             window.isLoading(false);

@@ -35,13 +35,14 @@ body {
 
 .single-note{
     margin-bottom: 10px;
-    margin-left: 10px;
     width: 390px;
     border-radius: 15px 15px;
     background: #FBEA6E;
     padding: 20px;
-    display: inline-block;
-    float: left;
+}
+
+.notepad {
+    margin: 0 auto;
 }
 
 .note-title {
