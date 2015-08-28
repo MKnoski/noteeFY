@@ -177,7 +177,7 @@ Note.prototype.addImage = function () {
     var self = this;
     bootbox.prompt({
         title: "Podaj link URL obrazka:",
-        value: "https://",
+        value: self.imageUrl(),
         callback: function (result) {
             if (result != null) {
                 self.imageUrl(result);
