@@ -181,7 +181,7 @@ Note.prototype.addImage = function () {
         value: self.imageUrl(),
         callback: function (result) {
             if (result != null) {
-                var regex = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png|svg|tiff?|jif|jfif|jp2?x|j2k?c|fpx|pcd|pdf)$/;
+                var regex = /\.(gif|jpg|jpeg|tiff|png)$/i;
                 if (regex.test(result)) {
                     self.imageUrl(result);
                     self.updateNote();
