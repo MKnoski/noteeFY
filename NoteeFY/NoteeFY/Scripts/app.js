@@ -3,7 +3,7 @@ function AppViewModel() {
     var self = this;
     self.userID = ko.observable("");
     self.user = ko.observable(new User());
-    self.notification = ko.observable("/images/saved.png");
+    self.notification = ko.observable("/Images/saved.png");
     window.isLoading = ko.observable(false);
     self.isLoading = ko.computed(function () {
         return window.isLoading();
@@ -33,10 +33,10 @@ function AppViewModel() {
 
     NoteeFy.changeNotificationStatus = function (status) {
         if (status === 0) {
-            self.notification("/images/saved.png");
+            self.notification("/Images/saved.png");
         }
         if (status === 1) {
-            self.notification("/images/saving.gif");
+            self.notification("/Images/saving.gif");
         }
     }
 }

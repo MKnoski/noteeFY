@@ -195,39 +195,36 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="images\busy_loader.gif" />
-    <Content Include="images\saved.png" />
-    <Content Include="images\saving.GIF">
+    <Content Include="Images\busy_loader.gif" />
+    <Content Include="Images\saved.png" />
+    <Content Include="Images\saving.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="js\app.js" />
-    <Content Include="js\external\autosize.min.js" />
-    <Content Include="js\external\bootbox.min.js" />
-    <Content Include="js\external\colpick.js" />
-    <Content Include="js\external\imagesloaded.pkgd.js" />
-    <Content Include="js\external\imagesloaded.pkgd.min.js" />
-    <Content Include="js\external\masonry.pkgd.js" />
-    <Content Include="js\external\moment-with-locales.min.js" />
-    <Content Include="js\jquery\jquery-1.9.1.js" />
-    <Content Include="js\jquery\jquery-ui.js" />
-    <Content Include="js\knockout\knockout-3.3.0.debug.js" />
-    <Content Include="js\knockout\knockout-3.3.0.js" />
-    <Content Include="js\knockout\knockout-bootstrap.min.js" />
-    <Content Include="js\knockout\knockout-sortable.min.js" />
-    <Content Include="js\models\note.js" />
-    <Content Include="js\models\task.js" />
-    <Content Include="js\models\user.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\external\autosize.min.js" />
+    <Content Include="Scripts\external\bootbox.min.js" />
+    <Content Include="Scripts\external\bootstrap.min.js" />
+    <Content Include="Scripts\external\colpick.js" />
+    <Content Include="Scripts\external\imagesloaded.pkgd.min.js" />
+    <Content Include="Scripts\external\masonry.pkgd.js" />
+    <Content Include="Scripts\external\moment-with-locales.min.js" />
+    <Content Include="Scripts\jquery\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery\jquery-ui.js" />
+    <Content Include="Scripts\knockout\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout\knockout-bootstrap.min.js" />
+    <Content Include="Scripts\knockout\knockout-sortable.min.js" />
+    <Content Include="Scripts\models\note.js" />
+    <Content Include="Scripts\models\task.js" />
+    <Content Include="Scripts\models\user.js" />
     <Content Include="Styles\app.css" />
-    <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Styles\colpick.css" />
     <Content Include="Styles\Content\bootstrap.css" />
-    <Content Include="Styles\Content\bootstrap.min.css" />
     <Content Include="Styles\Content\Site.css" />
     <Content Include="Styles\font-awesome\css\font-awesome.css" />
     <Content Include="Styles\font-awesome\css\font-awesome.min.css" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Styles\font-awesome\HELP-US-OUT.txt" />
-    <None Include="js\Scripts\_references.js" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Styles\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -272,6 +269,8 @@
     <Content Include="packages.config" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\ExternalLoginFailure.cshtml" />
+    <None Include="Properties\PublishProfiles\NoteeFY - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\NoteeFY - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

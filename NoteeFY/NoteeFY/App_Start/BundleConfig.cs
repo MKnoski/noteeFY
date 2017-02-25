@@ -4,27 +4,43 @@ namespace NoteeFY
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/js/Scripts/jquery-{version}.js"));
+            bundles
+                .Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery/jquery-{version}.js",
+                         "~/Scripts/jquery/jquery-ui.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/js/Scripts/jquery.validate*"));
+            bundles
+                .Add(new ScriptBundle("~/bundles/external")
+                .Include("~/Scripts/external/autosize.min.js",
+                         "~/Scripts/external/bootbox.min.js",
+                         "~/Scripts/external/bootstrap.min.js",
+                         "~/Scripts/external/colpick.js",
+                         "~/Scripts/external/imagesloaded.pkgd.min.js",
+                         "~/Scripts/external/masonry.pkgd.js",
+                         "~/Scripts/external/moment-with-locales.min.js"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/js/Scripts/modernizr-*"));
+            bundles
+                .Add(new ScriptBundle("~/bundles/knockout")
+                .Include("~/Scripts/knockout/knockout-{version}.debug.js",
+                         "~/Scripts/knockout/knockout-{version}.js",
+                         "~/Scripts/knockout/knockout-bootstrap.min.js",
+                         "~/Scripts/knockout/knockout-sortable.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/js/Scripts/bootstrap.js",
-                      "~/js/Scripts/respond.js"));
+            bundles
+                .Add(new ScriptBundle("~/bundles/app")
+                .Include("~/Scripts/models/note.js",
+                         "~/Scripts/models/task.js",
+                         "~/Scripts/models/user.js",
+                         "~/Scripts/app.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles
+                .Add(new StyleBundle("~/bundles/css")
+                .Include("~/Styles/Content/bootstrap.css",
+                         "~/Styles/font-awesome/css/font-awesome.min.css",
+                         "~/Styles/colpick.css",
+                         "~/Styles/app.css"));
         }
     }
 }

@@ -10,9 +10,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
     <title>NoteeFY</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/styles/app.css"/>
+    
+    @Styles.Render("~/bundles/css")
 </head>
 <body>
     @{
@@ -47,7 +46,7 @@
                                         <br /><br />
                                     }
                                     @Html.ActionLink(" Dodaj użytkownika!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "add-user-button" })<br /><br />
-                                    @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                    @*@Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
                                 </td>
                             </tr>
                         </table>
@@ -56,14 +55,9 @@
             </div>
         }
     }
-
-    <script type="text/javascript" src="/js/jquery/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="/js/jquery/jquery-ui.js"></script>
-    <script type="text/javascript" src="/js/knockout/knockout-3.3.0.debug.js"></script>
-    <script type="text/javascript" src="/js/knockout/knockout-sortable.min.js"></script>
-    <script type="text/javascript" src="/js/knockout/knockout-bootstrap.min.js"></script>
 </body>
 </html>
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
 }
